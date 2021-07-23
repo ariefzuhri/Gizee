@@ -1,0 +1,148 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Gizee" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/sen</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="fontFamily">@font/sen</item>
+    </style>
+
+    <style name="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog" />
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+    <style name="Button" parent="TextView.Header.3">
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_light</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/black</item>
+        <!--<item name="android:textColorHighlight">@color/gray_dark</item>-->
+        <item name="android:textSize">@dimen/font_nm</item>
+    </style>
+
+    <style name="EditText.MultiLine">
+        <item name="android:gravity">top|start</item>
+        <item name="android:inputType">textMultiLine|textCapSentences</item>
+        <item name="android:lines">8</item>
+        <item name="android:maxLines">8</item>
+        <item name="android:overScrollMode">always</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarStyle">insideInset</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="tint">@color/blue</item>
+    </style>
+
+    <style name="ImageView">
+        <item name="android:src">@drawable/ic_placeholder</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="RecyclerView">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="ScrollView">
+        <item name="android:overScrollMode">never</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextView.Header">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.Header.1">
+        <item name="android:textSize">@dimen/font_lg</item>
+    </style>
+
+    <style name="TextView.Header.2">
+        <item name="android:textSize">@dimen/font_md</item>
+    </style>
+
+    <style name="TextView.Header.3">
+        <item name="android:textSize">@dimen/font_nm</item>
+    </style>
+
+    <style name="TextView.Hint">
+        <item name="android:textSize">@dimen/font_sm</item>
+        <item name="android:textColor">@color/gray_dark</item>
+    </style>
+
+    <style name="TextView.Link">
+        <item name="android:clickable">true</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="drawableTint">@color/blue</item>
+    </style>
+
+    <style name="TextView.Text">
+        <item name="android:textSize">@dimen/font_nm</item>
+    </style>
+
+    <style name="TextView.Toolbar" parent="TextView.Header.3">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:elevation">0dp</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="navigationIcon">@drawable/ic_close</item>
+        <item name="navigationIconTint">@color/blue</item>
+    </style>
+</resources>

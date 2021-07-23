@@ -1,0 +1,71 @@
+@font-face {
+  font-family: sen;
+  src: url("file:///android_res/font/sen.ttf")
+}
+
+body {
+  font-family: sen;
+  font-size: 14px;
+}
+
+#nutritionfacts {
+  background-color: white;
+  border: 1px solid #1C1919;
+  padding: 4px;
+}
+
+#nutritionfacts td {
+  color: #1C1919;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0;
+}
+
+#nutritionfacts td.header {
+  font-weight: bold;
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+#nutritionfacts div.label {
+  float: left;
+  font-weight: bold;
+}
+
+#nutritionfacts div.serving {
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+}
+
+#nutritionfacts div.weight {
+  display: inline;
+  font-weight: normal;
+  padding-left: 1px;
+}
+
+#nutritionfacts div.dv {
+  display: inline;
+  float: right;
+  font-weight: bold;
+}
+
+#nutritionfacts table.vitamins td {
+  font-weight: normal;
+  white-space: nowrap;
+  width: 33%;
+}
+
+#nutritionfacts div.line {
+  border-top: 1px solid #1C1919;
+}
+
+#nutritionfacts div.labellight {
+  float: left;
+  font-weight: normal;
+}
+
+#nutritionfacts .highlighted {
+  border: 1px dotted #666666;
+  padding: 2px;
+}

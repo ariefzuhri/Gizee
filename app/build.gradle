@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.ariefzuhri.gizee"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0.0-beta"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'])
+        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'])
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // Android support
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Testing
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+    // Data storage
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+
+    // Pagination
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
+    // Networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // Parsing the JSON format
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // Network logging
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    // Image loading and caching
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
+    implementation "org.apache.commons:commons-text:$commonsTextVersion"
+    implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+}
