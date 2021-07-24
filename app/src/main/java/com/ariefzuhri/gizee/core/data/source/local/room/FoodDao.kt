@@ -18,7 +18,7 @@ interface FoodDao {
     @Query("SELECT * FROM history ORDER BY timestamp DESC")
     fun getHistory(): LiveData<List<HistoryEntity>>
 
-    @Query("SELECT * FROM nutrients ORDER BY name ASC")
+    @Query("SELECT * FROM nutrients ORDER BY name DESC")
     fun getNutrients(): LiveData<List<NutrientEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
