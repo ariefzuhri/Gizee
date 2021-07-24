@@ -53,7 +53,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-        viewModel.getHistory().observe(viewLifecycleOwner) { history ->
+        viewModel.getHistory.observe(viewLifecycleOwner) { history ->
             populateAdapter(history)
         }
     }

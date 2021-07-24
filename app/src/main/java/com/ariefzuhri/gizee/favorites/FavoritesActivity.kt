@@ -21,7 +21,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this, factory)[FavoritesViewModel::class.java]
-        viewModel.getFavorites().observe(this) { foods -> populateAdapter(foods) }
+        viewModel.getFavorites.observe(this) { foods -> populateAdapter(foods) }
     }
 
     private fun populateAdapter(foods: List<Food>?) {

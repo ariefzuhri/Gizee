@@ -9,8 +9,8 @@ import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 
 class FoodInteractor(private val foodRepository: IFoodRepository) : FoodUseCase {
 
-    override fun searchFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> {
-        return foodRepository.searchFoodsByNaturalLanguage(query)
+    override fun getFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> {
+        return foodRepository.getFoodsByNaturalLanguage(query)
     }
 
     override fun getFavorites(): LiveData<List<Food>> {

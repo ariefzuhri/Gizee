@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
-import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
 import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.core.utils.AppUtils
@@ -60,8 +59,8 @@ class SearchResultFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-        viewModel.insertHistory(History(query))
-        viewModel.searchFoodsByNaturalLanguage(query).observe(viewLifecycleOwner) { result ->
+        viewModel.performQuery(query)
+        viewModel.getFoodsByNaturalLanguage.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Resource.Loading -> shimmer.show()
