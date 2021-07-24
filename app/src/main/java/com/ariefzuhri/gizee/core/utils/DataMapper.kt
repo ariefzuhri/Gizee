@@ -49,43 +49,43 @@ object FoodMapper {
 
     fun mapEntitiesToDomain(input: List<FoodEntity>): List<Food> {
         val foods = arrayListOf<Food>()
-        input.map { foods.add(mapEntityToDomain(it)) }
-        return foods
-    }
+        input.map {
+            val fullNutrients = arrayListOf<Nutrient?>()
+            it.fullNutrients?.map { item ->
+                val nutrient = Nutrient(
+                    id = item?.id,
+                    name = item?.name,
+                    unit = item?.unit,
+                    value = item?.value
+                )
+                fullNutrients.add(nutrient)
+            }
 
-    fun mapEntityToDomain(input: FoodEntity?): Food {
-        val fullNutrients = arrayListOf<Nutrient?>()
-        input?.fullNutrients?.map { item ->
-            val nutrient = Nutrient(
-                id = item?.id,
-                name = item?.name,
-                unit = item?.unit,
-                value = item?.value
+            val food = Food(
+                id = it.id,
+                name = it.name,
+                photo = it.photo,
+                servingQty = it.servingQty,
+                servingUnit = it.servingUnit,
+                servingWeightGrams = it.servingWeightGrams,
+                nfCalories = it.nfCalories,
+                nfTotalFat = it.nfTotalFat,
+                nfSaturatedFat = it.nfSaturatedFat,
+                nfCholesterol = it.nfCholesterol,
+                nfSodium = it.nfSodium,
+                nfTotalCarbohydrate = it.nfTotalCarbohydrate,
+                nfDietaryFiber = it.nfDietaryFiber,
+                nfSugars = it.nfSugars,
+                nfProtein = it.nfProtein,
+                nfPotassium = it.nfPotassium,
+                nfP = it.nfP,
+                fullNutrients = fullNutrients,
+                isFavorite = it.isFavorite
             )
-            fullNutrients.add(nutrient)
-        }
 
-        return Food(
-            id = input?.id,
-            name = input?.name,
-            photo = input?.photo,
-            servingQty = input?.servingQty,
-            servingUnit = input?.servingUnit,
-            servingWeightGrams = input?.servingWeightGrams,
-            nfCalories = input?.nfCalories,
-            nfTotalFat = input?.nfTotalFat,
-            nfSaturatedFat = input?.nfSaturatedFat,
-            nfCholesterol = input?.nfCholesterol,
-            nfSodium = input?.nfSodium,
-            nfTotalCarbohydrate = input?.nfTotalCarbohydrate,
-            nfDietaryFiber = input?.nfDietaryFiber,
-            nfSugars = input?.nfSugars,
-            nfProtein = input?.nfProtein,
-            nfPotassium = input?.nfPotassium,
-            nfP = input?.nfP,
-            fullNutrients = fullNutrients,
-            isFavorite = input?.isFavorite
-        )
+            foods.add(food)
+        }
+        return foods
     }
 
     fun mapDomainToEntity(input: Food): FoodEntity {

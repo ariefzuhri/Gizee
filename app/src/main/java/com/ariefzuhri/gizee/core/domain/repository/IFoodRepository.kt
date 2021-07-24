@@ -12,7 +12,7 @@ interface IFoodRepository {
 
     fun getFavorites(): LiveData<List<Food>>
 
-    fun isFavorite(id: String): LiveData<Food>
+    fun isFavorite(id: String): LiveData<Boolean>
 
     fun getHistory(): LiveData<List<History>>
 

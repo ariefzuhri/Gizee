@@ -67,9 +67,9 @@ class FoodRepository private constructor(
             FoodMapper.mapEntitiesToDomain(it)
         }
 
-    override fun isFavorite(id: String): LiveData<Food> =
+    override fun isFavorite(id: String): LiveData<Boolean> =
         Transformations.map(localDataSource.getFood(id)) {
-            FoodMapper.mapEntityToDomain(it)
+            it != null
         }
 
     override fun getHistory(): LiveData<List<History>> =
