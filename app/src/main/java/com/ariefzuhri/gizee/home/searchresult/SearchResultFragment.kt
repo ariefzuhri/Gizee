@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.Nutrient
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
@@ -33,7 +32,7 @@ private const val ARG_QUERY = "query"
 class SearchResultFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchResultBinding
-    private var nutrientsData: List<NutrientEntity>? = null
+    private var rawNutrients: List<NutrientEntity>? = null
     private lateinit var query: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +93,7 @@ class SearchResultFragment : Fragment() {
         viewModel.getNutrients().observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
-                    is Resource.Success -> nutrientsData = result.data
+                    is Resource.Success -> rawNutrients = result.data
                     is Resource.Error -> AppUtils.showToast(context, result.message)
                     is Resource.Loading -> Log.d(javaClass.simpleName, "Loading data")
                 }
@@ -162,23 +161,23 @@ class SearchResultFragment : Fragment() {
                     .setCalories(food.nfCalories)
                     .setTotalFat(food.nfTotalFat)
                     .setSaturatedFat(food.nfSaturatedFat)
-                    .setTransFat(getNutrientValueById(food.fullNutrients, 605))
-                    .setPolyunsaturatedFat(getNutrientValueById(food.fullNutrients, 646))
-                    .setMonounsaturatedFat(getNutrientValueById(food.fullNutrients, 645))
+                    .setTransFat(AppUtils.getNutrientValueById(food.fullNutrients, 605))
+                    .setPolyunsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 646))
+                    .setMonounsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 645))
                     .setCholesterol(food.nfCholesterol)
                     .setSodium(food.nfSodium)
                     .setTotalCarbohydrates(food.nfTotalCarbohydrate)
                     .setDietaryFiber(food.nfDietaryFiber)
                     .setSugars(food.nfSugars)
                     .setProtein(food.nfProtein)
-                    .setVitaminA(getNutrientValueById(food.fullNutrients, 320))
-                    .setVitaminB6(getNutrientValueById(food.fullNutrients, 415))
-                    .setVitaminC(getNutrientValueById(food.fullNutrients, 401))
-                    .setVitaminD(getNutrientValueById(food.fullNutrients, 328))
-                    .setCalcium(getNutrientValueById(food.fullNutrients, 301))
-                    .setIron(getNutrientValueById(food.fullNutrients, 303))
+                    .setVitaminA(AppUtils.getNutrientValueById(food.fullNutrients, 320))
+                    .setVitaminB6(AppUtils.getNutrientValueById(food.fullNutrients, 415))
+                    .setVitaminC(AppUtils.getNutrientValueById(food.fullNutrients, 401))
+                    .setVitaminD(AppUtils.getNutrientValueById(food.fullNutrients, 328))
+                    .setCalcium(AppUtils.getNutrientValueById(food.fullNutrients, 301))
+                    .setIron(AppUtils.getNutrientValueById(food.fullNutrients, 303))
                     .setPotassium(food.nfPotassium)
-                    .setFolate(getNutrientValueById(food.fullNutrients, 435))
+                    .setFolate(AppUtils.getNutrientValueById(food.fullNutrients, 435))
                     .create()
                 binding.layoutNutritionFacts.nfView.addData(nfData)
             }
@@ -186,16 +185,10 @@ class SearchResultFragment : Fragment() {
         binding.layoutNutritionFacts.nfView.drawLabel()
     }
 
-    private fun getNutrientValueById(nutrients: ArrayList<Nutrient?>?, id: Int): Double {
-        if (nutrients != null) for (nutrient in nutrients) if (nutrient?.id == id) return nutrient.value
-            ?: 0.0
-        return 0.0
-    }
-
     private fun populateFullNutrients(foods: List<FoodEntity>) {
         binding.layoutNutritionFacts.tvFullNutrients.setOnClickListener {
-            if (nutrientsData != null) {
-                FullNutrientsFragment.newInstance(foods, nutrientsData!!)
+            if (rawNutrients != null) {
+                FullNutrientsFragment.newInstance(foods, rawNutrients!!)
                     .show(childFragmentManager, FullNutrientsFragment.TAG)
             }
         }

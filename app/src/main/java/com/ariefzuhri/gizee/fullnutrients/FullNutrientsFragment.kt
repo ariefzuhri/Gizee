@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.Nutrient
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.ui.adapter.NutrientAdapter
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
@@ -19,13 +18,13 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFullNutrientsBinding
     private var foods: List<FoodEntity>? = null
-    private var nutrientsData: List<NutrientEntity>? = null
+    private var rawNutrients: List<NutrientEntity>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             foods = it.getParcelableArrayList(ARG_FOODS)
-            nutrientsData = it.getParcelableArrayList(ARG_NUTRIENTS)
+            rawNutrients = it.getParcelableArrayList(ARG_NUTRIENTS)
         }
     }
 
@@ -41,11 +40,11 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         val TAG: String = FullNutrientsFragment::class.java.simpleName
 
         @JvmStatic
-        fun newInstance(foods: List<FoodEntity>, nutrients: List<NutrientEntity>) =
+        fun newInstance(foods: List<FoodEntity>, rawNutrients: List<NutrientEntity>) =
             FullNutrientsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelableArrayList(ARG_FOODS, foods as ArrayList<FoodEntity>)
-                    putParcelableArrayList(ARG_NUTRIENTS, nutrients as ArrayList<NutrientEntity>)
+                    putParcelableArrayList(ARG_NUTRIENTS, rawNutrients as ArrayList<NutrientEntity>)
                 }
             }
     }
@@ -54,39 +53,49 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { dismiss() }
 
-        val nutrients = mergedNutrients(nutrientsData, foods)
+        val nutrients = mergedValueNutrients(foods, rawNutrients)
         populateAdapter(nutrients)
     }
 
-    private fun mergedNutrients(
-        nutrientsData: List<NutrientEntity>?,
-        foods: List<FoodEntity>?
-    ): ArrayList<Nutrient?> {
-        var nutrients = arrayListOf<Nutrient?>()
-        for (nutrient in nutrientsData!!) nutrients.add(Nutrient(nutrient.id, 0.0))
+    private fun mergedValueNutrients(
+        foods: List<FoodEntity>?,
+        rawNutrients: List<NutrientEntity>?
+    ): List<NutrientEntity> {
+        var result = arrayListOf<NutrientEntity>()
+        for (rawNutrient in rawNutrients!!) result.add(
+            NutrientEntity(
+                rawNutrient.id,
+                rawNutrient.name,
+                rawNutrient.unit,
+                0.0
+            )
+        )
+
+        // Gabungkan value semua nutrient pada setiap food
         for (food in foods!!) {
-            for (nutrient in food.fullNutrients!!) {
-                nutrients = addValueById(nutrient!!, nutrients)
+            // Tambah value nutrient di foods ke rawNutrients sesuai id-nya
+            for (onlyValueNutrient in food.fullNutrients!!) {
+                result = addValueById(onlyValueNutrient!!, result)
             }
         }
-        return nutrients
+        return result
     }
 
     private fun addValueById(
-        unmergedNutrient: Nutrient,
-        nutrients: ArrayList<Nutrient?>
-    ): ArrayList<Nutrient?> {
+        unmergedNutrient: NutrientEntity,
+        nutrients: ArrayList<NutrientEntity>
+    ): ArrayList<NutrientEntity> {
         for ((i, mergedNutrient) in nutrients.withIndex()) {
-            if (mergedNutrient?.id == unmergedNutrient.id) {
-                nutrients[i]?.value = nutrients[i]?.value?.plus(unmergedNutrient.value!!)
+            if (mergedNutrient.id == unmergedNutrient.id) {
+                nutrients[i].value = nutrients[i].value?.plus(unmergedNutrient.value!!)
             }
         }
         return nutrients
     }
 
-    private fun populateAdapter(nutrients: ArrayList<Nutrient?>) {
+    private fun populateAdapter(nutrients: List<NutrientEntity?>) {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = NutrientAdapter(nutrientsData!!)
+        val adapter = NutrientAdapter()
         adapter.submitList(nutrients)
         binding.recyclerView.adapter = adapter
     }

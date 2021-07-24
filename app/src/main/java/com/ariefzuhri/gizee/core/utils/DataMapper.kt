@@ -9,11 +9,11 @@ object DataMapper {
     fun mapResponseToEntities(input: FoodResponse): List<FoodEntity> {
         val foods = arrayListOf<FoodEntity>()
         input.foods?.map {
-            val fullNutrients = arrayListOf<Nutrient?>()
+            val fullNutrients = arrayListOf<NutrientEntity?>()
             it?.fullNutrients?.map { item ->
-                val nutrient = Nutrient(
-                    id = item?.attrId,
-                    value = item?.value ?: 0.0
+                val nutrient = NutrientEntity(
+                    id = item?.attrId!!,
+                    value = item.value ?: 0.0
                 )
                 fullNutrients.add(nutrient)
             }

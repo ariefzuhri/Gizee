@@ -4,17 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.source.local.entity.Nutrient
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.databinding.ItemNutrientBinding
 
-class NutrientAdapter(private val nutrientsData: List<NutrientEntity>) :
-    RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
+class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
 
-    private val nutrients = arrayListOf<Nutrient?>()
+    private val nutrients = arrayListOf<NutrientEntity?>()
 
-    fun submitList(nutrients: List<Nutrient?>) {
+    fun submitList(nutrients: List<NutrientEntity?>) {
         with(this.nutrients) {
             clear()
             addAll(nutrients)
@@ -41,19 +39,13 @@ class NutrientAdapter(private val nutrientsData: List<NutrientEntity>) :
     inner class ViewHolder(private val binding: ItemNutrientBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(nutrient: Nutrient) {
-            val data = getNutrientById(nutrient.id!!)
-            binding.tvName.text = data.name
+        fun bind(nutrient: NutrientEntity) {
+            binding.tvName.text = nutrient.name
             binding.tvWeight.text = itemView.context.resources.getString(
                 R.string.weight,
                 AppUtils.getDecimalFormat(nutrient.value),
-                data.unit
+                nutrient.unit
             )
-        }
-
-        private fun getNutrientById(id: Int): NutrientEntity {
-            for (nutrient in nutrientsData) if (nutrient.id == id) return nutrient
-            return NutrientEntity(0, "", "")
         }
     }
 }
