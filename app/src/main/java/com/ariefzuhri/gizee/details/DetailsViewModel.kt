@@ -1,16 +1,16 @@
 package com.ariefzuhri.gizee.details
 
 import androidx.lifecycle.ViewModel
-import com.ariefzuhri.gizee.core.data.FoodRepository
-import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
+import com.ariefzuhri.gizee.core.domain.model.Food
+import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 
-class DetailsViewModel(private val foodRepository: FoodRepository) : ViewModel() {
+class DetailsViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
 
-    fun isFavorite(id: String) = foodRepository.isFavorite(id)
+    fun isFavorite(id: String) = foodUseCase.isFavorite(id)
 
-    fun setFavorite(food: FoodEntity, newState: Boolean) {
+    fun setFavorite(food: Food, newState: Boolean) {
         food.isFavorite = newState
-        if (newState) foodRepository.insertFavorite(food)
-        else foodRepository.deleteFavorite(food)
+        if (newState) foodUseCase.insertFavorite(food)
+        else foodUseCase.deleteFavorite(food)
     }
 }

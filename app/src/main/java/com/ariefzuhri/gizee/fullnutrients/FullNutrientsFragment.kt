@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
+import com.ariefzuhri.gizee.core.domain.model.Food
+import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.adapter.NutrientAdapter
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.databinding.FragmentFullNutrientsBinding
@@ -17,8 +17,8 @@ private const val ARG_NUTRIENTS = "nutrients"
 class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentFullNutrientsBinding
-    private var foods: List<FoodEntity>? = null
-    private var rawNutrients: List<NutrientEntity>? = null
+    private var foods: List<Food>? = null
+    private var rawNutrients: List<Nutrient>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +40,11 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         val TAG: String = FullNutrientsFragment::class.java.simpleName
 
         @JvmStatic
-        fun newInstance(foods: List<FoodEntity>, rawNutrients: List<NutrientEntity>) =
+        fun newInstance(foods: List<Food>, rawNutrients: List<Nutrient>) =
             FullNutrientsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_FOODS, foods as ArrayList<FoodEntity>)
-                    putParcelableArrayList(ARG_NUTRIENTS, rawNutrients as ArrayList<NutrientEntity>)
+                    putParcelableArrayList(ARG_FOODS, foods as ArrayList<Food>)
+                    putParcelableArrayList(ARG_NUTRIENTS, rawNutrients as ArrayList<Nutrient>)
                 }
             }
     }
@@ -58,12 +58,12 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
     }
 
     private fun mergedValueNutrients(
-        foods: List<FoodEntity>?,
-        rawNutrients: List<NutrientEntity>?
-    ): List<NutrientEntity> {
-        var result = arrayListOf<NutrientEntity>()
+        foods: List<Food>?,
+        rawNutrients: List<Nutrient>?
+    ): List<Nutrient> {
+        var result = arrayListOf<Nutrient>()
         for (rawNutrient in rawNutrients!!) result.add(
-            NutrientEntity(
+            Nutrient(
                 rawNutrient.id,
                 rawNutrient.name,
                 rawNutrient.unit,
@@ -82,9 +82,9 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
     }
 
     private fun addValueById(
-        unmergedNutrient: NutrientEntity,
-        nutrients: ArrayList<NutrientEntity>
-    ): ArrayList<NutrientEntity> {
+        unmergedNutrient: Nutrient,
+        nutrients: ArrayList<Nutrient>
+    ): ArrayList<Nutrient> {
         for ((i, mergedNutrient) in nutrients.withIndex()) {
             if (mergedNutrient.id == unmergedNutrient.id) {
                 nutrients[i].value = nutrients[i].value?.plus(unmergedNutrient.value!!)
@@ -93,7 +93,7 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         return nutrients
     }
 
-    private fun populateAdapter(nutrients: List<NutrientEntity?>) {
+    private fun populateAdapter(nutrients: List<Nutrient?>) {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = NutrientAdapter()
         adapter.submitList(nutrients)

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
+import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.Constants.Companion.EXTRA_FOOD
@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
-    private lateinit var food: FoodEntity
+    private lateinit var food: Food
     private lateinit var viewModel: DetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +49,8 @@ class DetailsActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailsViewModel::class.java]
-        viewModel.isFavorite(food.id).observe(this) { result ->
-            food.isFavorite = result != null
+        viewModel.isFavorite(food.id!!).observe(this) { result ->
+            food.isFavorite = result.id != null
             setFavoriteIcon(food.isFavorite!!)
         }
     }
@@ -72,7 +72,7 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun populateNutritionFacts(foods: List<FoodEntity>) {
+    private fun populateNutritionFacts(foods: List<Food?>?) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragment = supportFragmentManager.findFragmentByTag(NutritionFactsFragment.TAG)
         if (fragment == null) {

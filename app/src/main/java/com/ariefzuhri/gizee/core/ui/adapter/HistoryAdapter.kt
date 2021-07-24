@@ -3,15 +3,15 @@ package com.ariefzuhri.gizee.core.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
+import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.databinding.ItemHistoryBinding
 
 class HistoryAdapter(private val listener: HistoryAdapterListener) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private val history = arrayListOf<HistoryEntity?>()
+    private val history = arrayListOf<History?>()
 
-    fun submitList(history: List<HistoryEntity?>) {
+    fun submitList(history: List<History?>) {
         with(this.history) {
             clear()
             addAll(history)
@@ -30,7 +30,7 @@ class HistoryAdapter(private val listener: HistoryAdapterListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val history = history[position]
-        history?.let { holder.bind(it) }
+        holder.bind(history)
     }
 
     override fun getItemCount() = history.size
@@ -38,16 +38,19 @@ class HistoryAdapter(private val listener: HistoryAdapterListener) :
     inner class ViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(history: HistoryEntity) {
-            binding.tvName.text = history.query
-            binding.ibDelete.setOnClickListener { listener.onDeleteHistory(history) }
-            itemView.setOnClickListener { listener.onHistoryClicked(history) }
+        fun bind(history: History?) {
+            binding.tvName.text = history?.query
+            history?.let {
+                binding.ibDelete.setOnClickListener { listener.onDeleteHistory(history) }
+                itemView.setOnClickListener { listener.onHistoryClicked(history) }
+            }
         }
     }
 }
 
 interface HistoryAdapterListener {
 
-    fun onHistoryClicked(history: HistoryEntity)
-    fun onDeleteHistory(history: HistoryEntity)
+    fun onHistoryClicked(history: History)
+
+    fun onDeleteHistory(history: History)
 }
