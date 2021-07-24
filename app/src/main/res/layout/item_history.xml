@@ -31,10 +31,10 @@
             <ImageButton
                 android:id="@+id/ib_delete"
                 style="@style/ImageButton"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:contentDescription="@string/delete_history"
-                android:src="@drawable/ic_close"
+                android:src="@drawable/ic_close_mini"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
