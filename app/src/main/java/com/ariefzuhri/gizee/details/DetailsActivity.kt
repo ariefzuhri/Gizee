@@ -50,8 +50,8 @@ class DetailsActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[DetailsViewModel::class.java]
         viewModel.isFavorite(food.id!!).observe(this) { result ->
-            food.isFavorite = result.id != null
-            setFavoriteIcon(food.isFavorite!!)
+            food.isFavorite = result
+            setFavoriteIcon(result)
         }
     }
 
