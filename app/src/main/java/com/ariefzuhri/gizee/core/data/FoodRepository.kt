@@ -1,22 +1,25 @@
 package com.ariefzuhri.gizee.core.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.data.source.remote.response.NutrientResponse
-import com.ariefzuhri.gizee.core.utils.AppExecutors
-import com.ariefzuhri.gizee.core.utils.DataMapper
+import com.ariefzuhri.gizee.core.domain.model.Food
+import com.ariefzuhri.gizee.core.domain.model.History
+import com.ariefzuhri.gizee.core.domain.model.Nutrient
+import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
+import com.ariefzuhri.gizee.core.utils.*
 
 class FoodRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) {
+) : IFoodRepository {
 
     companion object {
         @Volatile
@@ -32,25 +35,57 @@ class FoodRepository private constructor(
             }
     }
 
-    fun searchFoodsByNaturalLanguage(query: String): LiveData<ApiResponse<FoodResponse>> =
-        remoteDataSource.searchFoodsByNaturalLanguage(query)
+    // Next time, I will make it to store fetch results to database
+    private var result = listOf<FoodEntity>()
+    override fun searchFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> =
+        object : NetworkBoundResource<List<Food>, FoodResponse>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<Food>> {
+                val output = MutableLiveData<List<FoodEntity>>()
+                output.value = result
 
-    fun getFavorites(): LiveData<List<FoodEntity>> =
-        localDataSource.getFoods()
-
-    fun isFavorite(id: String): LiveData<FoodEntity> =
-        localDataSource.getFood(id)
-
-    fun getHistory(): LiveData<List<HistoryEntity>> =
-        localDataSource.getHistory()
-
-    fun getNutrients(): LiveData<Resource<List<NutrientEntity>>> =
-        object : NetworkBoundResource<List<NutrientEntity>, List<NutrientResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<NutrientEntity>> {
-                return localDataSource.getNutrients()
+                return Transformations.map(output) {
+                    FoodMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<NutrientEntity>?): Boolean {
+            override fun shouldFetch(data: List<Food>?): Boolean {
+                return true
+            }
+
+            override fun createCall(): LiveData<ApiResponse<FoodResponse>> {
+                return remoteDataSource.searchFoodsByNaturalLanguage(query)
+            }
+
+            override fun saveCallResult(data: FoodResponse) {
+                val foods = FoodMapper.mapResponseToEntities(data)
+                result = foods
+            }
+        }.asLiveData()
+
+    override fun getFavorites(): LiveData<List<Food>> =
+        Transformations.map(localDataSource.getFoods()) {
+            FoodMapper.mapEntitiesToDomain(it)
+        }
+
+    override fun isFavorite(id: String): LiveData<Food> =
+        Transformations.map(localDataSource.getFood(id)) {
+            FoodMapper.mapEntityToDomain(it)
+        }
+
+    override fun getHistory(): LiveData<List<History>> =
+        Transformations.map(localDataSource.getHistory()) {
+            HistoryMapper.mapEntitiesToDomain(it)
+        }
+
+    override fun getNutrients(): LiveData<Resource<List<Nutrient>>> =
+        object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<Nutrient>> {
+                return Transformations.map(localDataSource.getNutrients()) {
+                    NutrientMapper.mapEntitiesToDomain(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<Nutrient>?): Boolean {
                 return data.isNullOrEmpty()
             }
 
@@ -59,23 +94,32 @@ class FoodRepository private constructor(
             }
 
             override fun saveCallResult(data: List<NutrientResponse>) {
-                val nutrients = DataMapper.mapResponsesToEntities(data)
+                val nutrients = NutrientMapper.mapResponsesToEntities(data)
                 localDataSource.insertNutrients(nutrients)
             }
         }.asLiveData()
 
-    fun insertFavorite(food: FoodEntity) =
-        appExecutors.diskIO().execute { localDataSource.insertFavorite(food) }
+    override fun insertFavorite(food: Food) {
+        val foodEntity = FoodMapper.mapDomainToEntity(food)
+        appExecutors.diskIO().execute { localDataSource.insertFavorite(foodEntity) }
+    }
 
-    fun insertHistory(history: HistoryEntity) =
-        appExecutors.diskIO().execute { localDataSource.insertHistory(history) }
+    override fun insertHistory(history: History) {
+        val historyEntity = HistoryMapper.mapDomainToEntity(history)
+        appExecutors.diskIO().execute { localDataSource.insertHistory(historyEntity) }
+    }
 
-    fun deleteFavorite(food: FoodEntity) =
-        appExecutors.diskIO().execute { localDataSource.deleteFavorite(food) }
+    override fun deleteFavorite(food: Food) {
+        val foodEntity = FoodMapper.mapDomainToEntity(food)
+        appExecutors.diskIO().execute { localDataSource.deleteFavorite(foodEntity) }
+    }
 
-    fun deleteHistory(history: HistoryEntity) =
-        appExecutors.diskIO().execute { localDataSource.deleteHistory(history) }
+    override fun deleteHistory(history: History) {
+        val historyEntity = HistoryMapper.mapDomainToEntity(history)
+        appExecutors.diskIO().execute { localDataSource.deleteHistory(historyEntity) }
+    }
 
-    fun clearHistory() =
+    override fun clearHistory() {
         appExecutors.diskIO().execute { localDataSource.clearHistory() }
+    }
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
+import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapter
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapterListener
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
@@ -52,8 +52,8 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         initializeToolbar()
 
         val factory = ViewModelFactory.getInstance(requireActivity())
-        viewModel = ViewModelProvider(requireActivity(), factory)[HomeViewModel::class.java]
-        viewModel.getHistory().observe(requireActivity()) { history ->
+        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        viewModel.getHistory().observe(viewLifecycleOwner) { history ->
             populateAdapter(history)
         }
     }
@@ -73,7 +73,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         }
     }
 
-    private fun populateAdapter(history: List<HistoryEntity?>) {
+    private fun populateAdapter(history: List<History?>) {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = HistoryAdapter(this)
         adapter.submitList(history)
@@ -83,12 +83,12 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         else binding.layoutEmpty.visibility = View.VISIBLE
     }
 
-    override fun onHistoryClicked(history: HistoryEntity) {
+    override fun onHistoryClicked(history: History) {
         dismiss()
         homeCallback.getQueryFromHistory(history)
     }
 
-    override fun onDeleteHistory(history: HistoryEntity) {
+    override fun onDeleteHistory(history: History) {
         viewModel.deleteHistory(history)
     }
 }

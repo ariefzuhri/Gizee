@@ -6,7 +6,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
+import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.databinding.ActivityHomeBinding
 import com.ariefzuhri.gizee.home.nutrientsearch.NutrientSearchFragment
@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity(), HomeCallback {
             .commit()
     }
 
-    override fun getQueryFromHistory(history: HistoryEntity) {
+    override fun getQueryFromHistory(history: History) {
         findViewById<EditText>(R.id.edt_search).setText(history.query)
     }
 }

@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.core.data.Resource
-import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
+import com.ariefzuhri.gizee.core.domain.model.Food
+import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.core.utils.AppUtils
@@ -24,8 +24,8 @@ private const val ARG_FOODS = "foods"
 class NutritionFactsFragment : Fragment() {
 
     private lateinit var binding: FragmentNutritionFactsBinding
-    private var foods: List<FoodEntity>? = null
-    private var rawNutrients: List<NutrientEntity>? = null
+    private var foods: List<Food>? = null
+    private var rawNutrients: List<Nutrient>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +46,10 @@ class NutritionFactsFragment : Fragment() {
         val TAG: String = NutritionFactsFragment::class.java.simpleName
 
         @JvmStatic
-        fun newInstance(foods: List<FoodEntity>) =
+        fun newInstance(foods: List<Food?>?) =
             NutritionFactsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_FOODS, foods as ArrayList<FoodEntity>)
+                    putParcelableArrayList(ARG_FOODS, foods as ArrayList<Food?>?)
                 }
             }
     }
@@ -59,16 +59,16 @@ class NutritionFactsFragment : Fragment() {
 
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel =
-            ViewModelProvider(requireActivity(), factory)[NutritionFactsViewModel::class.java]
-        viewModel.getNutrients().observe(requireActivity()) { result ->
+            ViewModelProvider(this, factory)[NutritionFactsViewModel::class.java]
+        viewModel.getNutrients().observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
+                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         rawNutrients = result.data
                         binding.progressBar.visibility = View.INVISIBLE
                     }
                     is Resource.Error -> AppUtils.showToast(context, result.message)
-                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                 }
             }
         }
@@ -152,7 +152,7 @@ class NutritionFactsFragment : Fragment() {
         binding.nfView.drawLabel()
     }
 
-    private fun getNutrientValueById(nutrients: List<NutrientEntity?>?, id: Int): Double {
+    private fun getNutrientValueById(nutrients: List<Nutrient?>?, id: Int): Double {
         if (nutrients != null) for (nutrient in nutrients) if (nutrient?.id == id) return nutrient.value
             ?: 0.0
         return 0.0
