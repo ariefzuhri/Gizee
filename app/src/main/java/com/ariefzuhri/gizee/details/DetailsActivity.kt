@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.Nutrient
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
@@ -26,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var food: FoodEntity
-    private var nutrientsData: List<NutrientEntity>? = null
+    private var rawNutrients: List<NutrientEntity>? = null
     private lateinit var viewModel: DetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +63,7 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.getNutrients().observe(this) { result ->
             if (result != null) {
                 when (result) {
-                    is Resource.Success -> nutrientsData = result.data
+                    is Resource.Success -> rawNutrients = result.data
                     is Resource.Error -> AppUtils.showToast(this, result.message)
                     is Resource.Loading -> Log.d(javaClass.simpleName, "Loading data")
                 }
@@ -129,38 +128,32 @@ class DetailsActivity : AppCompatActivity() {
             .setCalories(food.nfCalories)
             .setTotalFat(food.nfTotalFat)
             .setSaturatedFat(food.nfSaturatedFat)
-            .setTransFat(getNutrientValueById(food.fullNutrients, 605))
-            .setPolyunsaturatedFat(getNutrientValueById(food.fullNutrients, 646))
-            .setMonounsaturatedFat(getNutrientValueById(food.fullNutrients, 645))
+            .setTransFat(AppUtils.getNutrientValueById(food.fullNutrients, 605))
+            .setPolyunsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 646))
+            .setMonounsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 645))
             .setCholesterol(food.nfCholesterol)
             .setSodium(food.nfSodium)
             .setTotalCarbohydrates(food.nfTotalCarbohydrate)
             .setDietaryFiber(food.nfDietaryFiber)
             .setSugars(food.nfSugars)
             .setProtein(food.nfProtein)
-            .setVitaminA(getNutrientValueById(food.fullNutrients, 320))
-            .setVitaminB6(getNutrientValueById(food.fullNutrients, 415))
-            .setVitaminC(getNutrientValueById(food.fullNutrients, 401))
-            .setVitaminD(getNutrientValueById(food.fullNutrients, 328))
-            .setCalcium(getNutrientValueById(food.fullNutrients, 301))
-            .setIron(getNutrientValueById(food.fullNutrients, 303))
+            .setVitaminA(AppUtils.getNutrientValueById(food.fullNutrients, 320))
+            .setVitaminB6(AppUtils.getNutrientValueById(food.fullNutrients, 415))
+            .setVitaminC(AppUtils.getNutrientValueById(food.fullNutrients, 401))
+            .setVitaminD(AppUtils.getNutrientValueById(food.fullNutrients, 328))
+            .setCalcium(AppUtils.getNutrientValueById(food.fullNutrients, 301))
+            .setIron(AppUtils.getNutrientValueById(food.fullNutrients, 303))
             .setPotassium(food.nfPotassium)
-            .setFolate(getNutrientValueById(food.fullNutrients, 435))
+            .setFolate(AppUtils.getNutrientValueById(food.fullNutrients, 435))
             .create()
         binding.layoutNutritionFacts.nfView.addData(nfData)
         binding.layoutNutritionFacts.nfView.drawLabel()
     }
 
-    private fun getNutrientValueById(nutrients: ArrayList<Nutrient?>?, id: Int): Double {
-        if (nutrients != null) for (nutrient in nutrients) if (nutrient?.id == id) return nutrient.value
-            ?: 0.0
-        return 0.0
-    }
-
     private fun populateFullNutrients(food: FoodEntity) {
         binding.layoutNutritionFacts.tvFullNutrients.setOnClickListener {
-            if (nutrientsData != null) {
-                FullNutrientsFragment.newInstance(mutableListOf(food), nutrientsData!!)
+            if (rawNutrients != null) {
+                FullNutrientsFragment.newInstance(mutableListOf(food), rawNutrients!!)
                     .show(supportFragmentManager, FullNutrientsFragment.TAG)
             }
         }

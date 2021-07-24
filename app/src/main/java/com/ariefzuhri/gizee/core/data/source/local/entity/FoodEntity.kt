@@ -28,12 +28,6 @@ data class FoodEntity(
     var nfProtein: Double? = null,
     var nfPotassium: Double? = null,
     var nfP: Double? = null,
-    var fullNutrients: ArrayList<Nutrient?>? = null,
+    var fullNutrients: List<NutrientEntity?>? = null,
     var isFavorite: Boolean? = null
-) : Parcelable
-
-@Parcelize
-data class Nutrient(
-    var id: Int? = null,
-    var value: Double? = null
 ) : Parcelable

@@ -63,6 +63,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
         this.data = NutritionFactsData.Builder().create()
     }
 
+    // Source: http://jsfiddle.net/thL6j/
     fun drawLabel() {
         val webViewWidth = DimensionUtils.pxToDp(measuredWidth)
         @Suppress("Reformat") val main = "" +
