@@ -1,38 +1,29 @@
 package com.ariefzuhri.gizee.home.searchresult
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.DataMapper
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
-import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
+import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import com.ariefzuhri.gizee.home.HomeViewModel
-import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
-import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
-import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
-import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
 
 private const val ARG_QUERY = "query"
 
 class SearchResultFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchResultBinding
-    private var rawNutrients: List<NutrientEntity>? = null
     private lateinit var query: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,24 +69,13 @@ class SearchResultFragment : Fragment() {
                     is ApiResponse.Success -> {
                         val foods = DataMapper.mapResponseToEntities(result.data)
                         populateAdapter(foods)
-                        populateChart(foods)
                         populateNutritionFacts(foods)
-                        populateFullNutrients(foods)
                         shimmer.hide(foods.isNullOrEmpty())
                     }
                     is ApiResponse.Error -> {
                         AppUtils.showToast(context, result.errorMessage)
                     }
                     is ApiResponse.Empty -> shimmer.hide(true)
-                }
-            }
-        }
-        viewModel.getNutrients().observe(requireActivity()) { result ->
-            if (result != null) {
-                when (result) {
-                    is Resource.Success -> rawNutrients = result.data
-                    is Resource.Error -> AppUtils.showToast(context, result.message)
-                    is Resource.Loading -> Log.d(javaClass.simpleName, "Loading data")
                 }
             }
         }
@@ -108,89 +88,13 @@ class SearchResultFragment : Fragment() {
         adapter.submitList(foods)
     }
 
-    private fun populateChart(foods: List<FoodEntity?>?) {
-        var totalCalories = 0.0f
-        var totalCarbohydrates = 0.0f
-        var totalFats = 0.0f
-        var totalProteins = 0.0f
-
-        if (foods != null) {
-            for (food in foods) {
-                if (food != null) {
-                    totalCalories += food.nfCalories!!.toFloat()
-                    totalCarbohydrates += food.nfTotalCarbohydrate!!.toFloat()
-                    totalFats += food.nfTotalFat!!.toFloat()
-                    totalProteins += food.nfProtein!!.toFloat()
-                }
-            }
+    private fun populateNutritionFacts(foods: List<FoodEntity>) {
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+        var fragment = childFragmentManager.findFragmentByTag(NutritionFactsFragment.TAG)
+        if (fragment == null) {
+            fragment = NutritionFactsFragment.newInstance(foods)
+            fragmentTransaction.add(binding.container.id, fragment, NutritionFactsFragment.TAG)
         }
-
-        val caloriesFromCarbohydrates = totalCarbohydrates * 4
-        val caloriesFromFats = totalFats * 9
-        val caloriesFromProteins = totalProteins * 4
-
-        val nfBinding = binding.layoutNutritionFacts
-        val chartModel = AAChartModel()
-            .chartType(AAChartType.Pie)
-            .title("Source of Calories")
-            .subtitle("Total calories: ${AppUtils.getDecimalFormat(totalCalories)} kcal")
-            .dataLabelsEnabled(true)
-            .colorsTheme(arrayOf("#61AAEE", "#EBEE61", "#64EE61"))
-            .series(
-                arrayOf(
-                    AASeriesElement()
-                        .dataLabels(AADataLabels().format("<b>{point.name}</b>: {point.percentage:.1f}%"))
-                        .name("Total calories (kcal)")
-                        .data(
-                            arrayOf(
-                                arrayOf("Carbohydrates", caloriesFromCarbohydrates),
-                                arrayOf("Fats", caloriesFromFats),
-                                arrayOf("Proteins", caloriesFromProteins),
-                            )
-                        )
-                )
-            )
-        nfBinding.chartCalories.aa_drawChartWithChartModel(chartModel)
-    }
-
-    private fun populateNutritionFacts(foods: List<FoodEntity?>) {
-        for (food in foods) {
-            if (food != null) {
-                val nfData = NutritionFactsData.Builder()
-                    .setServingSize(food.servingWeightGrams)
-                    .setCalories(food.nfCalories)
-                    .setTotalFat(food.nfTotalFat)
-                    .setSaturatedFat(food.nfSaturatedFat)
-                    .setTransFat(AppUtils.getNutrientValueById(food.fullNutrients, 605))
-                    .setPolyunsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 646))
-                    .setMonounsaturatedFat(AppUtils.getNutrientValueById(food.fullNutrients, 645))
-                    .setCholesterol(food.nfCholesterol)
-                    .setSodium(food.nfSodium)
-                    .setTotalCarbohydrates(food.nfTotalCarbohydrate)
-                    .setDietaryFiber(food.nfDietaryFiber)
-                    .setSugars(food.nfSugars)
-                    .setProtein(food.nfProtein)
-                    .setVitaminA(AppUtils.getNutrientValueById(food.fullNutrients, 320))
-                    .setVitaminB6(AppUtils.getNutrientValueById(food.fullNutrients, 415))
-                    .setVitaminC(AppUtils.getNutrientValueById(food.fullNutrients, 401))
-                    .setVitaminD(AppUtils.getNutrientValueById(food.fullNutrients, 328))
-                    .setCalcium(AppUtils.getNutrientValueById(food.fullNutrients, 301))
-                    .setIron(AppUtils.getNutrientValueById(food.fullNutrients, 303))
-                    .setPotassium(food.nfPotassium)
-                    .setFolate(AppUtils.getNutrientValueById(food.fullNutrients, 435))
-                    .create()
-                binding.layoutNutritionFacts.nfView.addData(nfData)
-            }
-        }
-        binding.layoutNutritionFacts.nfView.drawLabel()
-    }
-
-    private fun populateFullNutrients(foods: List<FoodEntity>) {
-        binding.layoutNutritionFacts.tvFullNutrients.setOnClickListener {
-            if (rawNutrients != null) {
-                FullNutrientsFragment.newInstance(foods, rawNutrients!!)
-                    .show(childFragmentManager, FullNutrientsFragment.TAG)
-            }
-        }
+        fragmentTransaction.commit()
     }
 }

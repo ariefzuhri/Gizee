@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.ImageView
 import android.widget.Toast
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.text.DecimalFormat
@@ -13,12 +12,6 @@ object AppUtils {
 
     fun getDecimalFormat(number: Number?): String {
         return DecimalFormat("0.#").format(number)
-    }
-
-    fun getNutrientValueById(nutrients: List<NutrientEntity?>?, id: Int): Double {
-        if (nutrients != null) for (nutrient in nutrients) if (nutrient?.id == id) return nutrient.value
-            ?: 0.0
-        return 0.0
     }
 
     fun loadImage(context: Context, imageView: ImageView, source: Any?) {

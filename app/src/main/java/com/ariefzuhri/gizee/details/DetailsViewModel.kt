@@ -6,8 +6,6 @@ import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 
 class DetailsViewModel(private val foodRepository: FoodRepository) : ViewModel() {
 
-    fun getNutrients() = foodRepository.getNutrients()
-
     fun isFavorite(id: String) = foodRepository.isFavorite(id)
 
     fun setFavorite(food: FoodEntity, newState: Boolean) {

@@ -12,9 +12,6 @@ class HomeViewModel(private val foodRepository: FoodRepository) : ViewModel() {
     fun getHistory() =
         foodRepository.getHistory()
 
-    fun getNutrients() =
-        foodRepository.getNutrients()
-
     fun insertHistory(history: HistoryEntity) =
         foodRepository.insertHistory(history)
 
