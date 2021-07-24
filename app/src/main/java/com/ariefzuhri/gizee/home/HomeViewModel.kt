@@ -1,6 +1,8 @@
 package com.ariefzuhri.gizee.home
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
@@ -9,14 +11,20 @@ import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 
 class HomeViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
 
-    fun searchFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> =
-        foodUseCase.searchFoodsByNaturalLanguage(query)
+    private val query = MutableLiveData<String>()
 
-    fun getHistory() =
+    fun performQuery(query: String) {
+        this.query.value = query
+    }
+
+    val getFoodsByNaturalLanguage: LiveData<Resource<List<Food>>> =
+        Transformations.switchMap(query) {
+            foodUseCase.insertHistory(History(it))
+            foodUseCase.getFoodsByNaturalLanguage(it)
+        }
+
+    val getHistory =
         foodUseCase.getHistory()
-
-    fun insertHistory(history: History) =
-        foodUseCase.insertHistory(history)
 
     fun deleteHistory(history: History) =
         foodUseCase.deleteHistory(history)

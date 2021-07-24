@@ -37,7 +37,7 @@ class FoodRepository private constructor(
 
     // Next time, I will make it to store fetch results to database
     private var result = listOf<FoodEntity>()
-    override fun searchFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> =
+    override fun getFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> =
         object : NetworkBoundResource<List<Food>, FoodResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<List<Food>> {
                 val output = MutableLiveData<List<FoodEntity>>()

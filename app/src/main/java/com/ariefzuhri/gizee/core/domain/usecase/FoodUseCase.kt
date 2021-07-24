@@ -8,7 +8,7 @@ import com.ariefzuhri.gizee.core.domain.model.Nutrient
 
 interface FoodUseCase {
 
-    fun searchFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>>
+    fun getFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>>
 
     fun getFavorites(): LiveData<List<Food>>
 

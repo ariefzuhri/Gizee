@@ -60,7 +60,7 @@ class NutritionFactsFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel =
             ViewModelProvider(this, factory)[NutritionFactsViewModel::class.java]
-        viewModel.getNutrients().observe(viewLifecycleOwner) { result ->
+        viewModel.getNutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
