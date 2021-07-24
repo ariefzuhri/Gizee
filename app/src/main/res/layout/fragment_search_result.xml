@@ -54,9 +54,10 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/layout_margin" />
 
-                <include
-                    android:id="@+id/layout_nutrition_facts"
-                    layout="@layout/layout_nutrition_facts" />
+                <FrameLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout

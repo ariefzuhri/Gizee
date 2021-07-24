@@ -82,9 +82,10 @@
                     app:drawableTopCompat="@drawable/ic_scale" />
             </LinearLayout>
 
-            <include
-                android:id="@+id/layout_nutrition_facts"
-                layout="@layout/layout_nutrition_facts" />
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

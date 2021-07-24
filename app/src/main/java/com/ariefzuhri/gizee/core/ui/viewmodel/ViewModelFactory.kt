@@ -8,6 +8,7 @@ import com.ariefzuhri.gizee.core.di.Injection
 import com.ariefzuhri.gizee.favorites.FavoritesViewModel
 import com.ariefzuhri.gizee.details.DetailsViewModel
 import com.ariefzuhri.gizee.home.HomeViewModel
+import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsViewModel
 
 class ViewModelFactory private constructor(private val foodRepository: FoodRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -39,6 +40,9 @@ class ViewModelFactory private constructor(private val foodRepository: FoodRepos
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(foodRepository) as T
+            }
+            modelClass.isAssignableFrom(NutritionFactsViewModel::class.java) -> {
+                NutritionFactsViewModel(foodRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
