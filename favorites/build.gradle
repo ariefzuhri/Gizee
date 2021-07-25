@@ -1,8 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
 }
 apply from: '../shared_dependencies.gradle'
 
@@ -11,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.ariefzuhri.gizee"
+        applicationId "com.ariefzuhri.gizee.favorites"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -39,10 +38,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    dynamicFeatures = [':favorites']
 }
 
 dependencies {
+    implementation project(":app")
     implementation project(":core")
 }

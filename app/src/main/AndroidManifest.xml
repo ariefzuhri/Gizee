@@ -15,7 +15,6 @@
         android:theme="@style/Theme.Gizee"
         tools:ignore="AllowBackup">
         <activity android:name="com.ariefzuhri.gizee.details.DetailsActivity" />
-        <activity android:name="com.ariefzuhri.gizee.favorites.FavoritesActivity" />
         <activity android:name="com.ariefzuhri.gizee.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
