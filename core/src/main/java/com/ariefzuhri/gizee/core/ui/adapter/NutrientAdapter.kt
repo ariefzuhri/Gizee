@@ -3,10 +3,10 @@ package com.ariefzuhri.gizee.core.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ariefzuhri.gizee.R
+import com.ariefzuhri.gizee.core.R
+import com.ariefzuhri.gizee.core.databinding.ItemNutrientBinding
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.databinding.ItemNutrientBinding
 
 class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
 

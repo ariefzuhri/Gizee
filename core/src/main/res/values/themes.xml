@@ -1,0 +1,45 @@
+<resources>
+    <style name="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog" />
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_light</item>
+    </style>
+
+    <style name="ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="tint">@color/blue</item>
+    </style>
+
+    <style name="ImageView">
+        <item name="android:src">@drawable/ic_placeholder</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextView.Header">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.Header.3">
+        <item name="android:textSize">@dimen/font_nm</item>
+    </style>
+
+    <style name="TextView.Text">
+        <item name="android:textSize">@dimen/font_nm</item>
+    </style>
+</resources>

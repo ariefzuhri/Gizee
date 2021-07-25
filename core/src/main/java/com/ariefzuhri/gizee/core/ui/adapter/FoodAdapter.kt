@@ -4,10 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ariefzuhri.gizee.R
+import com.ariefzuhri.gizee.core.R
+import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
 import com.ariefzuhri.gizee.core.domain.model.Food
-import com.ariefzuhri.gizee.databinding.ItemFoodBinding
-import com.ariefzuhri.gizee.details.DetailsActivity
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.Constants.Companion.EXTRA_FOOD
 import org.apache.commons.lang3.StringUtils
@@ -54,7 +53,10 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
                     AppUtils.getDecimalFormat(food?.nfCalories)
                 )
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailsActivity::class.java)
+                val intent = Intent(
+                    itemView.context,
+                    Class.forName("com.ariefzuhri.gizee.details.DetailsActivity")
+                )
                 intent.putExtra(EXTRA_FOOD, food)
                 itemView.context.startActivity(intent)
             }

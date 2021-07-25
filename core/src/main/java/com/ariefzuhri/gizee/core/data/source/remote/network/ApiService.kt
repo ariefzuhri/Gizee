@@ -1,7 +1,7 @@
 package com.ariefzuhri.gizee.core.data.source.remote.network
 
-import com.ariefzuhri.gizee.BuildConfig.NUTRITIONIX_APP_ID
-import com.ariefzuhri.gizee.BuildConfig.NUTRITIONIX_APP_KEY
+import com.ariefzuhri.gizee.core.BuildConfig.NUTRITIONIX_APP_ID
+import com.ariefzuhri.gizee.core.BuildConfig.NUTRITIONIX_APP_KEY
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.data.source.remote.response.NutrientResponse
 import retrofit2.http.Body

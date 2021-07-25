@@ -2,7 +2,6 @@
     <string name="app_name">Gizee</string>
     <string name="attribution">Attribution</string>
     <string name="loading">Loading…</string>
-    <string name="view_more">View more</string>
     <string name="see_full_nutrients">Complete list of nutrients</string>
     <string name="hint_search">What did you eat today?</string>
     <string name="help_search">You can search by entering "1 cup fried rice and 2 tbsp gravy" to find out the nutritional value of some foods.</string>
@@ -14,7 +13,6 @@
     <string name="full_nutrients">Full Nutrients</string>
     <string name="toast_empty_search_field">The search field cannot be empty</string>
     <string name="calories">%1$s kcal</string>
-    <string name="measure_with_weight">%1$s %2$s • %3$s g</string>
     <string name="measure">%1$s %2$s</string>
     <string name="weight">%1$s %2$s</string>
     <string name="favorite">Favorite</string>
@@ -22,7 +20,6 @@
     <string name="empty_desc_favorites">Looks like you don’t have anything\nin your favorites</string>
     <string name="empty_title_search_result">No result</string>
     <string name="empty_desc_search_result">Sorry, we couldn\'t find what\nyou were looking for</string>
-    <string name="delete_history">Delete history</string>
     <string name="clear_all">Clear all</string>
     <string name="history">History</string>
     <string name="dialog_title_clear_history">Clear all history</string>
