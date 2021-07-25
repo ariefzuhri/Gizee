@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
 import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
@@ -18,6 +16,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_FOODS = "foods"
 
@@ -57,9 +56,7 @@ class NutritionFactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel =
-            ViewModelProvider(this, factory)[NutritionFactsViewModel::class.java]
+        val viewModel: NutritionFactsViewModel by viewModel()
         viewModel.getNutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {

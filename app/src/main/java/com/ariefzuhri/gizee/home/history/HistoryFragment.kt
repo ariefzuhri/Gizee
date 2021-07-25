@@ -6,23 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapter
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapterListener
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding
 import com.ariefzuhri.gizee.home.HomeActivity
 import com.ariefzuhri.gizee.home.HomeCallback
 import com.ariefzuhri.gizee.home.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
     private lateinit var binding: FragmentHistoryBinding
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
 
     private lateinit var homeCallback: HomeCallback
 
@@ -51,8 +50,6 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
         initializeToolbar()
 
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         viewModel.getHistory.observe(viewLifecycleOwner) { history ->
             populateAdapter(history)
         }

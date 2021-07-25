@@ -6,16 +6,7 @@ import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.data.source.local.room.FoodDao
 import kotlinx.coroutines.flow.Flow
 
-class LocalDataSource private constructor(private val foodDao: FoodDao) {
-
-    companion object {
-        private val instance: LocalDataSource? = null
-
-        fun getInstance(foodDao: FoodDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(foodDao)
-            }
-    }
+class LocalDataSource(private val foodDao: FoodDao) {
 
     fun getFoods(): Flow<List<FoodEntity>> = foodDao.getFoods()
 

@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.EditText
-import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.databinding.ActivityHomeBinding
 import com.ariefzuhri.gizee.home.nutrientsearch.NutrientSearchFragment
 import com.ariefzuhri.gizee.home.searchresult.SearchResultFragment
@@ -15,16 +13,12 @@ import com.ariefzuhri.gizee.home.searchresult.SearchResultFragment
 class HomeActivity : AppCompatActivity(), HomeCallback {
 
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
         populateMainFragment()
     }

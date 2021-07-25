@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gizee"
         tools:ignore="AllowBackup">
-        <activity android:name="com.ariefzuhri.gizee.details.DetailsActivity"/>
+        <activity android:name="com.ariefzuhri.gizee.details.DetailsActivity" />
         <activity android:name="com.ariefzuhri.gizee.favorites.FavoritesActivity" />
         <activity android:name="com.ariefzuhri.gizee.splash.SplashActivity">
             <intent-filter>
