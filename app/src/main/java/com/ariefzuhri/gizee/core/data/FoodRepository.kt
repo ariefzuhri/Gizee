@@ -1,8 +1,5 @@
 package com.ariefzuhri.gizee.core.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
@@ -14,6 +11,9 @@ import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 
 class FoodRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -36,51 +36,49 @@ class FoodRepository private constructor(
     }
 
     // Next time, I will make it to store fetch results to database
-    private var result = listOf<FoodEntity>()
-    override fun getFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>> =
-        object : NetworkBoundResource<List<Food>, FoodResponse>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Food>> {
-                val output = MutableLiveData<List<FoodEntity>>()
-                output.value = result
+    override fun getFoodsByNaturalLanguage(query: String): Flow<Resource<List<Food>>> =
+        object : NetworkBoundResource<List<Food>, FoodResponse>() {
+            var result = listOf<FoodEntity>()
 
-                return Transformations.map(output) {
-                    FoodMapper.mapEntitiesToDomain(it)
-                }
+            override fun loadFromDB(): Flow<List<Food>> {
+                val data = flowOf(result)
+                return data.map { FoodMapper.mapEntitiesToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Food>?): Boolean {
                 return true
             }
 
-            override fun createCall(): LiveData<ApiResponse<FoodResponse>> {
-                return remoteDataSource.searchFoodsByNaturalLanguage(query)
+            override suspend fun createCall(): Flow<ApiResponse<FoodResponse>> {
+                return remoteDataSource.getFoodsByNaturalLanguage(query)
             }
 
-            override fun saveCallResult(data: FoodResponse) {
+            override suspend fun saveCallResult(data: FoodResponse) {
                 val foods = FoodMapper.mapResponseToEntities(data)
                 result = foods
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getFavorites(): LiveData<List<Food>> =
-        Transformations.map(localDataSource.getFoods()) {
+    override fun getFavorites(): Flow<List<Food>> =
+        localDataSource.getFoods().map {
             FoodMapper.mapEntitiesToDomain(it)
         }
 
-    override fun isFavorite(id: String): LiveData<Boolean> =
-        Transformations.map(localDataSource.getFood(id)) {
+    override fun isFavorite(id: String): Flow<Boolean> =
+        localDataSource.getFood(id).map {
+            @Suppress("SENSELESS_COMPARISON")
             it != null
         }
 
-    override fun getHistory(): LiveData<List<History>> =
-        Transformations.map(localDataSource.getHistory()) {
+    override fun getHistory(): Flow<List<History>> =
+        localDataSource.getHistory().map {
             HistoryMapper.mapEntitiesToDomain(it)
         }
 
-    override fun getNutrients(): LiveData<Resource<List<Nutrient>>> =
-        object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Nutrient>> {
-                return Transformations.map(localDataSource.getNutrients()) {
+    override fun getNutrients(): Flow<Resource<List<Nutrient>>> =
+        object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>() {
+            override fun loadFromDB(): Flow<List<Nutrient>> {
+                return localDataSource.getNutrients().map {
                     NutrientMapper.mapEntitiesToDomain(it)
                 }
             }
@@ -89,15 +87,15 @@ class FoodRepository private constructor(
                 return data.isNullOrEmpty()
             }
 
-            override fun createCall(): LiveData<ApiResponse<List<NutrientResponse>>> {
+            override suspend fun createCall(): Flow<ApiResponse<List<NutrientResponse>>> {
                 return remoteDataSource.getNutrients()
             }
 
-            override fun saveCallResult(data: List<NutrientResponse>) {
+            override suspend fun saveCallResult(data: List<NutrientResponse>) {
                 val nutrients = NutrientMapper.mapResponsesToEntities(data)
                 localDataSource.insertNutrients(nutrients)
             }
-        }.asLiveData()
+        }.asFlow()
 
     override fun insertFavorite(food: Food) {
         val foodEntity = FoodMapper.mapDomainToEntity(food)
