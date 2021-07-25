@@ -3,7 +3,7 @@ package com.ariefzuhri.gizee.core.utils
 import android.content.Context
 import android.widget.ImageView
 import android.widget.Toast
-import com.ariefzuhri.gizee.R
+import com.ariefzuhri.gizee.core.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.text.DecimalFormat

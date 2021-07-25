@@ -3,8 +3,8 @@ package com.ariefzuhri.gizee.core.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ariefzuhri.gizee.core.databinding.ItemHistoryBinding
 import com.ariefzuhri.gizee.core.domain.model.History
-import com.ariefzuhri.gizee.databinding.ItemHistoryBinding
 
 class HistoryAdapter(private val listener: HistoryAdapterListener) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {

@@ -19,18 +19,6 @@
         <item name="fontFamily">@font/sen</item>
     </style>
 
-    <style name="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog" />
-
-    <style name="AppBottomSheetDialogTheme" parent="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_bottom_sheet</item>
-    </style>
-
     <style name="Button" parent="TextView.Header.3">
         <item name="android:background">@drawable/bg_button</item>
         <item name="android:layout_marginTop">4dp</item>
@@ -42,12 +30,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">14sp</item>
         <item name="backgroundTint">@null</item>
-    </style>
-
-    <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/gray_light</item>
     </style>
 
     <style name="EditText">

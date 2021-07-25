@@ -4,10 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
 }
-
-def localPropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
+apply from: '../shared_dependencies.gradle'
 
 android {
     compileSdkVersion 30
@@ -21,9 +18,6 @@ android {
         versionName "1.0.0-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'])
-        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'])
     }
 
     buildTypes {
@@ -48,53 +42,5 @@ android {
 }
 
 dependencies {
-    // Android support
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-
-    // Testing
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
-    // Data storage
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
-
-    // Pagination
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
-
-    // Networking
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-
-    // Parsing the JSON format
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-
-    // Network logging
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-
-    // Coroutines Flow
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-
-    // Service locator
-    implementation "io.insert-koin:koin-core:$koinVersion"
-    implementation "io.insert-koin:koin-android:$koinVersion"
-    implementation "io.insert-koin:koin-androidx-compose:$koinVersion"
-
-    // Image loading and caching
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
-
-    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
-    implementation "org.apache.commons:commons-text:$commonsTextVersion"
-    implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
-    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+    implementation project(":core")
 }
