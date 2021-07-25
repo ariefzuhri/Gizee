@@ -2,6 +2,7 @@ package com.ariefzuhri.gizee.home.nutrientsearch
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.KeyboardUtils
 import com.ariefzuhri.gizee.databinding.FragmentNutrientSearchBinding
-import com.ariefzuhri.gizee.favorites.FavoritesActivity
 import com.ariefzuhri.gizee.home.history.HistoryFragment
 import com.ariefzuhri.gizee.home.HomeActivity
 import com.ariefzuhri.gizee.home.HomeCallback
@@ -58,7 +58,8 @@ class NutrientSearchFragment : Fragment(), View.OnClickListener {
     }
 
     private fun openFavorites() {
-        val intent = Intent(context, FavoritesActivity::class.java)
+        val uri = Uri.parse("gizee://favorites")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 

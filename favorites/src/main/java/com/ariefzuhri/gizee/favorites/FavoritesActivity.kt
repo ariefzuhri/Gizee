@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.domain.model.Food
-import com.ariefzuhri.gizee.databinding.ActivityFavoritesBinding
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
+import com.ariefzuhri.gizee.favorites.databinding.ActivityFavoritesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -17,6 +18,8 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadKoinModules(favoritesModule)
 
         val viewModel: FavoritesViewModel by viewModel()
         viewModel.getFavorites.observe(this) { foods -> populateAdapter(foods) }
