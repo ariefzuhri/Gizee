@@ -1,25 +1,25 @@
 package com.ariefzuhri.gizee.core.data.source.local.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FoodDao {
 
     @Query("SELECT * FROM foods ORDER BY name ASC")
-    fun getFoods(): LiveData<List<FoodEntity>>
+    fun getFoods(): Flow<List<FoodEntity>>
 
     @Query("SELECT * FROM foods WHERE id =:id")
-    fun getFood(id: String): LiveData<FoodEntity>
+    fun getFood(id: String): Flow<FoodEntity>
 
     @Query("SELECT * FROM history ORDER BY timestamp DESC")
-    fun getHistory(): LiveData<List<HistoryEntity>>
+    fun getHistory(): Flow<List<HistoryEntity>>
 
     @Query("SELECT * FROM nutrients ORDER BY name DESC")
-    fun getNutrients(): LiveData<List<NutrientEntity>>
+    fun getNutrients(): Flow<List<NutrientEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFood(food: FoodEntity)
@@ -28,7 +28,7 @@ interface FoodDao {
     fun insertHistory(history: HistoryEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNutrients(nutrients: List<NutrientEntity>)
+    suspend fun insertNutrients(nutrients: List<NutrientEntity>)
 
     @Delete
     fun deleteFood(food: FoodEntity)

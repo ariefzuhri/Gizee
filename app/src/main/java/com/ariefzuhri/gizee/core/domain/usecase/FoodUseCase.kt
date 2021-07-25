@@ -1,22 +1,22 @@
 package com.ariefzuhri.gizee.core.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
+import kotlinx.coroutines.flow.Flow
 
 interface FoodUseCase {
 
-    fun getFoodsByNaturalLanguage(query: String): LiveData<Resource<List<Food>>>
+    fun getFoodsByNaturalLanguage(query: String): Flow<Resource<List<Food>>>
 
-    fun getFavorites(): LiveData<List<Food>>
+    fun getFavorites(): Flow<List<Food>>
 
-    fun isFavorite(id: String): LiveData<Boolean>
+    fun isFavorite(id: String): Flow<Boolean>
 
-    fun getHistory(): LiveData<List<History>>
+    fun getHistory(): Flow<List<History>>
 
-    fun getNutrients(): LiveData<Resource<List<Nutrient>>>
+    fun getNutrients(): Flow<Resource<List<Nutrient>>>
 
     fun insertFavorite(food: Food)
 

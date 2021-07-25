@@ -1,10 +1,10 @@
 package com.ariefzuhri.gizee.core.data.source.local
 
-import androidx.lifecycle.LiveData
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.ariefzuhri.gizee.core.data.source.local.room.FoodDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val foodDao: FoodDao) {
 
@@ -17,19 +17,20 @@ class LocalDataSource private constructor(private val foodDao: FoodDao) {
             }
     }
 
-    fun getFoods(): LiveData<List<FoodEntity>> = foodDao.getFoods()
+    fun getFoods(): Flow<List<FoodEntity>> = foodDao.getFoods()
 
-    fun getFood(id: String): LiveData<FoodEntity> = foodDao.getFood(id)
+    fun getFood(id: String): Flow<FoodEntity> = foodDao.getFood(id)
 
-    fun getHistory(): LiveData<List<HistoryEntity>> = foodDao.getHistory()
+    fun getHistory(): Flow<List<HistoryEntity>> = foodDao.getHistory()
 
-    fun getNutrients(): LiveData<List<NutrientEntity>> = foodDao.getNutrients()
+    fun getNutrients(): Flow<List<NutrientEntity>> = foodDao.getNutrients()
 
     fun insertFavorite(food: FoodEntity) = foodDao.insertFood(food)
 
     fun insertHistory(history: HistoryEntity) = foodDao.insertHistory(history)
 
-    fun insertNutrients(nutrients: List<NutrientEntity>) = foodDao.insertNutrients(nutrients)
+    suspend fun insertNutrients(nutrients: List<NutrientEntity>) =
+        foodDao.insertNutrients(nutrients)
 
     fun deleteFavorite(food: FoodEntity) = foodDao.deleteFood(food)
 

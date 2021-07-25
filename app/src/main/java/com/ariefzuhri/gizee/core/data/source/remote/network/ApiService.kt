@@ -4,7 +4,6 @@ import com.ariefzuhri.gizee.BuildConfig.NUTRITIONIX_APP_ID
 import com.ariefzuhri.gizee.BuildConfig.NUTRITIONIX_APP_KEY
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.data.source.remote.response.NutrientResponse
-import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -18,8 +17,8 @@ interface ApiService {
         "x-remote-user-id: 0"
     )
     @POST("natural/nutrients")
-    fun postNutrientsNatural(@Body body: HashMap<String, Any>): Call<FoodResponse>
+    suspend fun postNutrientsNatural(@Body body: HashMap<String, Any>): FoodResponse
 
     @GET("utils/nutrients")
-    fun getNutrientsUtils(): Call<List<NutrientResponse>>
+    suspend fun getNutrientsUtils(): List<NutrientResponse>
 }
