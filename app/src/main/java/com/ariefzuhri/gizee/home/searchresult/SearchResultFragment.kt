@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
@@ -68,7 +67,7 @@ class SearchResultFragment : Fragment() {
                         populateNutritionFacts(foods)
                         shimmer.hide(foods.isNullOrEmpty())
                     }
-                    is Resource.Error -> AppUtils.showToast(context, result.message)
+                    is Resource.Error -> shimmer.hide(true)
                 }
             }
         }
