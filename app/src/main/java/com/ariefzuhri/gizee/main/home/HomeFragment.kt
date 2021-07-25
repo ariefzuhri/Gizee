@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.home.nutrientsearch
+package com.ariefzuhri.gizee.main.home
 
 import android.content.Context
 import android.content.Intent
@@ -11,34 +11,34 @@ import android.view.ViewGroup
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.KeyboardUtils
-import com.ariefzuhri.gizee.databinding.FragmentNutrientSearchBinding
-import com.ariefzuhri.gizee.home.history.HistoryFragment
-import com.ariefzuhri.gizee.home.HomeActivity
-import com.ariefzuhri.gizee.home.HomeCallback
+import com.ariefzuhri.gizee.databinding.FragmentHomeBinding
+import com.ariefzuhri.gizee.main.history.HistoryFragment
+import com.ariefzuhri.gizee.main.MainActivity
+import com.ariefzuhri.gizee.main.MainCallback
 
-class NutrientSearchFragment : Fragment(), View.OnClickListener {
+class HomeFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var binding: FragmentNutrientSearchBinding
-    private lateinit var homeCallback: HomeCallback
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var mainCallback: MainCallback
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        homeCallback = context as HomeActivity
+        mainCallback = context as MainActivity
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNutrientSearchBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     companion object {
-        val TAG: String = NutrientSearchFragment::class.java.simpleName
+        val TAG: String = HomeFragment::class.java.simpleName
 
         @JvmStatic
-        fun newInstance() = NutrientSearchFragment()
+        fun newInstance() = HomeFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class NutrientSearchFragment : Fragment(), View.OnClickListener {
         val query = binding.edtSearch.text.toString()
         if (query.isNotEmpty()) {
             KeyboardUtils.hideSoftKeyboard(binding.edtSearch)
-            homeCallback.openSearchResult(query)
+            mainCallback.openSearchResult(query)
         } else {
             KeyboardUtils.showSoftKeyboard(binding.edtSearch)
             binding.edtSearch.requestFocus()

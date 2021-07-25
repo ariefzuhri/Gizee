@@ -18,11 +18,10 @@
         <activity android:name="com.ariefzuhri.gizee.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ariefzuhri.gizee.home.HomeActivity" />
+        <activity android:name="com.ariefzuhri.gizee.main.MainActivity" />
     </application>
 
 </manifest>

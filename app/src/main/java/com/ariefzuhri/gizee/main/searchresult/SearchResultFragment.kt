@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.home.searchresult
+package com.ariefzuhri.gizee.main.searchresult
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,7 @@ import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
-import com.ariefzuhri.gizee.home.HomeViewModel
+import com.ariefzuhri.gizee.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_QUERY = "query"
@@ -55,7 +55,7 @@ class SearchResultFragment : Fragment() {
 
         val shimmer = ShimmerHelper(binding.shimmer, binding.layoutResult, binding.layoutEmpty)
 
-        val viewModel: HomeViewModel by viewModel()
+        val viewModel: MainViewModel by viewModel()
         viewModel.performQuery(query)
         viewModel.getFoodsByNaturalLanguage.observe(viewLifecycleOwner) { result ->
             if (result != null) {

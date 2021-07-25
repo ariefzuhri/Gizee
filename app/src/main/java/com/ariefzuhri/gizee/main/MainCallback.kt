@@ -1,8 +1,8 @@
-package com.ariefzuhri.gizee.home
+package com.ariefzuhri.gizee.main
 
 import com.ariefzuhri.gizee.core.domain.model.History
 
-interface HomeCallback {
+interface MainCallback {
 
     fun openSearchResult(query: String)
 

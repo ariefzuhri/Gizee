@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.home
+package com.ariefzuhri.gizee.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,17 +6,17 @@ import android.view.WindowManager
 import android.widget.EditText
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
-import com.ariefzuhri.gizee.databinding.ActivityHomeBinding
-import com.ariefzuhri.gizee.home.nutrientsearch.NutrientSearchFragment
-import com.ariefzuhri.gizee.home.searchresult.SearchResultFragment
+import com.ariefzuhri.gizee.databinding.ActivityMainBinding
+import com.ariefzuhri.gizee.main.home.HomeFragment
+import com.ariefzuhri.gizee.main.searchresult.SearchResultFragment
 
-class HomeActivity : AppCompatActivity(), HomeCallback {
+class MainActivity : AppCompatActivity(), MainCallback {
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
@@ -25,10 +25,10 @@ class HomeActivity : AppCompatActivity(), HomeCallback {
 
     private fun populateMainFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        var fragment = supportFragmentManager.findFragmentByTag(NutrientSearchFragment.TAG)
+        var fragment = supportFragmentManager.findFragmentByTag(HomeFragment.TAG)
         if (fragment == null) {
-            fragment = NutrientSearchFragment.newInstance()
-            fragmentTransaction.add(binding.container.id, fragment, NutrientSearchFragment.TAG)
+            fragment = HomeFragment.newInstance()
+            fragmentTransaction.add(binding.container.id, fragment, HomeFragment.TAG)
             fragmentTransaction.addToBackStack(null)
         }
         fragmentTransaction.commit()
