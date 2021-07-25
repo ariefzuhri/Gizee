@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.home
+package com.ariefzuhri.gizee.main
 
 import androidx.lifecycle.*
 import com.ariefzuhri.gizee.core.data.Resource
@@ -6,7 +6,7 @@ import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 
-class HomeViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
+class MainViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
 
     private val query = MutableLiveData<String>()
 

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.ariefzuhri.gizee.databinding.ActivitySplashBinding
-import com.ariefzuhri.gizee.home.HomeActivity
+import com.ariefzuhri.gizee.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 1000)

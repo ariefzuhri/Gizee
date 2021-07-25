@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.home.history
+package com.ariefzuhri.gizee.main.history
 
 import android.app.AlertDialog
 import android.content.Context
@@ -13,21 +13,21 @@ import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapter
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapterListener
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding
-import com.ariefzuhri.gizee.home.HomeActivity
-import com.ariefzuhri.gizee.home.HomeCallback
-import com.ariefzuhri.gizee.home.HomeViewModel
+import com.ariefzuhri.gizee.main.MainActivity
+import com.ariefzuhri.gizee.main.MainCallback
+import com.ariefzuhri.gizee.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
     private lateinit var binding: FragmentHistoryBinding
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
 
-    private lateinit var homeCallback: HomeCallback
+    private lateinit var mainCallback: MainCallback
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        homeCallback = context as HomeActivity
+        mainCallback = context as MainActivity
     }
 
     override fun onCreateView(
@@ -82,7 +82,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
     override fun onHistoryClicked(history: History) {
         dismiss()
-        homeCallback.getQueryFromHistory(history)
+        mainCallback.getQueryFromHistory(history)
     }
 
     override fun onDeleteHistory(history: History) {

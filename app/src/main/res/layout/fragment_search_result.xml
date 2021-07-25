@@ -9,7 +9,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".home.searchresult.SearchResultFragment">
+    tools:context=".main.searchresult.SearchResultFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
