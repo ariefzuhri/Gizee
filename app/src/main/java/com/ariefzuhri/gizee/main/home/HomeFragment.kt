@@ -45,6 +45,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ibFavorites.setOnClickListener(this)
+        binding.cvHelp.setOnClickListener(this)
         binding.tvHistory.setOnClickListener(this)
         binding.btnSearch.setOnClickListener(this)
     }
@@ -52,6 +53,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             binding.ibFavorites.id -> openFavorites()
+            binding.cvHelp.id -> autofillQuery()
             binding.tvHistory.id -> showHistory()
             binding.btnSearch.id -> performSearch()
         }
@@ -61,6 +63,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val uri = Uri.parse("gizee://favorites")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
+    }
+
+    private fun autofillQuery() {
+        binding.edtSearch.setText(R.string.autofill_query)
     }
 
     private fun showHistory() {
