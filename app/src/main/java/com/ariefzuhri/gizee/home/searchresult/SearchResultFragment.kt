@@ -5,17 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import com.ariefzuhri.gizee.home.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_QUERY = "query"
 
@@ -57,8 +56,7 @@ class SearchResultFragment : Fragment() {
 
         val shimmer = ShimmerHelper(binding.shimmer, binding.layoutResult, binding.layoutEmpty)
 
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        val viewModel: HomeViewModel by viewModel()
         viewModel.performQuery(query)
         viewModel.getFoodsByNaturalLanguage.observe(viewLifecycleOwner) { result ->
             if (result != null) {

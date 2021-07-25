@@ -15,25 +15,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
-class FoodRepository private constructor(
+class FoodRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IFoodRepository {
-
-    companion object {
-        @Volatile
-        private var instance: FoodRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): FoodRepository =
-            instance ?: synchronized(this) {
-                instance ?: FoodRepository(remoteData, localData, appExecutors)
-            }
-    }
 
     // Next time, I will make it to store fetch results to database
     override fun getFoodsByNaturalLanguage(query: String): Flow<Resource<List<Food>>> =

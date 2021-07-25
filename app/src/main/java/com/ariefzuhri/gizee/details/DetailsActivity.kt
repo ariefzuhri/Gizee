@@ -3,21 +3,20 @@ package com.ariefzuhri.gizee.details
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.get
-import androidx.lifecycle.ViewModelProvider
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.Constants.Companion.EXTRA_FOOD
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.apache.commons.lang3.StringUtils
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var food: Food
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel: DetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +46,6 @@ class DetailsActivity : AppCompatActivity() {
 
         populateNutritionFacts(arrayListOf(food))
 
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[DetailsViewModel::class.java]
         viewModel.isFavorite(food.id!!).observe(this) { result ->
             food.isFavorite = result
             setFavoriteIcon(result)

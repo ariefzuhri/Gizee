@@ -3,12 +3,11 @@ package com.ariefzuhri.gizee.favorites
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityFavoritesBinding
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.ui.viewmodel.ViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -19,8 +18,7 @@ class FavoritesActivity : AppCompatActivity() {
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[FavoritesViewModel::class.java]
+        val viewModel: FavoritesViewModel by viewModel()
         viewModel.getFavorites.observe(this) { foods -> populateAdapter(foods) }
     }
 
