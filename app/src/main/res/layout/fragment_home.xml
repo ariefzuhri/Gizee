@@ -81,7 +81,7 @@
                     style="@style/EditText.MultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="1 cup fried rice and 2 tbsp gravy"
+                    android:autofillHints="@string/autofill_query"
                     android:hint="@string/hint_search" />
             </com.ariefzuhri.gizee.core.ui.customview.nestedscrollablehost.NestedScrollableHost>
 
