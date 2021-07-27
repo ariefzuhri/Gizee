@@ -4,7 +4,7 @@
     <string name="loading">Loading…</string>
     <string name="see_full_nutrients">Complete list of nutrients</string>
     <string name="hint_search">What did you eat today?</string>
-    <string name="help_search">You can search by entering "1 cup nasi goreng and 2 tbsp sambal" to find out the nutritional value of some foods.</string>
+    <string name="help_search">You can search by entering \"1 cup nasi goreng and 2 tbsp sambal\" to find out the nutritional value of some foods.</string>
     <string name="header_home_1">Discover the</string>
     <string name="header_home_2">nutrition information.</string>
     <string name="favorites">Favorites</string>
