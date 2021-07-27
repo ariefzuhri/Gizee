@@ -9,6 +9,7 @@ import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
 import com.ariefzuhri.gizee.favorites.databinding.ActivityFavoritesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -33,5 +34,10 @@ class FavoritesActivity : AppCompatActivity() {
 
         if (adapter.itemCount > 0) binding.layoutEmpty.visibility = View.INVISIBLE
         else binding.layoutEmpty.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unloadKoinModules(favoritesModule)
     }
 }
