@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:cardBackgroundColor="@color/green_transparent"
+                app:cardBackgroundColor="@color/blue_transparent"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
                 app:contentPadding="8dp"
