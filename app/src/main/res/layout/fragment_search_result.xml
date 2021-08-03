@@ -54,7 +54,7 @@
 
             <include
                 android:id="@+id/view_empty"
-                layout="@layout/view_empty_history" />
+                layout="@layout/view_empty_search_result" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

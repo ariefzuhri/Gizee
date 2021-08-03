@@ -1,9 +1,7 @@
 package com.ariefzuhri.gizee.core.utils
 
 
-interface Constants {
+object Constants {
 
-    companion object {
-        const val EXTRA_FOOD = "extra_food"
-    }
+    const val EXTRA_FOOD = "extra_food"
 }

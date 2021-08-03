@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
+import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
@@ -40,8 +41,6 @@ class SearchResultFragment : Fragment() {
     }
 
     companion object {
-        val TAG: String = SearchResultFragment::class.java.simpleName
-
         @JvmStatic
         fun newInstance(query: String) =
             SearchResultFragment().apply {

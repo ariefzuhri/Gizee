@@ -5,16 +5,13 @@ import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.data.source.remote.response.NutrientResponse
+import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(private val apiService: ApiService) {
-
-    companion object {
-        private val TAG = RemoteDataSource::class.java.simpleName
-    }
 
     suspend fun getFoodsByNaturalLanguage(query: String): Flow<ApiResponse<FoodResponse>> {
         return flow {

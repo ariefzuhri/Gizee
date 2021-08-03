@@ -41,8 +41,6 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     }
 
     companion object {
-        val TAG: String = HistoryFragment::class.java.simpleName
-
         @JvmStatic
         fun newInstance() = HistoryFragment()
     }
@@ -62,10 +60,10 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         binding.toolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_clear) {
                 AlertDialog.Builder(context)
-                    .setTitle(resources.getString(R.string.dialog_title_clear_history))
-                    .setMessage(resources.getString(R.string.dialog_message_clear_history))
-                    .setPositiveButton(resources.getString(R.string.yes)) { _, _ -> viewModel.clearHistory() }
-                    .setNeutralButton(resources.getString(R.string.cancel), null)
+                    .setTitle(R.string.dialog_clear_history_title)
+                    .setMessage(R.string.dialog_clear_history_message)
+                    .setPositiveButton(R.string.yes) { _, _ -> viewModel.clearHistory() }
+                    .setNeutralButton(R.string.no, null)
                     .create().show()
             }
             true

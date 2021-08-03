@@ -1,6 +1,6 @@
 dependencies {
     // Android support
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.core:core-ktx:$coreVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
@@ -17,13 +17,22 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koinVersion"
     implementation "io.insert-koin:koin-androidx-compose:$koinVersion"
 
+    // Chart
+    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
+
+    // Additional text utility
+    implementation "org.apache.commons:commons-text:$commonsTextVersion"
+
     // Image loading and caching
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
-    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
-    implementation "org.apache.commons:commons-text:$commonsTextVersion"
+    // Animation parsing
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Rounded image view
     implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
+
+    // Shimmer effect on loading screen
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 }

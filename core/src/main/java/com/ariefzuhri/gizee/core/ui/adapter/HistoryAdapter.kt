@@ -11,12 +11,14 @@ class HistoryAdapter(private val listener: HistoryAdapterListener) :
 
     private val history = arrayListOf<History?>()
 
-    fun submitList(history: List<History?>) {
-        with(this.history) {
-            clear()
-            addAll(history)
+    fun submitList(history: List<History?>?) {
+        history?.let {
+            with(this.history) {
+                clear()
+                addAll(it)
+                notifyItemRangeInserted(0, it.size)
+            }
         }
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
