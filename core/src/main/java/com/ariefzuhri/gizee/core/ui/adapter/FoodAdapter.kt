@@ -8,7 +8,7 @@ import com.ariefzuhri.gizee.core.R
 import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.Constants.Companion.EXTRA_FOOD
+import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
 import org.apache.commons.lang3.StringUtils
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
@@ -16,11 +16,13 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
     private val foods = arrayListOf<Food?>()
 
     fun submitList(foods: List<Food?>?) {
-        with(this.foods) {
-            clear()
-            foods?.let { addAll(it) }
+        foods?.let {
+            with(this.foods) {
+                clear()
+                addAll(it)
+                notifyItemRangeInserted(0, it.size)
+            }
         }
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

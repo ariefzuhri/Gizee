@@ -23,16 +23,16 @@
             android:text="@string/history" />
     </androidx.appcompat.widget.Toolbar>
 
-    <include
-        android:id="@+id/view_empty"
-        layout="@layout/view_empty_history"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        style="@style/RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        style="@style/RecyclerView"
+    <include
+        android:id="@+id/view_empty"
+        layout="@layout/view_empty_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar" />

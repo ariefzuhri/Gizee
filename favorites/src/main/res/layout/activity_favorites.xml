@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,29 +7,30 @@
     tools:context=".FavoritesActivity">
 
     <TextView
+        android:id="@+id/tv_title"
         style="@style/TextView.Header.1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginHorizontal="@dimen/layout_margin"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
         android:text="@string/favorites"
         android:textColor="@color/green" />
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        style="@style/RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:padding="@dimen/layout_margin" />
 
-        <include
-            android:id="@+id/view_empty"
-            layout="@layout/view_empty" />
+    <include
+        android:id="@+id/view_empty"
+        layout="@layout/view_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            style="@style/RecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/layout_margin" />
-    </FrameLayout>
-
-</LinearLayout>
+</RelativeLayout>

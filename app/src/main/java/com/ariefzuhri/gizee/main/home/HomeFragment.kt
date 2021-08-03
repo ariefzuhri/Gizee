@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.utils.AppUtils
+import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
 import com.ariefzuhri.gizee.core.utils.KeyboardUtils
 import com.ariefzuhri.gizee.databinding.FragmentHomeBinding
 import com.ariefzuhri.gizee.main.history.HistoryFragment
@@ -37,8 +38,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        val TAG: String = HomeFragment::class.java.simpleName
-
         @JvmStatic
         fun newInstance() = HomeFragment()
     }
@@ -83,10 +82,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         } else {
             KeyboardUtils.showSoftKeyboard(binding.edtSearch)
             binding.edtSearch.requestFocus()
-            AppUtils.showToast(
-                context,
-                resources.getString(R.string.toast_empty_search_field)
-            )
+            AppUtils.showToast(context, R.string.toast_empty_search_field)
         }
     }
 

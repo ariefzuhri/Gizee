@@ -33,7 +33,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    coreKtxVersion = '1.6.0'
+    coreVersion = '1.6.0'
     appCompatVersion = '1.3.0'
     materialVersion = '1.4.0'
     constraintLayoutVersion = '2.0.4'
@@ -55,10 +55,9 @@ ext {
 
     koinVersion = "3.1.2"
 
-    glideVersion = '4.12.0'
-
     aaChartCoreVersion = '-SNAPSHOT'
     commonsTextVersion = '1.9'
+    glideVersion = '4.12.0'
     lottieVersion = '4.0.0'
     roundedImageViewVersion = '2.3.0'
     shimmerVersion = '0.5.0'

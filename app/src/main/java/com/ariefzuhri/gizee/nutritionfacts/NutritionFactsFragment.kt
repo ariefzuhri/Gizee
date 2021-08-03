@@ -10,6 +10,7 @@ import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.AppUtils
+import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
 import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -44,8 +45,6 @@ class NutritionFactsFragment : Fragment() {
     }
 
     companion object {
-        val TAG: String = NutritionFactsFragment::class.java.simpleName
-
         @JvmStatic
         fun newInstance(foods: List<Food?>?) =
             NutritionFactsFragment().apply {

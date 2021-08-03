@@ -7,7 +7,8 @@ import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.Constants.Companion.EXTRA_FOOD
+import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.apache.commons.lang3.StringUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,14 +32,16 @@ class DetailsActivity : AppCompatActivity() {
 
         AppUtils.loadImage(this, binding.imgPhoto, food.photo)
         binding.tvTitle.text = StringUtils.capitalize(food.name)
-        binding.tvCalories.text =
-            resources.getString(R.string.calories, AppUtils.getDecimalFormat(food.nfCalories))
-        binding.tvMeasure.text = resources.getString(
+        binding.tvCalories.text = getString(
+            R.string.calories,
+            AppUtils.getDecimalFormat(food.nfCalories)
+        )
+        binding.tvMeasure.text = getString(
             R.string.measure,
             AppUtils.getDecimalFormat(food.servingQty),
             food.servingUnit
         )
-        binding.tvWeight.text = resources.getString(
+        binding.tvWeight.text = getString(
             R.string.weight,
             AppUtils.getDecimalFormat(food.servingWeightGrams),
             "g"

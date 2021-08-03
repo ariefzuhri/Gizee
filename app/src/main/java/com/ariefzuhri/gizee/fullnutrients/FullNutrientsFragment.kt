@@ -39,8 +39,6 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
     }
 
     companion object {
-        val TAG: String = FullNutrientsFragment::class.java.simpleName
-
         @JvmStatic
         fun newInstance(foods: List<Food>, rawNutrients: List<Nutrient>) =
             FullNutrientsFragment().apply {

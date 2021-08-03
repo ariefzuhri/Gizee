@@ -12,12 +12,14 @@ class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
 
     private val nutrients = arrayListOf<Nutrient?>()
 
-    fun submitList(nutrients: List<Nutrient?>) {
-        with(this.nutrients) {
-            clear()
-            addAll(nutrients)
+    fun submitList(nutrients: List<Nutrient?>?) {
+        nutrients?.let {
+            with(this.nutrients) {
+                clear()
+                addAll(it)
+                notifyItemRangeInserted(0, it.size)
+            }
         }
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(
