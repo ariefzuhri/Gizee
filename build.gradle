@@ -3,6 +3,7 @@ buildscript {
     ext {
         gradleVersion = '7.0.0'
         kotlinVersion = '1.5.21'
+        googleServicesVersion = '4.3.8'
     }
 
     repositories {
@@ -14,6 +15,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.gms:google-services:$googleServicesVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -50,10 +52,12 @@ ext {
     moshiVersion = '1.12.0'
     okhttpVersion = '4.9.0'
 
-    kotlinCoroutinesVersion = "1.4.2"
-    lifecycleVersion = "2.3.1"
+    kotlinCoroutinesVersion = '1.4.2'
+    lifecycleVersion = '2.3.1'
 
-    koinVersion = "3.1.2"
+    koinVersion = '3.1.2'
+
+    firebaseVersion = '28.3.0'
 
     aaChartCoreVersion = '-SNAPSHOT'
     commonsTextVersion = '1.9'

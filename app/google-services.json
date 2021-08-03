@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "297098740613",
+    "project_id": "gizee-id",
+    "storage_bucket": "gizee-id.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297098740613:android:f0d441ab9fa23515487aec",
+        "android_client_info": {
+          "package_name": "com.ariefzuhri.gizee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297098740613-7iptc2d8ptbq81mnh78rcink7kna1tfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ariefzuhri.gizee",
+            "certificate_hash": "400ece0d6cd0c758666d0676874981eb87a08436"
+          }
+        },
+        {
+          "client_id": "297098740613-op1ke28u927p1f84j05i6e3oaiqscg61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ariefzuhri.gizee",
+            "certificate_hash": "9275afb28b965228b9bcd0e406098bb48a0938da"
+          }
+        },
+        {
+          "client_id": "297098740613-5ftq70iajntne69mli9nc29hbi39u3bt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1btjhPxlsq0Pf3pvRYblkTLpk1CCCYnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297098740613-5ftq70iajntne69mli9nc29hbi39u3bt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

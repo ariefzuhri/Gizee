@@ -17,6 +17,10 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koinVersion"
     implementation "io.insert-koin:koin-androidx-compose:$koinVersion"
 
+    // Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
+    implementation "com.google.firebase:firebase-analytics-ktx"
+
     // Chart
     implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
 
