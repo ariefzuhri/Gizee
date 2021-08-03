@@ -16,7 +16,9 @@ private const val ARG_NUTRIENTS = "nutrients"
 
 class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentFullNutrientsBinding
+    private var _binding: FragmentFullNutrientsBinding? = null
+    private val binding get() = _binding!!
+
     private var foods: List<Food>? = null
     private var rawNutrients: List<Nutrient>? = null
 
@@ -32,7 +34,7 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFullNutrientsBinding.inflate(inflater, container, false)
+        _binding = FragmentFullNutrientsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -98,5 +100,10 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         val adapter = NutrientAdapter()
         adapter.submitList(nutrients)
         binding.recyclerView.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -20,7 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
-    private lateinit var binding: FragmentHistoryBinding
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: MainViewModel by viewModel()
 
     private lateinit var mainCallback: MainCallback
@@ -34,7 +36,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -87,5 +89,10 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
     override fun onDeleteHistory(history: History) {
         viewModel.deleteHistory(history)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

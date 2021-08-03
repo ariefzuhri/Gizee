@@ -19,7 +19,9 @@ private const val ARG_QUERY = "query"
 
 class SearchResultFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchResultBinding
+    private var _binding: FragmentSearchResultBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var query: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +35,7 @@ class SearchResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -88,5 +90,10 @@ class SearchResultFragment : Fragment() {
             fragmentTransaction.add(binding.container.id, fragment, NutritionFactsFragment.TAG)
         }
         fragmentTransaction.commit()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

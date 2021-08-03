@@ -22,7 +22,9 @@ private const val ARG_FOODS = "foods"
 
 class NutritionFactsFragment : Fragment() {
 
-    private lateinit var binding: FragmentNutritionFactsBinding
+    private var _binding: FragmentNutritionFactsBinding? = null
+    private val binding get() = _binding!!
+
     private var foods: List<Food>? = null
     private var rawNutrients: List<Nutrient>? = null
 
@@ -37,7 +39,7 @@ class NutritionFactsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNutritionFactsBinding.inflate(inflater, container, false)
+        _binding = FragmentNutritionFactsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -162,5 +164,10 @@ class NutritionFactsFragment : Fragment() {
                     .show(childFragmentManager, FullNutrientsFragment.TAG)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
