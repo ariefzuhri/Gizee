@@ -1,6 +1,7 @@
 package com.ariefzuhri.gizee.core.di
 
 import androidx.room.Room
+import com.ariefzuhri.gizee.core.BuildConfig
 import com.ariefzuhri.gizee.core.data.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.room.FoodDatabase
@@ -30,11 +31,13 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .build()
+        val httpClient = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            httpClient.connectTimeout(120, TimeUnit.SECONDS)
+            httpClient.readTimeout(120, TimeUnit.SECONDS)
+        }
+        httpClient.build()
     }
     single {
         val retrofit = Retrofit.Builder()
