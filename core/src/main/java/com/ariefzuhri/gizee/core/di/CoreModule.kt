@@ -13,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 private const val NUTRITIONIX_BASE_URL = "***REMOVED***"
@@ -39,7 +39,7 @@ val networkModule = module {
     single {
         val retrofit = Retrofit.Builder()
             .baseUrl(NUTRITIONIX_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .client(get())
             .build()
         retrofit.create(ApiService::class.java)

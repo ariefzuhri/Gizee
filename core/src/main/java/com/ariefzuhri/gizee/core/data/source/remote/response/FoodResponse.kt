@@ -1,160 +1,168 @@
 package com.ariefzuhri.gizee.core.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class FoodResponse(
 
-    @field:SerializedName("foods")
+    @field:Json(name = "foods")
     val foods: List<FoodsItem?>? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class Photo(
 
-    @field:SerializedName("thumb")
+    @field:Json(name = "thumb")
     val thumb: String? = null,
 
-    @field:SerializedName("highres")
+    @field:Json(name = "highres")
     val highRes: String? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class AltMeasuresItem(
 
-    @field:SerializedName("serving_weight")
+    @field:Json(name = "serving_weight")
     val servingWeight: Double? = null,
 
-    @field:SerializedName("measure")
+    @field:Json(name = "measure")
     val measure: String? = null,
 
-    @field:SerializedName("qty")
+    @field:Json(name = "qty")
     val qty: Double? = null,
 
-    @field:SerializedName("seq")
+    @field:Json(name = "seq")
     val seq: Int? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class FoodsItem(
 
-    @field:SerializedName("food_name")
+    @field:Json(name = "food_name")
     val foodName: String? = null,
 
-    @field:SerializedName("nf_saturated_fat")
+    @field:Json(name = "nf_saturated_fat")
     val nfSaturatedFat: Double? = null,
 
-    @field:SerializedName("metadata")
+    @field:Json(name = "metadata")
     val metadata: Metadata? = null,
 
-    @field:SerializedName("nf_cholesterol")
+    @field:Json(name = "nf_cholesterol")
     val nfCholesterol: Double? = null,
 
-    @field:SerializedName("nix_brand_id")
+    @field:Json(name = "nix_brand_id")
     val nixBrandId: String? = null,
 
-    @field:SerializedName("nf_potassium")
+    @field:Json(name = "nf_potassium")
     val nfPotassium: Double? = null,
 
-    @field:SerializedName("meal_type")
+    @field:Json(name = "meal_type")
     val mealType: Int? = null,
 
-    @field:SerializedName("nf_total_fat")
+    @field:Json(name = "nf_total_fat")
     val nfTotalFat: Double? = null,
 
-    @field:SerializedName("nf_sugars")
+    @field:Json(name = "nf_sugars")
     val nfSugars: Double? = null,
 
-    @field:SerializedName("nf_protein")
+    @field:Json(name = "nf_protein")
     val nfProtein: Double? = null,
 
-    @field:SerializedName("source")
+    @field:Json(name = "source")
     val source: Int? = null,
 
-    @field:SerializedName("nix_item_id")
+    @field:Json(name = "nix_item_id")
     val nixItemId: String? = null,
 
-    @field:SerializedName("ndb_no")
+    @field:Json(name = "ndb_no")
     val ndbNo: Int? = null,
 
-    @field:SerializedName("serving_unit")
+    @field:Json(name = "serving_unit")
     val servingUnit: String? = null,
 
-    @field:SerializedName("alt_measures")
+    @field:Json(name = "alt_measures")
     val altMeasures: List<AltMeasuresItem?>? = null,
 
-    @field:SerializedName("nf_p")
+    @field:Json(name = "nf_p")
     val nfP: Double? = null,
 
-    @field:SerializedName("lat")
+    @field:Json(name = "lat")
     val lat: Double? = null,
 
-    @field:SerializedName("lng")
+    @field:Json(name = "lng")
     val lng: Double? = null,
 
-    @field:SerializedName("consumed_at")
+    @field:Json(name = "consumed_at")
     val consumedAt: String? = null,
 
-    @field:SerializedName("nix_item_name")
+    @field:Json(name = "nix_item_name")
     val nixItemName: String? = null,
 
-    @field:SerializedName("upc")
+    @field:Json(name = "upc")
     val upc: Double? = null,
 
-    @field:SerializedName("photo")
+    @field:Json(name = "photo")
     val photo: Photo? = null,
 
-    @field:SerializedName("brand_name")
+    @field:Json(name = "brand_name")
     val brandName: String? = null,
 
-    @field:SerializedName("serving_weight_grams")
+    @field:Json(name = "serving_weight_grams")
     val servingWeightGrams: Double? = null,
 
-    @field:SerializedName("nf_total_carbohydrate")
+    @field:Json(name = "nf_total_carbohydrate")
     val nfTotalCarbohydrate: Double? = null,
 
-    @field:SerializedName("full_nutrients")
+    @field:Json(name = "full_nutrients")
     val fullNutrients: List<FullNutrientsItem?>? = null,
 
-    @field:SerializedName("tags")
+    @field:Json(name = "tags")
     val tags: Tags? = null,
 
-    @field:SerializedName("nix_brand_name")
+    @field:Json(name = "nix_brand_name")
     val nixBrandName: String? = null,
 
-    @field:SerializedName("serving_qty")
+    @field:Json(name = "serving_qty")
     val servingQty: Double? = null,
 
-    @field:SerializedName("nf_calories")
+    @field:Json(name = "nf_calories")
     val nfCalories: Double? = null,
 
-    @field:SerializedName("nf_sodium")
+    @field:Json(name = "nf_sodium")
     val nfSodium: Double? = null,
 
-    @field:SerializedName("nf_dietary_fiber")
+    @field:Json(name = "nf_dietary_fiber")
     val nfDietaryFiber: Double? = null,
 )
 
+@JsonClass(generateAdapter = true)
 data class Tags(
 
-    @field:SerializedName("item")
+    @field:Json(name = "item")
     val item: String? = null,
 
-    @field:SerializedName("measure")
+    @field:Json(name = "measure")
     val measure: String? = null,
 
-    @field:SerializedName("quantity")
+    @field:Json(name = "quantity")
     val quantity: String? = null,
 
-    @field:SerializedName("tag_id")
+    @field:Json(name = "tag_id")
     val tagId: Int? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class Metadata(
     val any: Any? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class FullNutrientsItem(
 
-    @field:SerializedName("value")
+    @field:Json(name = "value")
     val value: Double? = null,
 
-    @field:SerializedName("attr_id")
+    @field:Json(name = "attr_id")
     val attrId: Int? = null
 )

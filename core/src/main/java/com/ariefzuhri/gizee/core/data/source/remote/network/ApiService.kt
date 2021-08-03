@@ -17,7 +17,7 @@ interface ApiService {
         "x-remote-user-id: 0"
     )
     @POST("natural/nutrients")
-    suspend fun postNutrientsNatural(@Body body: HashMap<String, Any>): FoodResponse
+    suspend fun postNutrientsNatural(@Body body: Map<String, String>): FoodResponse
 
     @GET("utils/nutrients")
     suspend fun getNutrientsUtils(): List<NutrientResponse>
