@@ -78,8 +78,8 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         adapter.submitList(history)
         binding.recyclerView.adapter = adapter
 
-        if (adapter.itemCount > 0) binding.layoutEmpty.visibility = View.INVISIBLE
-        else binding.layoutEmpty.visibility = View.VISIBLE
+        if (adapter.itemCount > 0) binding.viewEmpty.root.visibility = View.GONE
+        else binding.viewEmpty.root.visibility = View.VISIBLE
     }
 
     override fun onHistoryClicked(history: History) {

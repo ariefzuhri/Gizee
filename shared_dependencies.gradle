@@ -23,6 +23,7 @@ dependencies {
 
     implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
     implementation "org.apache.commons:commons-text:$commonsTextVersion"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 }
