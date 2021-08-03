@@ -1,30 +1,32 @@
 package com.ariefzuhri.gizee.core.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class NutrientResponse(
 
-    @field:SerializedName("unit")
+    @field:Json(name = "unit")
     val unit: String? = null,
 
-    @field:SerializedName("api_name")
+    @field:Json(name = "api_name")
     val apiName: String? = null,
 
-    @field:SerializedName("usda_tag")
+    @field:Json(name = "usda_tag")
     val usdaTag: String? = null,
 
-    @field:SerializedName("name")
+    @field:Json(name = "name")
     val name: String? = null,
 
-    @field:SerializedName("fda_daily_value")
+    @field:Json(name = "fda_daily_value")
     val fdaDailyValue: Int? = null,
 
-    @field:SerializedName("usda_nutr_desc")
+    @field:Json(name = "usda_nutr_desc")
     val usdaNutrDesc: String? = null,
 
-    @field:SerializedName("usda_sr_order")
+    @field:Json(name = "usda_sr_order")
     val usdaSrOrder: Int? = null,
 
-    @field:SerializedName("attr_id")
+    @field:Json(name = "attr_id")
     val attrId: Int? = null
 )

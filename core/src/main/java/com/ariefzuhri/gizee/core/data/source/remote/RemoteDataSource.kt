@@ -19,7 +19,7 @@ class RemoteDataSource(private val apiService: ApiService) {
     suspend fun getFoodsByNaturalLanguage(query: String): Flow<ApiResponse<FoodResponse>> {
         return flow {
             try {
-                val response = apiService.postNutrientsNatural(hashMapOf("query" to query))
+                val response = apiService.postNutrientsNatural(mapOf("query" to query))
                 val dataArray = response.foods
                 if (dataArray?.isNotEmpty() as Boolean) {
                     emit(ApiResponse.Success(response))
