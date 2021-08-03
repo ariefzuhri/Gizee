@@ -59,6 +59,7 @@ ext {
 
     aaChartCoreVersion = '-SNAPSHOT'
     commonsTextVersion = '1.9'
+    lottieVersion = '4.0.0'
     roundedImageViewVersion = '2.3.0'
     shimmerVersion = '0.5.0'
 }

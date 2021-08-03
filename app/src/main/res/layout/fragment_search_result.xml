@@ -63,30 +63,10 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/layout_margin">
-
-                <TextView
-                    style="@style/TextView.Header.3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/empty_title_search_result"
-                    android:textColor="@color/gray_dark" />
-
-                <TextView
-                    style="@style/TextView.Hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/empty_desc_search_result"
-                    android:textAlignment="center" />
-            </LinearLayout>
+            <include
+                android:id="@+id/view_empty"
+                layout="@layout/view_empty_history" />
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

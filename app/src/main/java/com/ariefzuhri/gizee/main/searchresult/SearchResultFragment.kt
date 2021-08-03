@@ -55,7 +55,7 @@ class SearchResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
 
-        val shimmer = ShimmerHelper(binding.shimmer, binding.layoutResult, binding.layoutEmpty)
+        val shimmer = ShimmerHelper(binding.shimmer, binding.layoutResult, binding.viewEmpty.root)
 
         val viewModel: MainViewModel by viewModel()
         viewModel.performQuery(query)
