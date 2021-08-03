@@ -18,7 +18,9 @@ import com.ariefzuhri.gizee.main.MainCallback
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var mainCallback: MainCallback
 
     override fun onAttach(context: Context) {
@@ -30,7 +32,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -86,5 +88,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 resources.getString(R.string.toast_empty_search_field)
             )
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
