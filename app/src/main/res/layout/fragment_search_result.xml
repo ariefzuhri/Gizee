@@ -31,42 +31,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/layout_margin">
-
-                <include layout="@layout/shimmer_layout_food" />
-            </com.facebook.shimmer.ShimmerFrameLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_result"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                style="@style/RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:padding="@dimen/layout_margin" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/layout_margin" />
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_view" />
 
-                <FrameLayout
-                    android:id="@+id/container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            <include
+                android:id="@+id/view_food_placeholder"
+                layout="@layout/view_food_placeholder" />
 
             <include
                 android:id="@+id/view_empty"
                 layout="@layout/view_empty_history" />
-        </FrameLayout>
+        </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
