@@ -6,7 +6,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
-import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.databinding.ActivityMainBinding
 import com.ariefzuhri.gizee.main.home.HomeFragment
 import com.ariefzuhri.gizee.main.searchresult.SearchResultFragment

@@ -1,13 +1,20 @@
 package com.ariefzuhri.gizee.core.data.source.local.entity
 
 import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "history")
 data class HistoryEntity(
-    @PrimaryKey
-    @NonNull
-    var query: String,
-    var timestamp: Long? = null
-)
+    @PrimaryKey @NonNull @ColumnInfo(name = "queries") val query: String,
+    val timestamp: Long
+) {
+
+    constructor(query: String) : this(
+        query.lowercase()
+            .replace("(?m)(^\\s+|[\\s&&[^\\r\\n]](?=\\s|$)|\\s+\\z)".toRegex(), ""),
+        Calendar.getInstance().timeInMillis
+    )
+}

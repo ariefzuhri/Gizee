@@ -8,23 +8,17 @@ import kotlinx.coroutines.flow.Flow
 
 interface FoodUseCase {
 
-    fun getFoodsByNaturalLanguage(query: String): Flow<Resource<List<Food>>>
-
-    fun getFavorites(): Flow<List<Food>>
-
-    fun isFavorite(id: String): Flow<Boolean>
-
-    fun getHistory(): Flow<List<History>>
+    fun searchFoods(query: String): Flow<Resource<History>>
 
     fun getNutrients(): Flow<Resource<List<Nutrient>>>
 
-    fun insertFavorite(food: Food)
+    fun getHistory(): Flow<List<History>>
 
-    fun insertHistory(history: History)
+    fun getFavorites(): Flow<List<Food>>
 
-    fun deleteFavorite(food: Food)
-
-    fun deleteHistory(history: History)
+    fun updateFavorite(foodId: String, newState: Boolean)
 
     fun clearHistory()
+
+    fun deleteHistory(history: History)
 }

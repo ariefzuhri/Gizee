@@ -2,7 +2,6 @@ package com.ariefzuhri.gizee.main
 
 import androidx.lifecycle.*
 import com.ariefzuhri.gizee.core.data.Resource
-import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 
@@ -14,18 +13,17 @@ class MainViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
         this.query.value = query
     }
 
-    val getFoodsByNaturalLanguage: LiveData<Resource<List<Food>>> =
+    val searchFoods: LiveData<Resource<History>> =
         Transformations.switchMap(query) {
-            foodUseCase.insertHistory(History(it))
-            foodUseCase.getFoodsByNaturalLanguage(it).asLiveData()
+            foodUseCase.searchFoods(it).asLiveData()
         }
 
     val getHistory =
         foodUseCase.getHistory().asLiveData()
 
-    fun deleteHistory(history: History) =
-        foodUseCase.deleteHistory(history)
-
     fun clearHistory() =
         foodUseCase.clearHistory()
+
+    fun deleteHistory(history: History) =
+        foodUseCase.deleteHistory(history)
 }
