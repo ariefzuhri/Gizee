@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
@@ -62,15 +62,15 @@ class SearchResultFragment : Fragment() {
 
         val viewModel: MainViewModel by viewModel()
         viewModel.performQuery(query)
-        viewModel.getFoodsByNaturalLanguage.observe(viewLifecycleOwner) { result ->
+        viewModel.searchFoods.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Resource.Loading -> shimmer.show()
                     is Resource.Success -> {
-                        val foods = result.data
-                        populateAdapter(foods)
-                        populateNutritionFacts(foods)
-                        shimmer.hide(foods.isNullOrEmpty())
+                        val history = result.data
+                        populateAdapter(history?.foods)
+                        populateNutritionFacts(history?.foods)
+                        shimmer.hide(history?.foods.isNullOrEmpty())
                     }
                     is Resource.Error -> shimmer.hide(true)
                 }

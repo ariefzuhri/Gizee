@@ -9,43 +9,31 @@ import kotlinx.coroutines.flow.Flow
 
 class FoodInteractor(private val foodRepository: IFoodRepository) : FoodUseCase {
 
-    override fun getFoodsByNaturalLanguage(query: String): Flow<Resource<List<Food>>> {
-        return foodRepository.getFoodsByNaturalLanguage(query)
-    }
-
-    override fun getFavorites(): Flow<List<Food>> {
-        return foodRepository.getFavorites()
-    }
-
-    override fun isFavorite(id: String): Flow<Boolean> {
-        return foodRepository.isFavorite(id)
-    }
-
-    override fun getHistory(): Flow<List<History>> {
-        return foodRepository.getHistory()
+    override fun searchFoods(query: String): Flow<Resource<History>> {
+        return foodRepository.searchFoods(query)
     }
 
     override fun getNutrients(): Flow<Resource<List<Nutrient>>> {
         return foodRepository.getNutrients()
     }
 
-    override fun insertFavorite(food: Food) {
-        return foodRepository.insertFavorite(food)
+    override fun getHistory(): Flow<List<History>> {
+        return foodRepository.getHistory()
     }
 
-    override fun insertHistory(history: History) {
-        return foodRepository.insertHistory(history)
+    override fun getFavorites(): Flow<List<Food>> {
+        return foodRepository.getFavorites()
     }
 
-    override fun deleteFavorite(food: Food) {
-        return foodRepository.deleteFavorite(food)
-    }
-
-    override fun deleteHistory(history: History) {
-        return foodRepository.deleteHistory(history)
+    override fun updateFavorite(foodId: String, newState: Boolean) {
+        return foodRepository.updateFavorite(foodId, newState)
     }
 
     override fun clearHistory() {
         return foodRepository.clearHistory()
+    }
+
+    override fun deleteHistory(history: History) {
+        return foodRepository.deleteHistory(history)
     }
 }

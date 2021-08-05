@@ -9,6 +9,7 @@ import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
+import com.ariefzuhri.gizee.core.utils.ViewBinding
 import org.apache.commons.lang3.StringUtils
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
@@ -41,7 +42,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Food?) {
-            AppUtils.loadImage(itemView.context, binding.imgPhoto, food?.photo)
+            ViewBinding.bindLoadImage(binding.imgPhoto, food?.photo)
             binding.tvName.text = StringUtils.capitalize(food?.name)
             binding.tvMeasure.text = itemView.context.resources.getString(
                 R.string.measure_with_weight,

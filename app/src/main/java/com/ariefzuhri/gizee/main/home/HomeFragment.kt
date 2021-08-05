@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.KeyboardUtils
 import com.ariefzuhri.gizee.databinding.FragmentHomeBinding
 import com.ariefzuhri.gizee.main.history.HistoryFragment

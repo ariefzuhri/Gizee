@@ -2,104 +2,84 @@ package com.ariefzuhri.gizee.core.utils
 
 import com.ariefzuhri.gizee.core.data.source.local.entity.*
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
+import com.ariefzuhri.gizee.core.data.source.remote.response.FullNutrientsItem
 import com.ariefzuhri.gizee.core.data.source.remote.response.NutrientResponse
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 
+private const val NUTRIENT_ID_TRANS_FAT = 605
+private const val NUTRIENT_ID_POLYUNSATURATED_FAT = 646
+private const val NUTRIENT_ID_MONOUNSATURATED_FAT = 645
+private const val NUTRIENT_ID_VITAMIN_A = 320
+private const val NUTRIENT_ID_VITAMIN_B6 = 415
+private const val NUTRIENT_ID_VITAMIN_C = 401
+private const val NUTRIENT_ID_VITAMIN_D = 328
+private const val NUTRIENT_ID_CALCIUM = 301
+private const val NUTRIENT_ID_IRON = 303
+private const val NUTRIENT_ID_FOLATE = 435
+
 object FoodMapper {
 
     fun mapResponseToEntities(input: FoodResponse): List<FoodEntity> {
-        val foods = arrayListOf<FoodEntity>()
-        input.foods?.map {
-            val fullNutrients = arrayListOf<NutrientEntity?>()
-            it?.fullNutrients?.map { item ->
-                val nutrient = NutrientEntity(
+        val result = arrayListOf<FoodEntity>()
+        input.foods?.forEach {
+            val fullNutrients = arrayListOf<NutrientEntity>()
+            it?.fullNutrients?.forEach { item ->
+                val nutrientEntity = NutrientEntity(
                     id = item?.attrId!!,
+                    name = "",
+                    unit = "",
                     value = item.value ?: 0.0
                 )
-                fullNutrients.add(nutrient)
+                fullNutrients.add(nutrientEntity)
             }
 
-            val food = FoodEntity(
+            val foodEntity = FoodEntity(
                 id = "${it?.foodName}_${it?.servingWeightGrams}",
-                name = it?.foodName,
-                photo = it?.photo?.thumb,
-                servingQty = it?.servingQty,
-                servingUnit = it?.servingUnit,
-                servingWeightGrams = it?.servingWeightGrams,
-                nfCalories = it?.nfCalories,
-                nfTotalFat = it?.nfTotalFat,
-                nfSaturatedFat = it?.nfSaturatedFat,
-                nfCholesterol = it?.nfCholesterol,
-                nfSodium = it?.nfSodium,
-                nfTotalCarbohydrate = it?.nfTotalCarbohydrate,
-                nfDietaryFiber = it?.nfDietaryFiber,
-                nfSugars = it?.nfSugars,
-                nfProtein = it?.nfProtein,
-                nfPotassium = it?.nfPotassium,
-                nfP = it?.nfP,
+                name = it?.foodName ?: "",
+                photo = it?.photo?.thumb ?: "",
+                servingQty = it?.servingQty ?: 0.0,
+                servingUnit = it?.servingUnit ?: "",
+                servingWeightGrams = it?.servingWeightGrams ?: 0.0,
+                nfCalories = it?.nfCalories ?: 0.0,
+                nfTotalFat = it?.nfTotalFat ?: 0.0,
+                nfSaturatedFat = it?.nfSaturatedFat ?: 0.0,
+                nfTransFat = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_TRANS_FAT),
+                nfPolyFat = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_POLYUNSATURATED_FAT),
+                nfMonoFat = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_MONOUNSATURATED_FAT),
+                nfCholesterol = it?.nfCholesterol ?: 0.0,
+                nfSodium = it?.nfSodium ?: 0.0,
+                nfTotalCarbohydrate = it?.nfTotalCarbohydrate ?: 0.0,
+                nfDietaryFiber = it?.nfDietaryFiber ?: 0.0,
+                nfSugars = it?.nfSugars ?: 0.0,
+                nfProtein = it?.nfProtein ?: 0.0,
+                nfVitA = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_VITAMIN_A),
+                nfVitB6 = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_VITAMIN_B6),
+                nfVitC = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_VITAMIN_C),
+                nfVitD = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_VITAMIN_D),
+                nfCalcium = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_CALCIUM),
+                nfIron = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_IRON),
+                nfPotassium = it?.nfPotassium ?: 0.0,
+                nfFolate = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_FOLATE),
                 fullNutrients = fullNutrients,
                 isFavorite = false
             )
-            foods.add(food)
+
+            result.add(foodEntity)
         }
-        return foods
+        return result
     }
 
     fun mapEntitiesToDomain(input: List<FoodEntity>): List<Food> {
-        val foods = arrayListOf<Food>()
-        input.map {
-            val fullNutrients = arrayListOf<Nutrient?>()
-            it.fullNutrients?.map { item ->
-                val nutrient = Nutrient(
-                    id = item?.id,
-                    name = item?.name,
-                    unit = item?.unit,
-                    value = item?.value
-                )
-                fullNutrients.add(nutrient)
-            }
-
-            val food = Food(
-                id = it.id,
-                name = it.name,
-                photo = it.photo,
-                servingQty = it.servingQty,
-                servingUnit = it.servingUnit,
-                servingWeightGrams = it.servingWeightGrams,
-                nfCalories = it.nfCalories,
-                nfTotalFat = it.nfTotalFat,
-                nfSaturatedFat = it.nfSaturatedFat,
-                nfCholesterol = it.nfCholesterol,
-                nfSodium = it.nfSodium,
-                nfTotalCarbohydrate = it.nfTotalCarbohydrate,
-                nfDietaryFiber = it.nfDietaryFiber,
-                nfSugars = it.nfSugars,
-                nfProtein = it.nfProtein,
-                nfPotassium = it.nfPotassium,
-                nfP = it.nfP,
-                fullNutrients = fullNutrients,
-                isFavorite = it.isFavorite
-            )
-
-            foods.add(food)
-        }
-        return foods
+        val result = arrayListOf<Food>()
+        input.forEach { result.add(mapEntityToDomain(it)) }
+        return result
     }
 
-    fun mapDomainToEntity(input: Food): FoodEntity {
-        val fullNutrients = arrayListOf<NutrientEntity?>()
-        input.fullNutrients?.map { it ->
-            val nutrient = NutrientEntity(
-                id = it?.id!!,
-                value = it.value
-            )
-            fullNutrients.add(nutrient)
-        }
-
-        return FoodEntity(
-            id = input.id!!,
+    private fun mapEntityToDomain(input: FoodEntity): Food {
+        return Food(
+            id = input.id,
             name = input.name,
             photo = input.photo,
             servingQty = input.servingQty,
@@ -108,17 +88,30 @@ object FoodMapper {
             nfCalories = input.nfCalories,
             nfTotalFat = input.nfTotalFat,
             nfSaturatedFat = input.nfSaturatedFat,
+            nfTransFat = input.nfTransFat,
+            nfPolyFat = input.nfPolyFat,
+            nfMonoFat = input.nfMonoFat,
             nfCholesterol = input.nfCholesterol,
             nfSodium = input.nfSodium,
             nfTotalCarbohydrate = input.nfTotalCarbohydrate,
             nfDietaryFiber = input.nfDietaryFiber,
             nfSugars = input.nfSugars,
             nfProtein = input.nfProtein,
+            nfVitA = input.nfVitA,
+            nfVitB6 = input.nfVitB6,
+            nfVitC = input.nfVitC,
+            nfVitD = input.nfVitD,
+            nfCalcium = input.nfCalcium,
+            nfIron = input.nfIron,
             nfPotassium = input.nfPotassium,
-            nfP = input.nfP,
-            fullNutrients = fullNutrients,
+            nfFolate = input.nfFolate,
+            fullNutrients = NutrientMapper.mapEntitiesToDomain(input.fullNutrients),
             isFavorite = input.isFavorite
         )
+    }
+
+    private fun getNutrientValue(nutrients: List<FullNutrientsItem?>?, id: Int): Double {
+        return nutrients?.find { it?.attrId == id }?.value ?: 0.0
     }
 }
 
@@ -126,7 +119,7 @@ object HistoryMapper {
 
     fun mapEntitiesToDomain(input: List<HistoryEntity>): List<History> {
         val result = arrayListOf<History>()
-        input.map {
+        input.forEach {
             val history = History(
                 query = it.query,
                 timestamp = it.timestamp
@@ -136,9 +129,17 @@ object HistoryMapper {
         return result
     }
 
+    fun mapEntityToDomain(input: HistoryWithFoods): History {
+        return History(
+            query = input.history.query,
+            timestamp = input.history.timestamp,
+            foods = FoodMapper.mapEntitiesToDomain(input.foods)
+        )
+    }
+
     fun mapDomainToEntity(input: History): HistoryEntity {
         return HistoryEntity(
-            query = input.query!!,
+            query = input.query,
             timestamp = input.timestamp
         )
     }
@@ -147,28 +148,29 @@ object HistoryMapper {
 object NutrientMapper {
 
     fun mapResponsesToEntities(input: List<NutrientResponse>): List<NutrientEntity> {
-        val nutrients = arrayListOf<NutrientEntity>()
-        input.map {
+        val result = arrayListOf<NutrientEntity>()
+        input.forEach {
             val nutrient = NutrientEntity(
                 id = it.attrId!!,
-                name = it.usdaNutrDesc,
-                unit = it.unit
+                name = it.usdaNutrDesc ?: "",
+                unit = it.unit ?: ""
             )
-            nutrients.add(nutrient)
+            result.add(nutrient)
         }
-        return nutrients
+        return result
     }
 
     fun mapEntitiesToDomain(input: List<NutrientEntity>): List<Nutrient> {
-        val nutrients = arrayListOf<Nutrient>()
-        input.map {
+        val result = arrayListOf<Nutrient>()
+        input.forEach {
             val nutrient = Nutrient(
                 id = it.id,
                 name = it.name,
-                unit = it.unit
+                unit = it.unit,
+                value = it.value
             )
-            nutrients.add(nutrient)
+            result.add(nutrient)
         }
-        return nutrients
+        return result
     }
 }

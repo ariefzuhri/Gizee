@@ -10,9 +10,8 @@ import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
-import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
@@ -27,7 +26,6 @@ class NutritionFactsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var foods: List<Food>? = null
-    private var rawNutrients: List<Nutrient>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,13 +56,17 @@ class NutritionFactsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModel: NutritionFactsViewModel by viewModel()
-        viewModel.getNutrients.observe(viewLifecycleOwner) { result ->
+        viewModel.foods = foods!!
+        viewModel.nutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
-                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                    is Resource.Loading -> binding.tvFullNutrients.visibility = View.GONE
                     is Resource.Success -> {
-                        rawNutrients = result.data
-                        binding.progressBar.visibility = View.INVISIBLE
+                        val rawNutrients = result.data
+                        if (!(foods.isNullOrEmpty() && rawNutrients.isNullOrEmpty())) {
+                            populateFullNutrients(foods!!, rawNutrients!!)
+                        }
+                        binding.tvFullNutrients.visibility = View.VISIBLE
                     }
                     is Resource.Error -> AppUtils.showToast(context, result.message)
                 }
@@ -73,7 +75,6 @@ class NutritionFactsFragment : Fragment() {
 
         populateChart()
         populateNutritionFacts()
-        populateFullNutrients()
     }
 
     private fun populateChart() {
@@ -84,10 +85,10 @@ class NutritionFactsFragment : Fragment() {
 
         if (foods != null) {
             for (food in foods!!) {
-                totalCalories += food.nfCalories!!.toFloat()
-                totalCarbohydrates += food.nfTotalCarbohydrate!!.toFloat()
-                totalFats += food.nfTotalFat!!.toFloat()
-                totalProteins += food.nfProtein!!.toFloat()
+                totalCalories += food.nfCalories.toFloat()
+                totalCarbohydrates += food.nfTotalCarbohydrate.toFloat()
+                totalFats += food.nfTotalFat.toFloat()
+                totalProteins += food.nfProtein.toFloat()
             }
         }
 
@@ -126,23 +127,23 @@ class NutritionFactsFragment : Fragment() {
                     .setCalories(food.nfCalories)
                     .setTotalFat(food.nfTotalFat)
                     .setSaturatedFat(food.nfSaturatedFat)
-                    .setTransFat(getNutrientValueById(food.fullNutrients, 605))
-                    .setPolyunsaturatedFat(getNutrientValueById(food.fullNutrients, 646))
-                    .setMonounsaturatedFat(getNutrientValueById(food.fullNutrients, 645))
+                    .setTransFat(food.nfTransFat)
+                    .setPolyunsaturatedFat(food.nfPolyFat)
+                    .setMonounsaturatedFat(food.nfMonoFat)
                     .setCholesterol(food.nfCholesterol)
                     .setSodium(food.nfSodium)
                     .setTotalCarbohydrates(food.nfTotalCarbohydrate)
                     .setDietaryFiber(food.nfDietaryFiber)
                     .setSugars(food.nfSugars)
                     .setProtein(food.nfProtein)
-                    .setVitaminA(getNutrientValueById(food.fullNutrients, 320))
-                    .setVitaminB6(getNutrientValueById(food.fullNutrients, 415))
-                    .setVitaminC(getNutrientValueById(food.fullNutrients, 401))
-                    .setVitaminD(getNutrientValueById(food.fullNutrients, 328))
-                    .setCalcium(getNutrientValueById(food.fullNutrients, 301))
-                    .setIron(getNutrientValueById(food.fullNutrients, 303))
+                    .setVitaminA(food.nfVitA)
+                    .setVitaminB6(food.nfVitB6)
+                    .setVitaminC(food.nfVitC)
+                    .setVitaminD(food.nfVitD)
+                    .setCalcium(food.nfCalcium)
+                    .setIron(food.nfIron)
                     .setPotassium(food.nfPotassium)
-                    .setFolate(getNutrientValueById(food.fullNutrients, 435))
+                    .setFolate(food.nfFolate)
                     .create()
                 binding.nfView.addData(nfData)
             }
@@ -150,18 +151,10 @@ class NutritionFactsFragment : Fragment() {
         binding.nfView.drawLabel()
     }
 
-    private fun getNutrientValueById(nutrients: List<Nutrient?>?, id: Int): Double {
-        if (nutrients != null) for (nutrient in nutrients) if (nutrient?.id == id) return nutrient.value
-            ?: 0.0
-        return 0.0
-    }
-
-    private fun populateFullNutrients() {
+    private fun populateFullNutrients(foods: List<Food>, rawNutrients: List<Nutrient>) {
         binding.tvFullNutrients.setOnClickListener {
-            if (rawNutrients != null) {
-                FullNutrientsFragment.newInstance(foods!!, rawNutrients!!)
-                    .show(childFragmentManager, FullNutrientsFragment.TAG)
-            }
+            FullNutrientsFragment.newInstance(foods, rawNutrients)
+                .show(childFragmentManager, FullNutrientsFragment.TAG)
         }
     }
 

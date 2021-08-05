@@ -1,31 +1,39 @@
 package com.ariefzuhri.gizee.core.data.source.local
 
-import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
-import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
-import com.ariefzuhri.gizee.core.data.source.local.room.FoodDao
+import com.ariefzuhri.gizee.core.data.source.local.entity.*
+import com.ariefzuhri.gizee.core.data.source.local.persistence.FoodDao
 import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val foodDao: FoodDao) {
 
-    fun getFoods(): Flow<List<FoodEntity>> = foodDao.getFoods()
+    fun getHistoryWithFoods(query: String): Flow<HistoryWithFoods> =
+        foodDao.getHistoryWithFoods(query)
 
-    fun getFood(id: String): Flow<FoodEntity> = foodDao.getFood(id)
+    fun getNutrients(): Flow<List<NutrientEntity>> =
+        foodDao.getNutrients()
 
-    fun getHistory(): Flow<List<HistoryEntity>> = foodDao.getHistory()
+    fun getHistoryWithFoods(): Flow<List<HistoryEntity>> =
+        foodDao.getHistory()
 
-    fun getNutrients(): Flow<List<NutrientEntity>> = foodDao.getNutrients()
+    fun getFavoriteFoods(): Flow<List<FoodEntity>> =
+        foodDao.getFavoriteFoods()
 
-    fun insertFavorite(food: FoodEntity) = foodDao.insertFood(food)
+    suspend fun insertFoods(query: String, foodEntities: List<FoodEntity>) {
+        foodDao.insertFoods(query, foodEntities)
+    }
 
-    fun insertHistory(history: HistoryEntity) = foodDao.insertHistory(history)
+    suspend fun insertHistory(historyEntity: HistoryEntity) =
+        foodDao.insertHistory(historyEntity)
 
-    suspend fun insertNutrients(nutrients: List<NutrientEntity>) =
-        foodDao.insertNutrients(nutrients)
+    suspend fun insertNutrients(nutrientEntities: List<NutrientEntity>) =
+        foodDao.insertNutrients(nutrientEntities)
 
-    fun deleteFavorite(food: FoodEntity) = foodDao.deleteFood(food)
+    fun updateFavoriteFood(foodId: String, newState: Boolean) =
+        foodDao.updateFavoriteFood(foodId, newState)
 
-    fun deleteHistory(history: HistoryEntity) = foodDao.deleteHistory(history)
+    fun deleteHistory() =
+        foodDao.deleteHistory()
 
-    fun clearHistory() = foodDao.deleteHistory()
+    fun deleteHistory(historyEntity: HistoryEntity) =
+        foodDao.deleteHistory(historyEntity)
 }

@@ -7,8 +7,9 @@ import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.AppUtils.TAG
+import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
+import com.ariefzuhri.gizee.core.utils.ViewBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.apache.commons.lang3.StringUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,7 +17,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
-    private lateinit var food: Food
     private val viewModel: DetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +25,36 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (intent.hasExtra(EXTRA_FOOD)) {
-            food = intent.getParcelableExtra(EXTRA_FOOD)!!
+            val food: Food = intent.getParcelableExtra(EXTRA_FOOD)!!
+            viewModel.setFood(food)
         } else onBackPressed()
 
-        initializeToolbar()
+        viewModel.food.observe(this) { food ->
+            initializeToolbar()
+            initializeContent(food)
+            populateNutritionFacts(arrayListOf(food))
+            setFavoriteState(food.isFavorite)
+        }
+    }
 
-        AppUtils.loadImage(this, binding.imgPhoto, food.photo)
+    private fun setFavoriteState(isFavorite: Boolean) {
+        val menuFavorite = binding.toolbar.menu[0]
+        if (isFavorite) menuFavorite.setIcon(R.drawable.ic_bookmark)
+        else menuFavorite.setIcon(R.drawable.ic_bookmark_outline)
+    }
+
+    private fun initializeToolbar() {
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.menu_favorite) {
+                viewModel.setNewStateFavorite()
+            }
+            true
+        }
+    }
+
+    private fun initializeContent(food: Food) {
+        ViewBinding.bindLoadImage(binding.imgPhoto, food.photo)
         binding.tvTitle.text = StringUtils.capitalize(food.name)
         binding.tvCalories.text = getString(
             R.string.calories,
@@ -46,30 +70,6 @@ class DetailsActivity : AppCompatActivity() {
             AppUtils.getDecimalFormat(food.servingWeightGrams),
             "g"
         )
-
-        populateNutritionFacts(arrayListOf(food))
-
-        viewModel.isFavorite(food.id!!).observe(this) { result ->
-            food.isFavorite = result
-            setFavoriteIcon(result)
-        }
-    }
-
-    private fun setFavoriteIcon(isFavorite: Boolean) {
-        val menuFavorite = binding.toolbar.menu[0]
-        if (isFavorite) menuFavorite.setIcon(R.drawable.ic_bookmark)
-        else menuFavorite.setIcon(R.drawable.ic_bookmark_outline)
-    }
-
-    private fun initializeToolbar() {
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-        binding.toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.menu_favorite) {
-                val newState = !food.isFavorite!!
-                viewModel.setFavorite(food, newState)
-            }
-            true
-        }
     }
 
     private fun populateNutritionFacts(foods: List<Food?>?) {

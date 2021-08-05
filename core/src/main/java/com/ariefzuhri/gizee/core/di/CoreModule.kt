@@ -4,7 +4,7 @@ import androidx.room.Room
 import com.ariefzuhri.gizee.core.BuildConfig
 import com.ariefzuhri.gizee.core.data.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
-import com.ariefzuhri.gizee.core.data.source.local.room.FoodDatabase
+import com.ariefzuhri.gizee.core.data.source.local.persistence.FoodDatabase
 import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository

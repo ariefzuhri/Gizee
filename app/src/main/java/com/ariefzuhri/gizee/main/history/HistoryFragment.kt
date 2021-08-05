@@ -23,9 +23,8 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModel()
-
     private lateinit var mainCallback: MainCallback
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
