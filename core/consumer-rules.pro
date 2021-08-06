@@ -93,3 +93,5 @@
 -dontwarn org.openjsse.javax.net.ssl.SSLParameters
 -dontwarn org.openjsse.javax.net.ssl.SSLSocket
 -dontwarn org.openjsse.net.ssl.OpenJSSE
+
+-keep public class com.ariefzuhri.gizee.core.ui.customview.nestedscrollablehost.NestedScrollableHost
