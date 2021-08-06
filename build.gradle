@@ -61,6 +61,8 @@ ext {
 
     firebaseVersion = '28.3.0'
 
+    leakcanaryVersion = '2.7'
+
     sqlCipherVersion = '4.4.3'
     sqliteVersion = '2.1.0'
 
