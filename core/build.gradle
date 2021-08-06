@@ -8,7 +8,9 @@ apply from: '../shared_dependencies.gradle'
 
 def localPropertiesFile = rootProject.file("local.properties")
 def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
 
 android {
     compileSdkVersion 30
