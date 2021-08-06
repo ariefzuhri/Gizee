@@ -12,8 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gizee"
-        tools:ignore="AllowBackup">
+        android:theme="@style/Theme.Gizee">
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsEnabled}" />
+
         <activity android:name="com.ariefzuhri.gizee.details.DetailsActivity" />
         <activity android:name="com.ariefzuhri.gizee.splash.SplashActivity">
             <intent-filter>
