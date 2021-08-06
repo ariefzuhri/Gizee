@@ -61,6 +61,9 @@ ext {
 
     firebaseVersion = '28.3.0'
 
+    sqlCipherVersion = '4.4.3'
+    sqliteVersion = '2.1.0'
+
     aaChartCoreVersion = '-SNAPSHOT'
     commonsTextVersion = '1.9'
     glideVersion = '4.12.0'

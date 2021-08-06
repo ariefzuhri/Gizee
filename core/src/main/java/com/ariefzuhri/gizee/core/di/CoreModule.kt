@@ -2,6 +2,7 @@ package com.ariefzuhri.gizee.core.di
 
 import androidx.room.Room
 import com.ariefzuhri.gizee.core.BuildConfig
+import com.ariefzuhri.gizee.core.BuildConfig.DATABASE_PASSPHRASE
 import com.ariefzuhri.gizee.core.data.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.persistence.FoodDatabase
@@ -9,6 +10,8 @@ import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -22,10 +25,14 @@ private const val NUTRITIONIX_BASE_URL = "***REMOVED***"
 val databaseModule = module {
     factory { get<FoodDatabase>().foodDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes(DATABASE_PASSPHRASE.toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             FoodDatabase::class.java, "Food.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
