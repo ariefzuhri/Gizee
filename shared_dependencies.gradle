@@ -22,9 +22,6 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-crashlytics-ktx"
 
-    // Chart
-    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
-
     // Additional text utility
     implementation "org.apache.commons:commons-text:$commonsTextVersion"
 
