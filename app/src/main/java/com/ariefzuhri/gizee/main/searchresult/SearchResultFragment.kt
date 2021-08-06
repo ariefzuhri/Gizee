@@ -52,7 +52,8 @@ class SearchResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.setNavigationOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
+
+        initializeToolbar()
 
         val shimmer = ShimmerHelper(
             binding.viewFoodPlaceholder.root,
@@ -75,6 +76,12 @@ class SearchResultFragment : Fragment() {
                     is Resource.Error -> shimmer.hide(true)
                 }
             }
+        }
+    }
+
+    private fun initializeToolbar() {
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
