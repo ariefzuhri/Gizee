@@ -23,8 +23,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'])
-        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'])
+        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'] ?: "\"\"")
+        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'] ?: "\"\"")
     }
 
     buildTypes {
