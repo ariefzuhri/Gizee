@@ -23,8 +23,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'] ?: "\"\"")
-        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'] ?: "\"\"")
+        buildConfigField("String", "DATABASE_PASSPHRASE", localProperties['databasePassphrase'] ?: "\"com.ariefzuhri.gizee\"")
+        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'] ?: "\"YOUR_API_KEY\"")
+        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'] ?: "\"YOUR_API_KEY\"")
     }
 
     buildTypes {
@@ -77,4 +78,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    // Database encryption
+    implementation "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
+    implementation "androidx.sqlite:sqlite-ktx:$sqliteVersion"
 }

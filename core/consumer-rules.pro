@@ -63,6 +63,10 @@
     private static java.lang.String getKotlinMetadataClassName();
 }
 
+##---------------Begin: proguard configuration for SQLCipher ----------
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+
 ##---------------Begin: proguard configuration for Glide ----------
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep class * extends com.bumptech.glide.module.AppGlideModule {
