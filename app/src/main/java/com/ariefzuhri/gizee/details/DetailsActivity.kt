@@ -58,16 +58,16 @@ class DetailsActivity : AppCompatActivity() {
         binding.tvTitle.text = StringUtils.capitalize(food.name)
         binding.tvCalories.text = getString(
             R.string.calories,
-            AppUtils.getDecimalFormat(food.nfCalories)
+            AppUtils.formatToDecimal(food.nfCalories)
         )
         binding.tvMeasure.text = getString(
             R.string.measure,
-            AppUtils.getDecimalFormat(food.servingQty),
+            AppUtils.formatToDecimal(food.servingQty),
             food.servingUnit
         )
         binding.tvWeight.text = getString(
             R.string.weight,
-            AppUtils.getDecimalFormat(food.servingWeightGrams),
+            AppUtils.formatToDecimal(food.servingWeightGrams),
             "g"
         )
     }

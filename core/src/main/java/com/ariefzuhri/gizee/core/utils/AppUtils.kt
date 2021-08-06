@@ -6,7 +6,7 @@ import java.text.DecimalFormat
 
 object AppUtils {
 
-    fun getDecimalFormat(number: Number?): String {
+    fun formatToDecimal(number: Number?): String {
         return DecimalFormat("0.#").format(number ?: 0)
     }
 

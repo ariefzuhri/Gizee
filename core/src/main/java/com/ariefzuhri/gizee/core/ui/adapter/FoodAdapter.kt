@@ -46,14 +46,14 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
             binding.tvName.text = StringUtils.capitalize(food?.name)
             binding.tvMeasure.text = itemView.context.resources.getString(
                 R.string.measure_with_weight,
-                AppUtils.getDecimalFormat(food?.servingQty),
+                AppUtils.formatToDecimal(food?.servingQty),
                 food?.servingUnit,
-                AppUtils.getDecimalFormat(food?.servingWeightGrams)
+                AppUtils.formatToDecimal(food?.servingWeightGrams)
             )
             binding.tvCalories.text =
                 itemView.context.resources.getString(
                     R.string.calories,
-                    AppUtils.getDecimalFormat(food?.nfCalories)
+                    AppUtils.formatToDecimal(food?.nfCalories)
                 )
             itemView.setOnClickListener {
                 val intent = Intent(

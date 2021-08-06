@@ -45,7 +45,7 @@ class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
             binding.tvName.text = nutrient?.name
             binding.tvWeight.text = itemView.context.resources.getString(
                 R.string.weight,
-                AppUtils.getDecimalFormat(nutrient?.value),
+                AppUtils.formatToDecimal(nutrient?.value),
                 nutrient?.unit
             )
         }
