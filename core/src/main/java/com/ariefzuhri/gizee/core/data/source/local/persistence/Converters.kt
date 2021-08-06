@@ -2,20 +2,24 @@ package com.ariefzuhri.gizee.core.data.source.local.persistence
 
 import androidx.room.TypeConverter
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 
 class Converters {
 
+    private val moshi = Moshi.Builder().build()
+
+    private val nutrientsType =
+        Types.newParameterizedType(List::class.java, NutrientEntity::class.java)
+    private val nutrientsAdapter = moshi.adapter<List<NutrientEntity>>(nutrientsType)
+
     @TypeConverter
-    fun toString(value: List<NutrientEntity>): String {
-        val listType = object : TypeToken<List<NutrientEntity>>() {}.type
-        return Gson().toJson(value, listType)
+    fun nutrientsToString(value: List<NutrientEntity>): String {
+        return nutrientsAdapter.toJson(value)
     }
 
     @TypeConverter
-    fun toList(value: String): List<NutrientEntity> {
-        val listType = object : TypeToken<List<NutrientEntity>>() {}.type
-        return Gson().fromJson(value, listType)
+    fun stringToNutrients(value: String): List<NutrientEntity>? {
+        return nutrientsAdapter.fromJson(value)
     }
 }
