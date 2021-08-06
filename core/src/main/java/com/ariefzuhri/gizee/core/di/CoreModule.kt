@@ -12,6 +12,7 @@ import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.AppExecutors
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -38,11 +39,21 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val hostname = "***REMOVED***"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/***REMOVED***")
+            .add(hostname, "sha256/***REMOVED***")
+            .add(hostname, "sha256/***REMOVED***")
+            .add(hostname, "sha256/***REMOVED***")
+            .build()
         val httpClient = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
-            httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            httpClient.connectTimeout(120, TimeUnit.SECONDS)
-            httpClient.readTimeout(120, TimeUnit.SECONDS)
+            with(httpClient) {
+                addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                connectTimeout(120, TimeUnit.SECONDS)
+                readTimeout(120, TimeUnit.SECONDS)
+                certificatePinner(certificatePinner)
+            }
         }
         httpClient.build()
     }
