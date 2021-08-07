@@ -25,8 +25,12 @@ class FoodInteractor(private val foodRepository: IFoodRepository) : FoodUseCase 
         return foodRepository.getFavorites()
     }
 
-    override fun updateFavorite(foodId: String, newState: Boolean) {
-        return foodRepository.updateFavorite(foodId, newState)
+    override fun isFavorite(foodId: String): Flow<Boolean> {
+        return foodRepository.isFavorite(foodId)
+    }
+
+    override fun setFavorite(food: Food, newState: Boolean) {
+        return foodRepository.setFavorite(food, newState)
     }
 
     override fun clearHistory() {

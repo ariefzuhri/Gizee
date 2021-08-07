@@ -1,6 +1,7 @@
 package com.ariefzuhri.gizee.core.data
 
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
+import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
@@ -12,6 +13,7 @@ import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
 class FoodRepository(
@@ -22,29 +24,28 @@ class FoodRepository(
 
     override fun searchFoods(query: String): Flow<Resource<History>> =
         object : NetworkBoundResource<History, FoodResponse>() {
+            var historyEntity = HistoryEntity(query)
+            var result = listOf<FoodEntity>()
+
             override fun loadFromDB(): Flow<History> {
-                return localDataSource.getHistoryWithFoods(query).map {
-                    @Suppress("SENSELESS_COMPARISON")
-                    if (it == null) History("", 0, null)
-                    else HistoryMapper.mapEntityToDomain(it)
-                }
+                val data = flowOf(result)
+                return data.map { HistoryMapper.mapEntityToDomain(historyEntity, it) }
             }
 
             override fun shouldFetch(data: History?): Boolean {
-                return data!!.foods.isNullOrEmpty()
+                return true
             }
 
             override suspend fun createCall(): Flow<ApiResponse<FoodResponse>> {
-                localDataSource.insertHistory(HistoryEntity(query))
+                localDataSource.insertHistory(historyEntity)
                 return remoteDataSource.getFoodsByNaturalLanguage(query)
             }
 
             override suspend fun saveCallResult(data: FoodResponse) {
                 val foodEntities = FoodMapper.mapResponseToEntities(data)
-                localDataSource.insertFoods(query, foodEntities)
+                result = foodEntities
             }
         }.asFlow()
-
 
     override fun getNutrients(): Flow<Resource<List<Nutrient>>> =
         object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>() {
@@ -78,16 +79,29 @@ class FoodRepository(
             FoodMapper.mapEntitiesToDomain(it)
         }
 
-    override fun updateFavorite(foodId: String, newState: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.updateFavoriteFood(foodId, newState) }
+    override fun isFavorite(foodId: String): Flow<Boolean> =
+        localDataSource.getFavoriteFood(foodId).map {
+            @Suppress("SENSELESS_COMPARISON")
+            it != null
+        }
+
+    override fun setFavorite(food: Food, newState: Boolean) {
+        val foodEntity = FoodMapper.mapDomainToEntity(food)
+        appExecutors.diskIO().execute {
+            localDataSource.setFavoriteFood(foodEntity, newState)
+        }
     }
 
     override fun clearHistory() {
-        appExecutors.diskIO().execute { localDataSource.deleteHistory() }
+        appExecutors.diskIO().execute {
+            localDataSource.deleteHistory()
+        }
     }
 
     override fun deleteHistory(history: History) {
         val historyEntity = HistoryMapper.mapDomainToEntity(history)
-        appExecutors.diskIO().execute { localDataSource.deleteHistory(historyEntity) }
+        appExecutors.diskIO().execute {
+            localDataSource.deleteHistory(historyEntity)
+        }
     }
 }

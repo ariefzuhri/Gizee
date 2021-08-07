@@ -62,8 +62,7 @@ object FoodMapper {
                 nfIron = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_IRON),
                 nfPotassium = it?.nfPotassium ?: 0.0,
                 nfFolate = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_FOLATE),
-                fullNutrients = fullNutrients,
-                isFavorite = false
+                fullNutrients = fullNutrients
             )
 
             result.add(foodEntity)
@@ -106,7 +105,39 @@ object FoodMapper {
             nfPotassium = input.nfPotassium,
             nfFolate = input.nfFolate,
             fullNutrients = NutrientMapper.mapEntitiesToDomain(input.fullNutrients),
-            isFavorite = input.isFavorite
+            isFavorite = false
+        )
+    }
+
+    fun mapDomainToEntity(input: Food): FoodEntity {
+        return FoodEntity(
+            id = input.id,
+            name = input.name,
+            photo = input.photo,
+            servingQty = input.servingQty,
+            servingUnit = input.servingUnit,
+            servingWeightGrams = input.servingWeightGrams,
+            nfCalories = input.nfCalories,
+            nfTotalFat = input.nfTotalFat,
+            nfSaturatedFat = input.nfSaturatedFat,
+            nfTransFat = input.nfTransFat,
+            nfPolyFat = input.nfPolyFat,
+            nfMonoFat = input.nfMonoFat,
+            nfCholesterol = input.nfCholesterol,
+            nfSodium = input.nfSodium,
+            nfTotalCarbohydrate = input.nfTotalCarbohydrate,
+            nfDietaryFiber = input.nfDietaryFiber,
+            nfSugars = input.nfSugars,
+            nfProtein = input.nfProtein,
+            nfVitA = input.nfVitA,
+            nfVitB6 = input.nfVitB6,
+            nfVitC = input.nfVitC,
+            nfVitD = input.nfVitD,
+            nfCalcium = input.nfCalcium,
+            nfIron = input.nfIron,
+            nfPotassium = input.nfPotassium,
+            nfFolate = input.nfFolate,
+            fullNutrients = NutrientMapper.mapDomainToEntities(input.fullNutrients)
         )
     }
 
@@ -129,11 +160,11 @@ object HistoryMapper {
         return result
     }
 
-    fun mapEntityToDomain(input: HistoryWithFoods): History {
+    fun mapEntityToDomain(inputHistory: HistoryEntity, inputFoods: List<FoodEntity>): History {
         return History(
-            query = input.history.query,
-            timestamp = input.history.timestamp,
-            foods = FoodMapper.mapEntitiesToDomain(input.foods)
+            query = inputHistory.query,
+            timestamp = inputHistory.timestamp,
+            foods = FoodMapper.mapEntitiesToDomain(inputFoods)
         )
     }
 
@@ -170,6 +201,20 @@ object NutrientMapper {
                 value = it.value
             )
             result.add(nutrient)
+        }
+        return result
+    }
+
+    fun mapDomainToEntities(input: List<Nutrient>): List<NutrientEntity> {
+        val result = arrayListOf<NutrientEntity>()
+        input.forEach {
+            val nutrientEntity = NutrientEntity(
+                id = it.id,
+                name = it.name,
+                unit = it.unit,
+                value = it.value
+            )
+            result.add(nutrientEntity)
         }
         return result
     }
