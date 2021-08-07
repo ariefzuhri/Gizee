@@ -10,11 +10,11 @@ import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.AppExecutors
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -47,15 +47,15 @@ val networkModule = module {
             .add(hostname, "sha256/***REMOVED***")
             .build()
         val httpClient = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            with(httpClient) {
-                addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                connectTimeout(120, TimeUnit.SECONDS)
-                readTimeout(120, TimeUnit.SECONDS)
-                certificatePinner(certificatePinner)
-            }
+        with(httpClient) {
+            if (BuildConfig.DEBUG) addInterceptor(
+                ChuckerInterceptor.Builder(androidContext()).build()
+            )
+            connectTimeout(120, TimeUnit.SECONDS)
+            readTimeout(120, TimeUnit.SECONDS)
+            certificatePinner(certificatePinner)
+            build()
         }
-        httpClient.build()
     }
     single {
         val retrofit = Retrofit.Builder()
