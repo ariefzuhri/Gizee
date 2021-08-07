@@ -1,6 +1,5 @@
 package com.ariefzuhri.gizee.core.data.source.remote
 
-import android.util.Log
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.data.source.remote.response.FoodResponse
@@ -10,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 
 class RemoteDataSource(private val apiService: ApiService) {
 
@@ -25,7 +25,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
-                Log.e(TAG, e.toString())
+                Timber.tag(TAG).e(e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -41,7 +41,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
-                Log.e(TAG, e.toString())
+                Timber.tag(TAG).e(e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }

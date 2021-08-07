@@ -40,4 +40,7 @@ dependencies {
 
     // Shimmer effect on loading screen
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+
+    // Logger
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 }
