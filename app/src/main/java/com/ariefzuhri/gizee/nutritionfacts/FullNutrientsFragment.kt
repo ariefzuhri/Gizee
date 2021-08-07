@@ -52,13 +52,13 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializeToolbar()
+        initToolbar()
 
         val nutrients = mergedValueNutrients(foods, rawNutrients)
         populateAdapter(nutrients)
     }
 
-    private fun initializeToolbar() {
+    private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener {
             dismiss()
         }

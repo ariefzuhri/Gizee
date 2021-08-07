@@ -23,4 +23,5 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/attribution"
         android:src="@drawable/ic_attribution" />
+
 </RelativeLayout>

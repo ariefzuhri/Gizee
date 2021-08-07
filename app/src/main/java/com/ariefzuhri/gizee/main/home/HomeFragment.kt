@@ -22,7 +22,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mainCallback: MainCallback
+    private var mainCallback: MainCallback? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -45,18 +45,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ibFavorites.setOnClickListener(this)
-        binding.cvHelp.setOnClickListener(this)
-        binding.tvHistory.setOnClickListener(this)
-        binding.btnSearch.setOnClickListener(this)
+        with(binding) {
+            ibFavorites.setOnClickListener(this@HomeFragment)
+            cvHelp.setOnClickListener(this@HomeFragment)
+            tvHistory.setOnClickListener(this@HomeFragment)
+            btnSearch.setOnClickListener(this@HomeFragment)
+        }
     }
 
     override fun onClick(view: View) {
-        when (view.id) {
-            binding.ibFavorites.id -> openFavorites()
-            binding.cvHelp.id -> autofillQuery()
-            binding.tvHistory.id -> showHistory()
-            binding.btnSearch.id -> performSearch()
+        with(binding) {
+            when (view.id) {
+                ibFavorites.id -> openFavorites()
+                cvHelp.id -> autofillQuery()
+                tvHistory.id -> showHistory()
+                btnSearch.id -> performSearch()
+            }
         }
     }
 
@@ -78,7 +82,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val query = binding.edtSearch.text.toString()
         if (query.isNotEmpty()) {
             KeyboardUtils.hideSoftKeyboard(binding.edtSearch)
-            mainCallback.openSearchResult(query)
+            mainCallback?.openSearchResult(query)
         } else {
             KeyboardUtils.showSoftKeyboard(binding.edtSearch)
             binding.edtSearch.requestFocus()
@@ -89,5 +93,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mainCallback = null
     }
 }

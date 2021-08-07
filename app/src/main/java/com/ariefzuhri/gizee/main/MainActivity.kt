@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.EditText
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.databinding.ActivityMainBinding
 import com.ariefzuhri.gizee.main.home.HomeFragment
@@ -24,6 +23,10 @@ class MainActivity : AppCompatActivity(), MainCallback {
         populateMainFragment()
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount <= 1) finish() else super.onBackPressed()
+    }
+
     private fun populateMainFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragment = supportFragmentManager.findFragmentByTag(HomeFragment.TAG)
@@ -35,8 +38,8 @@ class MainActivity : AppCompatActivity(), MainCallback {
         fragmentTransaction.commit()
     }
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount <= 1) finish() else super.onBackPressed()
+    override fun setSelectedQuery(query: String) {
+        findViewById<EditText>(R.id.edt_search).setText(query)
     }
 
     override fun openSearchResult(query: String) {
@@ -51,9 +54,5 @@ class MainActivity : AppCompatActivity(), MainCallback {
             .add(binding.container.id, fragment, SearchResultFragment.TAG)
             .addToBackStack(null)
             .commit()
-    }
-
-    override fun getQueryFromHistory(history: History) {
-        findViewById<EditText>(R.id.edt_search).setText(history.query)
     }
 }

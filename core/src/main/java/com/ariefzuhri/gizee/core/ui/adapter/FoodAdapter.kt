@@ -42,26 +42,28 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Food?) {
-            ViewBinding.bindLoadImage(binding.imgPhoto, food?.photo)
-            binding.tvName.text = StringUtils.capitalize(food?.name)
-            binding.tvMeasure.text = itemView.context.resources.getString(
-                R.string.measure_with_weight,
-                AppUtils.formatToDecimal(food?.servingQty),
-                food?.servingUnit,
-                AppUtils.formatToDecimal(food?.servingWeightGrams)
-            )
-            binding.tvCalories.text =
-                itemView.context.resources.getString(
-                    R.string.calories,
-                    AppUtils.formatToDecimal(food?.nfCalories)
+            with(binding) {
+                ViewBinding.bindLoadImage(imgPhoto, food?.photo)
+                tvName.text = StringUtils.capitalize(food?.name)
+                tvMeasure.text = itemView.context.resources.getString(
+                    R.string.measure_with_weight,
+                    AppUtils.formatToDecimal(food?.servingQty),
+                    food?.servingUnit,
+                    AppUtils.formatToDecimal(food?.servingWeightGrams)
                 )
-            itemView.setOnClickListener {
-                val intent = Intent(
-                    itemView.context,
-                    Class.forName("com.ariefzuhri.gizee.details.DetailsActivity")
-                )
-                intent.putExtra(EXTRA_FOOD, food)
-                itemView.context.startActivity(intent)
+                tvCalories.text =
+                    itemView.context.resources.getString(
+                        R.string.calories,
+                        AppUtils.formatToDecimal(food?.nfCalories)
+                    )
+                itemView.setOnClickListener {
+                    val intent = Intent(
+                        itemView.context,
+                        Class.forName("com.ariefzuhri.gizee.details.DetailsActivity")
+                    )
+                    intent.putExtra(EXTRA_FOOD, food)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }

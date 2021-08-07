@@ -11,4 +11,5 @@
         android:title="@string/clear_all"
         app:showAsAction="always"
         tools:targetApi="o" />
+
 </menu>

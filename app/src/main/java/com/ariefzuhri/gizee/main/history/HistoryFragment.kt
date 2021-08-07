@@ -25,7 +25,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mainCallback: MainCallback
+    private var mainCallback: MainCallback? = null
     private val viewModel: MainViewModel by viewModel()
 
     override fun onAttach(context: Context) {
@@ -49,39 +49,43 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializeToolbar()
+        initToolbar()
 
         viewModel.getHistory.observe(viewLifecycleOwner) { history ->
             populateAdapter(history)
         }
     }
 
-    private fun initializeToolbar() {
-        binding.toolbar.setNavigationOnClickListener { dismiss() }
-        binding.toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.menu_clear) {
-                AlertDialog.Builder(context)
-                    .setTitle(R.string.dialog_clear_history_title)
-                    .setMessage(R.string.dialog_clear_history_message)
-                    .setPositiveButton(R.string.yes) { _, _ -> viewModel.clearHistory() }
-                    .setNeutralButton(R.string.no, null)
-                    .create().show()
+    private fun initToolbar() {
+        with(binding) {
+            toolbar.setNavigationOnClickListener { dismiss() }
+            toolbar.setOnMenuItemClickListener {
+                if (it.itemId == R.id.menu_clear) {
+                    AlertDialog.Builder(context)
+                        .setTitle(R.string.dialog_clear_history_title)
+                        .setMessage(R.string.dialog_clear_history_message)
+                        .setPositiveButton(R.string.yes) { _, _ -> viewModel.clearHistory() }
+                        .setNeutralButton(R.string.no, null)
+                        .create().show()
+                }
+                true
             }
-            true
         }
     }
 
     private fun populateAdapter(history: List<History?>) {
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = HistoryAdapter(this)
-        adapter.submitList(history)
-        binding.recyclerView.adapter = adapter
-        binding.viewEmpty.root.gone(adapter.isNotEmpty())
+        with(binding) {
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            val adapter = HistoryAdapter(this@HistoryFragment)
+            adapter.submitList(history)
+            recyclerView.adapter = adapter
+            viewEmpty.root.gone(adapter.isNotEmpty())
+        }
     }
 
     override fun onHistoryClicked(history: History) {
+        mainCallback?.setSelectedQuery(history.query)
         dismiss()
-        mainCallback.getQueryFromHistory(history)
     }
 
     override fun onDeleteHistory(history: History) {
@@ -91,5 +95,10 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mainCallback = null
     }
 }

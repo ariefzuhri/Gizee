@@ -9,7 +9,8 @@ import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 class DetailsViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
 
     private val _food = MutableLiveData<Food>()
-    val food: LiveData<Food> = _food
+    val food: LiveData<Food>
+        get() = _food
 
     fun setFood(food: Food) {
         _food.value = food

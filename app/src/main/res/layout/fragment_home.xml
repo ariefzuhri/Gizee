@@ -123,4 +123,5 @@
                 android:src="@drawable/illustration_home" />
         </FrameLayout>
     </RelativeLayout>
+
 </ScrollView>

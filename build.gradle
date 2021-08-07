@@ -4,20 +4,19 @@ buildscript {
         gradleVersion = '7.0.0'
         kotlinVersion = '1.5.21'
         googleServicesVersion = '4.3.8'
-        firebaseCrashlyticsVersion = '2.7.1'
+        crashlyticsVersion = '2.7.1'
     }
 
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
-        classpath "com.google.firebase:firebase-crashlytics-gradle:$firebaseCrashlyticsVersion"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlyticsVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
