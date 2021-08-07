@@ -37,7 +37,6 @@ class MyApplication : Application() {
                 )
             )
         }
-
     }
 
     private fun initTimber() {

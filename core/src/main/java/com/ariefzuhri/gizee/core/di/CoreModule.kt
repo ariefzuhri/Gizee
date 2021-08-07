@@ -46,6 +46,7 @@ val networkModule = module {
             .add(hostname, "sha256/***REMOVED***")
             .add(hostname, "sha256/***REMOVED***")
             .build()
+
         val httpClient = OkHttpClient.Builder()
         with(httpClient) {
             if (BuildConfig.DEBUG) addInterceptor(

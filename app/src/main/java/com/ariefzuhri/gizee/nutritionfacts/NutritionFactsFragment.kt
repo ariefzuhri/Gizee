@@ -84,12 +84,12 @@ class NutritionFactsFragment : Fragment() {
         var totalFats = 0.0f
         var totalProteins = 0.0f
 
-        if (foods != null) {
-            for (food in foods!!) {
-                totalCalories += food.nfCalories.toFloat()
-                totalCarbohydrates += food.nfTotalCarbohydrate.toFloat()
-                totalFats += food.nfTotalFat.toFloat()
-                totalProteins += food.nfProtein.toFloat()
+        foods?.let { foods ->
+            foods.forEach {
+                totalCalories += it.nfCalories.toFloat()
+                totalCarbohydrates += it.nfTotalCarbohydrate.toFloat()
+                totalFats += it.nfTotalFat.toFloat()
+                totalProteins += it.nfProtein.toFloat()
             }
         }
 
@@ -121,30 +121,30 @@ class NutritionFactsFragment : Fragment() {
     }
 
     private fun populateNutritionFacts() {
-        if (foods != null) {
-            for (food in foods!!) {
+        foods?.let { foods ->
+            foods.forEach {
                 val nfData = NutritionFactsData.Builder()
-                    .setServingSize(food.servingWeightGrams)
-                    .setCalories(food.nfCalories)
-                    .setTotalFat(food.nfTotalFat)
-                    .setSaturatedFat(food.nfSaturatedFat)
-                    .setTransFat(food.nfTransFat)
-                    .setPolyunsaturatedFat(food.nfPolyFat)
-                    .setMonounsaturatedFat(food.nfMonoFat)
-                    .setCholesterol(food.nfCholesterol)
-                    .setSodium(food.nfSodium)
-                    .setTotalCarbohydrates(food.nfTotalCarbohydrate)
-                    .setDietaryFiber(food.nfDietaryFiber)
-                    .setSugars(food.nfSugars)
-                    .setProtein(food.nfProtein)
-                    .setVitaminA(food.nfVitA)
-                    .setVitaminB6(food.nfVitB6)
-                    .setVitaminC(food.nfVitC)
-                    .setVitaminD(food.nfVitD)
-                    .setCalcium(food.nfCalcium)
-                    .setIron(food.nfIron)
-                    .setPotassium(food.nfPotassium)
-                    .setFolate(food.nfFolate)
+                    .setServingSize(it.servingWeightGrams)
+                    .setCalories(it.nfCalories)
+                    .setTotalFat(it.nfTotalFat)
+                    .setSaturatedFat(it.nfSaturatedFat)
+                    .setTransFat(it.nfTransFat)
+                    .setPolyunsaturatedFat(it.nfPolyFat)
+                    .setMonounsaturatedFat(it.nfMonoFat)
+                    .setCholesterol(it.nfCholesterol)
+                    .setSodium(it.nfSodium)
+                    .setTotalCarbohydrates(it.nfTotalCarbohydrate)
+                    .setDietaryFiber(it.nfDietaryFiber)
+                    .setSugars(it.nfSugars)
+                    .setProtein(it.nfProtein)
+                    .setVitaminA(it.nfVitA)
+                    .setVitaminB6(it.nfVitB6)
+                    .setVitaminC(it.nfVitC)
+                    .setVitaminD(it.nfVitD)
+                    .setCalcium(it.nfCalcium)
+                    .setIron(it.nfIron)
+                    .setPotassium(it.nfPotassium)
+                    .setFolate(it.nfFolate)
                     .create()
                 binding.nfView.addData(nfData)
             }

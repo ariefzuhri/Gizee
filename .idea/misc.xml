@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/drawable/bg_button.xml" value="0.2526041666666667" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/drawable/bg_edit_text.xml" value="0.2526041666666667" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/drawable/ic_placeholder.xml" value="0.2526041666666667" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/drawable/illustration_home.xml" value="0.2526041666666667" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
-        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/activity_splash.xml" value="0.176" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/fragment_full_nutrients.xml" value="0.25416666666666665" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/fragment_history.xml" value="0.25416666666666665" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
@@ -16,10 +20,16 @@
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/view_empty_history.xml" value="0.13177083333333334" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/view_empty_search_result.xml" value="0.176" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/layout/view_error.xml" value="0.25416666666666665" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/menu/menu_details.xml" value="0.23645833333333333" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/app/src/main/res/menu/menu_history.xml" value="0.23645833333333333" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/drawable/bg_bottom_sheet.xml" value="0.12760416666666666" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/drawable/ic_close_mini.xml" value="0.2526041666666667" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/item_food.xml" value="0.25416666666666665" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/item_food_placeholder.xml" value="0.1171875" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/item_history.xml" value="0.4" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/item_nutrient.xml" value="0.25416666666666665" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/shimmer_item_food.xml" value="0.25416666666666665" />
+        <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/view_food_placeholder.xml" value="0.1171875" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/core/src/main/res/layout/view_food_placeholders.xml" value="0.25416666666666665" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/favorites/src/main/res/layout/activity_favorites.xml" value="0.25416666666666665" />
         <entry key="..\:/MEGA/Developer/Courses/Android Expert/Submissions/Gizee/favorites/src/main/res/layout/view_empty.xml" value="0.176" />

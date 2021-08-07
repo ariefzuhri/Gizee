@@ -3,6 +3,7 @@ package com.ariefzuhri.gizee.details
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.get
+import androidx.core.view.isNotEmpty
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
@@ -30,20 +31,23 @@ class DetailsActivity : AppCompatActivity() {
         } else onBackPressed()
 
         viewModel.food.observe(this) { food ->
-            initializeToolbar()
-            initializeContent(food)
+            initToolbar()
+            initContent(food)
             populateNutritionFacts(arrayListOf(food))
             setFavoriteState(food.isFavorite)
         }
     }
 
     private fun setFavoriteState(isFavorite: Boolean) {
-        val menuFavorite = binding.toolbar.menu[0]
-        if (isFavorite) menuFavorite.setIcon(R.drawable.ic_bookmark)
-        else menuFavorite.setIcon(R.drawable.ic_bookmark_outline)
+        val toolbarMenu = binding.toolbar.menu
+        if (toolbarMenu.isNotEmpty()) {
+            val menuFavorite = toolbarMenu[0]
+            if (isFavorite) menuFavorite.setIcon(R.drawable.ic_bookmark)
+            else menuFavorite.setIcon(R.drawable.ic_bookmark_outline)
+        }
     }
 
-    private fun initializeToolbar() {
+    private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         binding.toolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_favorite) {
@@ -53,23 +57,25 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeContent(food: Food) {
-        ViewBinding.bindLoadImage(binding.imgPhoto, food.photo)
-        binding.tvTitle.text = StringUtils.capitalize(food.name)
-        binding.tvCalories.text = getString(
-            R.string.calories,
-            AppUtils.formatToDecimal(food.nfCalories)
-        )
-        binding.tvMeasure.text = getString(
-            R.string.measure,
-            AppUtils.formatToDecimal(food.servingQty),
-            food.servingUnit
-        )
-        binding.tvWeight.text = getString(
-            R.string.weight,
-            AppUtils.formatToDecimal(food.servingWeightGrams),
-            "g"
-        )
+    private fun initContent(food: Food) {
+        with(binding) {
+            ViewBinding.bindLoadImage(imgPhoto, food.photo)
+            tvTitle.text = StringUtils.capitalize(food.name)
+            tvCalories.text = getString(
+                R.string.calories,
+                AppUtils.formatToDecimal(food.nfCalories)
+            )
+            tvMeasure.text = getString(
+                R.string.measure,
+                AppUtils.formatToDecimal(food.servingQty),
+                food.servingUnit
+            )
+            tvWeight.text = getString(
+                R.string.weight,
+                AppUtils.formatToDecimal(food.servingWeightGrams),
+                "g"
+            )
+        }
     }
 
     private fun populateNutritionFacts(foods: List<Food?>?) {

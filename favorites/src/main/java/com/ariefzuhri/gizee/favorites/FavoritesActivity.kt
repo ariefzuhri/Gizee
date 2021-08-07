@@ -28,11 +28,13 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     private fun populateAdapter(foods: List<Food>?) {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = FoodAdapter()
-        adapter.submitList(foods)
-        binding.recyclerView.adapter = adapter
-        binding.viewEmpty.root.gone(adapter.isNotEmpty())
+        with(binding) {
+            recyclerView.layoutManager = LinearLayoutManager(this@FavoritesActivity)
+            val adapter = FoodAdapter()
+            adapter.submitList(foods)
+            recyclerView.adapter = adapter
+            viewEmpty.root.gone(adapter.isNotEmpty())
+        }
     }
 
     override fun onDestroy() {
