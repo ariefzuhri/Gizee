@@ -84,9 +84,10 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         unmergedNutrient: Nutrient,
         fullNutrients: List<Nutrient>
     ): List<Nutrient> {
-        fullNutrients.forEachIndexed { i, mergedNutrient ->
+        for ((i, mergedNutrient) in fullNutrients.withIndex()) {
             if (mergedNutrient.id == unmergedNutrient.id) {
                 fullNutrients[i].value += unmergedNutrient.value
+                break
             }
         }
         return fullNutrients
