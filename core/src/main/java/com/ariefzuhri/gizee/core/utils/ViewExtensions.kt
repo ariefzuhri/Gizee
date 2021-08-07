@@ -1,6 +1,8 @@
 package com.ariefzuhri.gizee.core.utils
 
 import android.os.Build
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 val Any.TAG: String
     get() {
@@ -14,3 +16,16 @@ val Any.TAG: String
                 name.substring(name.length - 23, name.length) else name
         }
     }
+
+fun RecyclerView.Adapter<*>.isNotEmpty(): Boolean {
+    return itemCount > 0
+}
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+fun View.gone(shouldBeGone: Boolean) {
+    if (shouldBeGone) visibility = View.GONE
+    else visible()
+}

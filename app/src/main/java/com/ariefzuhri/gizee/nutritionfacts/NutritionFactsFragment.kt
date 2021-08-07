@@ -11,6 +11,7 @@ import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.TAG
+import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
@@ -60,13 +61,13 @@ class NutritionFactsFragment : Fragment() {
         viewModel.nutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
-                    is Resource.Loading -> binding.tvFullNutrients.visibility = View.GONE
+                    is Resource.Loading -> binding.tvFullNutrients.gone(true)
                     is Resource.Success -> {
                         val rawNutrients = result.data
                         if (!(foods.isNullOrEmpty() && rawNutrients.isNullOrEmpty())) {
                             populateFullNutrients(foods!!, rawNutrients!!)
                         }
-                        binding.tvFullNutrients.visibility = View.VISIBLE
+                        binding.tvFullNutrients.gone(false)
                     }
                     is Resource.Error -> AppUtils.showToast(context, result.message)
                 }
