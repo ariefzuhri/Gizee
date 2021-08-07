@@ -11,18 +11,15 @@ class ShimmerHelper constructor(
 
     fun show() {
         shimmer.startShimmer()
-        shimmer.visibility = View.VISIBLE
-        for (content in contents) content.visibility = View.GONE
-        emptyState.visibility = View.GONE
+        shimmer.visible()
+        emptyState.gone(true)
+        for (content in contents) content.gone(true)
     }
 
     fun hide(isEmpty: Boolean) {
         shimmer.stopShimmer()
-        shimmer.visibility = View.GONE
-        if (isEmpty) {
-            emptyState.visibility = View.VISIBLE
-        } else {
-            for (content in contents) content.visibility = View.VISIBLE
-        }
+        shimmer.gone(true)
+        if (isEmpty) emptyState.visible()
+        else for (content in contents) content.visible()
     }
 }

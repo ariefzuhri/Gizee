@@ -12,6 +12,8 @@ import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapter
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapterListener
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
+import com.ariefzuhri.gizee.core.utils.gone
+import com.ariefzuhri.gizee.core.utils.isNotEmpty
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding
 import com.ariefzuhri.gizee.main.MainActivity
 import com.ariefzuhri.gizee.main.MainCallback
@@ -74,9 +76,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
         val adapter = HistoryAdapter(this)
         adapter.submitList(history)
         binding.recyclerView.adapter = adapter
-
-        if (adapter.itemCount > 0) binding.viewEmpty.root.visibility = View.GONE
-        else binding.viewEmpty.root.visibility = View.VISIBLE
+        binding.viewEmpty.root.gone(adapter.isNotEmpty())
     }
 
     override fun onHistoryClicked(history: History) {
