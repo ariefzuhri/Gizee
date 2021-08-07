@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.ariefzuhri.gizee.R
+import com.ariefzuhri.gizee.core.utils.setBackground
 import com.ariefzuhri.gizee.databinding.ActivitySplashBinding
 import com.ariefzuhri.gizee.main.MainActivity
 
@@ -12,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setBackground(R.color.green)
         val binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
