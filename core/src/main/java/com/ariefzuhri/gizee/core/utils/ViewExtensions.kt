@@ -2,7 +2,11 @@ package com.ariefzuhri.gizee.core.utils
 
 import android.os.Build
 import android.view.View
+import android.view.Window
 import androidx.recyclerview.widget.RecyclerView
+import android.graphics.drawable.ColorDrawable
+import androidx.core.content.ContextCompat
+
 
 val Any.TAG: String
     get() {
@@ -28,4 +32,10 @@ fun View.visible() {
 fun View.gone(shouldBeGone: Boolean) {
     if (shouldBeGone) visibility = View.GONE
     else visible()
+}
+
+fun Window.setBackground(colorId: Int) {
+    val color = ContextCompat.getColor(context, colorId)
+    val colorDrawable = ColorDrawable(color)
+    setBackgroundDrawable(colorDrawable)
 }
