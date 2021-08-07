@@ -47,7 +47,6 @@ ext {
     espressoVersion = '3.4.0'
 
     roomVersion = '2.3.0'
-    pagingVersion = '2.1.2'
 
     retrofitVersion = '2.9.0'
     moshiVersion = '1.12.0'

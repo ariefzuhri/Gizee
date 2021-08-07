@@ -63,9 +63,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    // Pagination
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
-
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 
