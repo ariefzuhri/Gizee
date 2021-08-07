@@ -6,9 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val foodDao: FoodDao) {
 
-    fun getHistoryWithFoods(query: String): Flow<HistoryWithFoods> =
-        foodDao.getHistoryWithFoods(query)
-
     fun getNutrients(): Flow<List<NutrientEntity>> =
         foodDao.getNutrients()
 
@@ -18,8 +15,8 @@ class LocalDataSource(private val foodDao: FoodDao) {
     fun getFavoriteFoods(): Flow<List<FoodEntity>> =
         foodDao.getFavoriteFoods()
 
-    suspend fun insertFoods(query: String, foodEntities: List<FoodEntity>) =
-        foodDao.insertFoods(query, foodEntities)
+    fun getFavoriteFood(id: String) =
+        foodDao.getFavoriteFood(id)
 
     suspend fun insertHistory(historyEntity: HistoryEntity) =
         foodDao.insertHistory(historyEntity)
@@ -27,8 +24,10 @@ class LocalDataSource(private val foodDao: FoodDao) {
     suspend fun insertNutrients(nutrientEntities: List<NutrientEntity>) =
         foodDao.insertNutrients(nutrientEntities)
 
-    fun updateFavoriteFood(foodId: String, newState: Boolean) =
-        foodDao.updateFavoriteFood(foodId, newState)
+    fun setFavoriteFood(foodEntity: FoodEntity, newState: Boolean) {
+        if (newState) foodDao.insertFood(foodEntity)
+        else foodDao.deleteFood(foodEntity)
+    }
 
     fun deleteHistory() =
         foodDao.deleteHistory()

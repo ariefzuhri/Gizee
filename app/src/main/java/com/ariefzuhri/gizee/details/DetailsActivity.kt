@@ -18,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
+
     private val viewModel: DetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,18 +28,22 @@ class DetailsActivity : AppCompatActivity() {
 
         if (intent.hasExtra(EXTRA_FOOD)) {
             val food: Food = intent.getParcelableExtra(EXTRA_FOOD)!!
-            viewModel.setFood(food)
-        } else onBackPressed()
-
-        viewModel.food.observe(this) { food ->
             initToolbar()
             initContent(food)
             populateNutritionFacts(arrayListOf(food))
-            setFavoriteState(food.isFavorite)
+            viewModel.food = food
+        } else onBackPressed()
+
+        viewModel.isFavorite().observe(this) { isFavorite ->
+            setFavoriteState(isFavorite)
         }
     }
 
     private fun setFavoriteState(isFavorite: Boolean) {
+        val food = viewModel.food!!
+        food.isFavorite = isFavorite
+        viewModel.food = food
+
         val toolbarMenu = binding.toolbar.menu
         if (toolbarMenu.isNotEmpty()) {
             val menuFavorite = toolbarMenu[0]

@@ -16,7 +16,9 @@ interface FoodUseCase {
 
     fun getFavorites(): Flow<List<Food>>
 
-    fun updateFavorite(foodId: String, newState: Boolean)
+    fun isFavorite(foodId: String): Flow<Boolean>
+
+    fun setFavorite(food: Food, newState: Boolean)
 
     fun clearHistory()
 

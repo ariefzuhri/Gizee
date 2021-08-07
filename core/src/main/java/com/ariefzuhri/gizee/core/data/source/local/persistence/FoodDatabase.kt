@@ -9,8 +9,7 @@ import com.ariefzuhri.gizee.core.data.source.local.entity.*
     entities = [
         FoodEntity::class,
         HistoryEntity::class,
-        NutrientEntity::class,
-        HistoryFoodCrossRef::class
+        NutrientEntity::class
     ],
     version = 1,
     exportSchema = false

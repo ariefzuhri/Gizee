@@ -1,26 +1,21 @@
 package com.ariefzuhri.gizee.details
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 
 class DetailsViewModel(private val foodUseCase: FoodUseCase) : ViewModel() {
 
-    private val _food = MutableLiveData<Food>()
-    val food: LiveData<Food>
-        get() = _food
+    var food: Food? = null
 
-    fun setFood(food: Food) {
-        _food.value = food
+    fun isFavorite(): LiveData<Boolean> {
+        return foodUseCase.isFavorite(food!!.id).asLiveData()
     }
 
     fun setNewStateFavorite() {
-        val food = _food.value!!
-        val newState = !food.isFavorite
-        food.isFavorite = newState
-        foodUseCase.updateFavorite(food.id, newState)
-        setFood(food)
+        val newState = !food!!.isFavorite
+        foodUseCase.setFavorite(food!!, newState)
     }
 }
