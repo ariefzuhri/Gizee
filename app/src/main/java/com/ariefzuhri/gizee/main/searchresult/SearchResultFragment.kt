@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
+import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
@@ -73,7 +75,13 @@ class SearchResultFragment : Fragment() {
                         populateNutritionFacts(history?.foods)
                         shimmer.hide(history?.foods.isNullOrEmpty())
                     }
-                    is Resource.Error -> shimmer.hide(true)
+                    is Resource.Error -> {
+                        if (!AppUtils.isNetworkAvailable()) {
+                            AppUtils.showToast(context, result.message)
+                            AppUtils.showToast(context, R.string.toast_error_connection)
+                        }
+                        shimmer.hide(true)
+                    }
                 }
             }
         }

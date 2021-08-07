@@ -30,4 +30,5 @@
     <string name="empty_history_desc">You don\'t have any queries on your history</string>
     <string name="title_favorites">Favorites</string>
     <string name="autofill_query">1 cup nasi goreng and 2 tbsp sambal</string>
+    <string name="toast_error_connection">Please check your network connection</string>
 </resources>
