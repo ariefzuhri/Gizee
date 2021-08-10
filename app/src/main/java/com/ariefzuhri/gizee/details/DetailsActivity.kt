@@ -2,6 +2,8 @@ package com.ariefzuhri.gizee.details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.intl.Locale
 import androidx.core.view.get
 import androidx.core.view.isNotEmpty
 import com.ariefzuhri.gizee.R
@@ -12,7 +14,6 @@ import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
 import com.ariefzuhri.gizee.core.utils.ViewBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
-import org.apache.commons.lang3.StringUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsActivity : AppCompatActivity() {
@@ -65,7 +66,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun initContent(food: Food) {
         with(binding) {
             ViewBinding.bindLoadImage(imgPhoto, food.photo)
-            tvTitle.text = StringUtils.capitalize(food.name)
+            tvTitle.text = food.name.capitalize(Locale.current)
             tvCalories.text = getString(
                 R.string.calories,
                 AppUtils.formatToDecimal(food.nfCalories)
