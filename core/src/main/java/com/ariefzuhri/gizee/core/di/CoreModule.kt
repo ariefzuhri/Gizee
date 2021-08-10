@@ -2,7 +2,7 @@ package com.ariefzuhri.gizee.core.di
 
 import androidx.room.Room
 import com.ariefzuhri.gizee.core.BuildConfig
-import com.ariefzuhri.gizee.core.BuildConfig.DATABASE_PASSPHRASE
+import com.ariefzuhri.gizee.core.BuildConfig.*
 import com.ariefzuhri.gizee.core.data.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.persistence.FoodDatabase
@@ -21,8 +21,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val NUTRITIONIX_BASE_URL = "***REMOVED***"
-
 val databaseModule = module {
     factory { get<FoodDatabase>().foodDao() }
     single {
@@ -39,12 +37,12 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        val hostname = "***REMOVED***"
+        val hostname = NUTRITIONIX_BASE_URL
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/***REMOVED***")
-            .add(hostname, "sha256/***REMOVED***")
-            .add(hostname, "sha256/***REMOVED***")
-            .add(hostname, "sha256/***REMOVED***")
+            .add(hostname, "sha256/$NUTRITIONIX_PUBLIC_KEY_1")
+            .add(hostname, "sha256/$NUTRITIONIX_PUBLIC_KEY_2")
+            .add(hostname, "sha256/$NUTRITIONIX_PUBLIC_KEY_3")
+            .add(hostname, "sha256/$NUTRITIONIX_PUBLIC_KEY_4")
             .build()
 
         val httpClient = OkHttpClient.Builder()

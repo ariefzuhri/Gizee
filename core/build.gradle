@@ -24,8 +24,15 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField("String", "DATABASE_PASSPHRASE", localProperties['databasePassphrase'] ?: "\"com.ariefzuhri.gizee\"")
+
         buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'] ?: "\"YOUR_API_KEY\"")
         buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'] ?: "\"YOUR_API_KEY\"")
+
+        buildConfigField("String", "NUTRITIONIX_BASE_URL", localProperties['nutritionixBaseUrl'] ?: "\"NUTRITIONIX_BASE_URL\"")
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", localProperties['nutritionixPublicKey1'] ?: "\"NUTRITIONIX_PUBLIC_KEY\"")
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_2", localProperties['nutritionixPublicKey2'] ?: "\"NUTRITIONIX_PUBLIC_KEY\"")
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", localProperties['nutritionixPublicKey3'] ?: "\"NUTRITIONIX_PUBLIC_KEY\"")
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", localProperties['nutritionixPublicKey4'] ?: "\"NUTRITIONIX_PUBLIC_KEY\"")
     }
 
     buildTypes {
