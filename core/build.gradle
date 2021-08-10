@@ -8,9 +8,7 @@ apply from: '../shared_dependencies.gradle'
 
 def localPropertiesFile = rootProject.file("local.properties")
 def localProperties = new Properties()
-if (localPropertiesFile.exists()) {
-    localProperties.load(new FileInputStream(localPropertiesFile))
-}
+localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     compileSdkVersion 30
@@ -23,9 +21,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "DATABASE_PASSPHRASE", localProperties['databasePassphrase'] ?: "\"com.ariefzuhri.gizee\"")
-        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'] ?: "\"YOUR_API_KEY\"")
-        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'] ?: "\"YOUR_API_KEY\"")
+        buildConfigField("String", "DATABASE_PASSPHRASE", localProperties['databasePassphrase'])
+
+        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'])
+        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'])
+
+        buildConfigField("String", "NUTRITIONIX_BASE_URL", localProperties['nutritionixBaseUrl'])
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", localProperties['nutritionixPublicKey1'])
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", localProperties['nutritionixPublicKey3'])
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", localProperties['nutritionixPublicKey4'])
     }
 
     buildTypes {

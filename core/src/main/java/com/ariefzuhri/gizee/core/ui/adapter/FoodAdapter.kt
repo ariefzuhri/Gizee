@@ -3,6 +3,8 @@ package com.ariefzuhri.gizee.core.ui.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.intl.Locale
 import androidx.recyclerview.widget.RecyclerView
 import com.ariefzuhri.gizee.core.R
 import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
@@ -10,7 +12,6 @@ import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
 import com.ariefzuhri.gizee.core.utils.ViewBinding
-import org.apache.commons.lang3.StringUtils
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
@@ -44,7 +45,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
         fun bind(food: Food?) {
             with(binding) {
                 ViewBinding.bindLoadImage(imgPhoto, food?.photo)
-                tvName.text = StringUtils.capitalize(food?.name)
+                tvName.text = food?.name?.capitalize(Locale.current)
                 tvMeasure.text = itemView.context.resources.getString(
                     R.string.measure_with_weight,
                     AppUtils.formatToDecimal(food?.servingQty),
