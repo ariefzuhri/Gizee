@@ -28,6 +28,7 @@ android {
 
         buildConfigField("String", "NUTRITIONIX_BASE_URL", localProperties['nutritionixBaseUrl'])
         buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", localProperties['nutritionixPublicKey1'])
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_2", localProperties['nutritionixPublicKey2'])
         buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", localProperties['nutritionixPublicKey3'])
         buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", localProperties['nutritionixPublicKey4'])
     }
