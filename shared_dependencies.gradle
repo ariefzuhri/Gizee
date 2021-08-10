@@ -40,5 +40,5 @@ dependencies {
 
     // Logger
     implementation "com.jakewharton.timber:timber:$timberVersion"
-    debugImplementation "com.orhanobut:logger:$loggerVersion"
+    implementation "com.orhanobut:logger:$loggerVersion"
 }
