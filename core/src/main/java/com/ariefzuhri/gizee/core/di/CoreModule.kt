@@ -1,7 +1,6 @@
 package com.ariefzuhri.gizee.core.di
 
 import androidx.room.Room
-import com.ariefzuhri.gizee.core.BuildConfig
 import com.ariefzuhri.gizee.core.BuildConfig.*
 import com.ariefzuhri.gizee.core.data.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
@@ -47,7 +46,7 @@ val networkModule = module {
 
         val httpClient = OkHttpClient.Builder()
         with(httpClient) {
-            if (BuildConfig.DEBUG) addInterceptor(
+            if (DEBUG) addInterceptor(
                 ChuckerInterceptor.Builder(androidContext()).build()
             )
             connectTimeout(120, TimeUnit.SECONDS)
