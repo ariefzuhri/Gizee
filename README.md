@@ -26,6 +26,7 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 - [Firebase Crashlytics](https://github.com/firebase/firebase-android-sdk/tree/master/firebase-crashlytics), real-time crash reporter
 - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector
 - [Timber](https://github.com/JakeWharton/timber), logging utility
+- [Logger](https://github.com/orhanobut/logger), logging utility for debug only
 - [LeakCanary](https://github.com/square/leakcanary), memory leak detection
 - [SQLCipher](https://github.com/sqlcipher/sqlcipher), database encryption
 - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework
@@ -33,7 +34,6 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 - [Facebook Shimmer](https://github.com/facebook/shimmer-android), shimmering effect on loading screen
 - [Lottie](https://github.com/airbnb/lottie-android), parsing animation natively
 - [RoundedImageView](https://github.com/vinc3m1/RoundedImageView), image view with rounded corners
-- [Apache Commons Text](https://github.com/apache/commons-text), string helper
 
 ## Configuration
 Firstly, clone this repository and import it into Android Studio (`git clone https://github.com/ariefzuhri/Gizee.git`).
@@ -47,12 +47,23 @@ Firstly, clone this repository and import it into Android Studio (`git clone htt
 1. Register the app in the [Firebase Console](https://console.firebase.google.com/)
 2. Get your own `google-services.json` file and move it into Android app module root directory (`./app`)
 
+### Setup Certificate Pinning
+1. Open your `local.properties` file on root directory
+2. Add the following new lines (you can get the public key hashes [here](https://www.ssllabs.com/analyze.html?d=trackapi.nutritionix.com&s=3.214.2.226&latest)):
+```
+nutritionixBaseUrl="https://trackapi.nutritionix.com/v2/"
+nutritionixPublicKey1="fajdlzqjFkH3fU8/NrjW0d4cFANUzh/4HstyvlVaTqM="
+nutritionixPublicKey2="JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA="
+nutritionixPublicKey3="++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI="
+nutritionixPublicKey4="KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I="
+```
+
 ### Setup Database Encryption
 1. Open your `local.properties` file on root directory
 2. Add `databasePassphrase="YOUR_DATABASE_PASSPHRASE"`
 
 ## License
-This project is licensed under the MIT License - see the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
 
 ## Acknowledgments
 - [CSS Nutrition Facts Label](http://jsfiddle.net/thL6j/)
