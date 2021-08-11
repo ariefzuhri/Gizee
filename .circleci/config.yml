@@ -23,7 +23,7 @@ jobs:
             - ~/.android/cache
       - run:
           name: Decode google-services.json
-          command: echo $GOOGLE_SERVICES | base64 --decode > ~/${HOME}/core/google-services.json
+          command: echo $GOOGLE_SERVICES | base64 --decode > /core/google-services.json
       - run:
           name: Run Build
           command: ./gradlew build
