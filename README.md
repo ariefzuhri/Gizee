@@ -52,7 +52,7 @@ NUTRITIONIX_APP_KEY=YOUR_APP_KEY
 2. Get your own `google-services.json` file and move it into Android app module root directory (`./app`)
 
 ### Setup Certificate Pinning
-1. Open your `local.properties` file in root directory
+1. Open your `keys.properties` file in root directory
 2. Add the following new lines (you can get the public key hashes [here](https://www.ssllabs.com/analyze.html?d=trackapi.nutritionix.com&s=3.214.2.226&latest)):
 ```
 NUTRITIONIX_BASE_URL=https://trackapi.nutritionix.com/v2/
@@ -63,7 +63,7 @@ NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 ```
 
 ### Setup Database Encryption
-1. Open your `local.properties` file in root directory
+1. Open your `keys.properties` file in root directory
 2. Add `DATABASE_PASSPHRASE=YOUR_DATABASE_PASSPHRASE`
 
 ## License
