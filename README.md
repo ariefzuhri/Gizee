@@ -40,27 +40,31 @@ Firstly, clone this repository and import it into Android Studio (`git clone htt
 
 ### Setup API Key
 1. Get your [Nutritionix API](https://developer.nutritionix.com/) app id and app key
-2. Put your app id and key in `local.properties` file on root directory
-3. Add `nutritionixAppId="YOUR_APP_ID"` and `nutritionixAppKey="YOUR_APP_KEY"`
+2. Open`./core` in root directory and create a new file named `keys.properties`
+3. Put your app id and key in `keys.properties` file by adding the following lines
+```
+NUTRITIONIX_APP_ID=YOUR_APP_ID
+NUTRITIONIX_APP_KEY=YOUR_APP_KEY
+```
 
 ### Setup Firebase Crashlytics
 1. Register the app in the [Firebase Console](https://console.firebase.google.com/)
 2. Get your own `google-services.json` file and move it into Android app module root directory (`./app`)
 
 ### Setup Certificate Pinning
-1. Open your `local.properties` file on root directory
+1. Open your `local.properties` file in root directory
 2. Add the following new lines (you can get the public key hashes [here](https://www.ssllabs.com/analyze.html?d=trackapi.nutritionix.com&s=3.214.2.226&latest)):
 ```
-nutritionixBaseUrl="https://trackapi.nutritionix.com/v2/"
-nutritionixPublicKey1="fajdlzqjFkH3fU8/NrjW0d4cFANUzh/4HstyvlVaTqM="
-nutritionixPublicKey2="JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA="
-nutritionixPublicKey3="++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI="
-nutritionixPublicKey4="KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I="
+NUTRITIONIX_BASE_URL=https://trackapi.nutritionix.com/v2/
+NUTRITIONIX_PUBLIC_KEY_1=fajdlzqjFkH3fU8/NrjW0d4cFANUzh/4HstyvlVaTqM=
+NUTRITIONIX_PUBLIC_KEY_2=JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=
+NUTRITIONIX_PUBLIC_KEY_3=++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=
+NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 ```
 
 ### Setup Database Encryption
-1. Open your `local.properties` file on root directory
-2. Add `databasePassphrase="YOUR_DATABASE_PASSPHRASE"`
+1. Open your `local.properties` file in root directory
+2. Add `DATABASE_PASSPHRASE=YOUR_DATABASE_PASSPHRASE`
 
 ## License
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
@@ -68,10 +72,16 @@ This project is licensed under the MIT License. See the [`LICENSE`](https://gith
 ## Acknowledgments
 - [CSS Nutrition Facts Label](http://jsfiddle.net/thL6j/)
 - [Freepik](https://www.freepik.com)
+- [How to store/use sensitive information in Android development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
 - [NestedScrollableHost](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
 - [Nutritionix](https://www.nutritionix.com/)
 - [pch.vector](https://www.freepik.com/pch-vector)
 - [Shields.io](https://shields.io/)
+
+## 🤝 Support
+Any contributions, issues, and feature requests are welcome.
+
+Give a ⭐️ if you like this project.
 
 [build-shield]: https://img.shields.io/circleci/build/github/ariefzuhri/Gizee?style=for-the-badge
 [build-url]: https://circleci.com/gh/ariefzuhri/Gizee
