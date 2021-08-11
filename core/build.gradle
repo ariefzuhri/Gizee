@@ -6,9 +6,15 @@ plugins {
 }
 apply from: '../shared-dependencies.gradle'
 
-def localPropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
+def keysPropertiesFile = file("keys.properties")
+project.ext.keysProperties = new Properties()
+if (keysPropertiesFile.exists()) {
+    keysProperties.load(new FileInputStream(keysPropertiesFile))
+}
+
+def getKey(String name) {
+    return System.getenv(name) ?: project.keysProperties[name]
+}
 
 android {
     compileSdkVersion 30
@@ -21,27 +27,30 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "DATABASE_PASSPHRASE", localProperties['databasePassphrase'])
+        buildConfigField("String", "DATABASE_PASSPHRASE", getKey("DATABASE_PASSPHRASE"))
 
-        buildConfigField("String", "NUTRITIONIX_APP_ID", localProperties['nutritionixAppId'])
-        buildConfigField("String", "NUTRITIONIX_APP_KEY", localProperties['nutritionixAppKey'])
-
-        buildConfigField("String", "NUTRITIONIX_BASE_URL", localProperties['nutritionixBaseUrl'])
-        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", localProperties['nutritionixPublicKey1'])
-        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_2", localProperties['nutritionixPublicKey2'])
-        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", localProperties['nutritionixPublicKey3'])
-        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", localProperties['nutritionixPublicKey4'])
+        buildConfigField("String", "NUTRITIONIX_BASE_URL", getKey("NUTRITIONIX_BASE_URL"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", getKey("NUTRITIONIX_PUBLIC_KEY_1"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_2", getKey("NUTRITIONIX_PUBLIC_KEY_2"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", getKey("NUTRITIONIX_PUBLIC_KEY_3"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", getKey("NUTRITIONIX_PUBLIC_KEY_4"))
     }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "NUTRITIONIX_APP_ID", getKey("NUTRITIONIX_APP_ID"))
+            buildConfigField("String", "NUTRITIONIX_APP_KEY", getKey("NUTRITIONIX_APP_KEY"))
         }
 
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "NUTRITIONIX_APP_ID", getKey("NUTRITIONIX_APP_ID"))
+            buildConfigField("String", "NUTRITIONIX_APP_KEY", getKey("NUTRITIONIX_APP_KEY"))
         }
     }
 
