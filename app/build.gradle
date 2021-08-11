@@ -6,7 +6,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
 }
-apply from: '../shared_dependencies.gradle'
+apply from: '../shared-dependencies.gradle'
 
 android {
     compileSdkVersion 30
