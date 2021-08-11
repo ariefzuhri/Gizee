@@ -9,6 +9,7 @@ import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.MathUtils.cal
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.MathUtils.formatToDecimal
 
 // Source: https://www.fda.gov/food/new-nutrition-facts-label/daily-value-new-nutrition-and-supplement-facts-labels
+private const val TOTAL_CALORIES_FAT = 9 // kcal/g
 private const val DAILY_VALUE_FAT = 78.0 // g
 private const val DAILY_VALUE_SATURATED_FAT = 20.0 // g
 private const val DAILY_VALUE_CHOLESTEROL = 300.0 // mg
@@ -87,7 +88,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                 "                        <div class=\"label\">Calories <div class=\"weight\">${formatToDecimal(data.calories)}</div>\n" +
                 "                        </div>\n" +
                 "                        <div style=\"padding-top: 1px; float: right;\" class=\"labellight\">Calories from Fat <div\n" +
-                "                                class=\"weight\">${formatToDecimal(data.totalFat * 9)}</div>\n" +
+                "                                class=\"weight\">${formatToDecimal(data.totalFat * TOTAL_CALORIES_FAT)}</div>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
                 "                </td>\n" +

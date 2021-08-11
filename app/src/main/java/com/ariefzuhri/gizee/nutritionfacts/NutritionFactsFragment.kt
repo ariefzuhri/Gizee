@@ -10,6 +10,9 @@ import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.AppUtils
+import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_CARBOHYDRATE
+import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_FAT
+import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_PROTEIN
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
@@ -93,9 +96,9 @@ class NutritionFactsFragment : Fragment() {
             }
         }
 
-        val caloriesFromCarbohydrates = totalCarbohydrates * 4
-        val caloriesFromFats = totalFats * 9
-        val caloriesFromProteins = totalProteins * 4
+        val caloriesFromCarbohydrates = totalCarbohydrates * TOTAL_CALORIES_CARBOHYDRATE
+        val caloriesFromFats = totalFats * TOTAL_CALORIES_FAT
+        val caloriesFromProteins = totalProteins * TOTAL_CALORIES_PROTEIN
 
         val chartModel = AAChartModel()
             .chartType(AAChartType.Pie)
