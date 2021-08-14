@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IFoodRepository {
 
-    fun searchFoods(query: String): Flow<Resource<History>>
+    fun getSearchResult(query: String): Flow<Resource<History>>
 
     fun getNutrients(): Flow<Resource<List<Nutrient>>>
 

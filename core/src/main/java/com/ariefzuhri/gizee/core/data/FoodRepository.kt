@@ -22,7 +22,7 @@ class FoodRepository(
     private val appExecutors: AppExecutors
 ) : IFoodRepository {
 
-    override fun searchFoods(query: String): Flow<Resource<History>> =
+    override fun getSearchResult(query: String): Flow<Resource<History>> =
         object : NetworkBoundResource<History, FoodResponse>() {
             var historyEntity = HistoryEntity(query)
             var result = listOf<FoodEntity>()

@@ -15,7 +15,6 @@ import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
-import com.ariefzuhri.gizee.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_QUERY = "query"
@@ -63,9 +62,9 @@ class SearchResultFragment : Fragment() {
             binding.recyclerView, binding.container
         )
 
-        val viewModel: MainViewModel by viewModel()
+        val viewModel: SearchResultViewModel by viewModel()
         viewModel.performQuery(query)
-        viewModel.searchFoods.observe(viewLifecycleOwner) { result ->
+        viewModel.searchResult.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Resource.Loading -> shimmer.show()

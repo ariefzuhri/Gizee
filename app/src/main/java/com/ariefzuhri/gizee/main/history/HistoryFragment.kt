@@ -17,7 +17,6 @@ import com.ariefzuhri.gizee.core.utils.isNotEmpty
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding
 import com.ariefzuhri.gizee.main.MainActivity
 import com.ariefzuhri.gizee.main.MainCallback
-import com.ariefzuhri.gizee.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
@@ -26,7 +25,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     private val binding get() = _binding!!
 
     private var mainCallback: MainCallback? = null
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: HistoryViewModel by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -51,7 +50,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
 
         initToolbar()
 
-        viewModel.getHistory.observe(viewLifecycleOwner) { history ->
+        viewModel.history.observe(viewLifecycleOwner) { history ->
             populateAdapter(history)
         }
     }

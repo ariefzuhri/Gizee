@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 class FoodInteractor(private val foodRepository: IFoodRepository) : FoodUseCase {
 
-    override fun searchFoods(query: String): Flow<Resource<History>> {
-        return foodRepository.searchFoods(query)
+    override fun getSearchResult(query: String): Flow<Resource<History>> {
+        return foodRepository.getSearchResult(query)
     }
 
     override fun getNutrients(): Flow<Resource<List<Nutrient>>> {
