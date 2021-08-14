@@ -61,16 +61,20 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
             toolbar.setNavigationOnClickListener { dismiss() }
             toolbar.setOnMenuItemClickListener {
                 if (it.itemId == R.id.menu_clear) {
-                    AlertDialog.Builder(context)
-                        .setTitle(R.string.dialog_clear_history_title)
-                        .setMessage(R.string.dialog_clear_history_message)
-                        .setPositiveButton(R.string.yes) { _, _ -> viewModel.clearHistory() }
-                        .setNeutralButton(R.string.no, null)
-                        .create().show()
+                    confirmHistoryRemoval()
                 }
                 true
             }
         }
+    }
+
+    private fun confirmHistoryRemoval() {
+        AlertDialog.Builder(context)
+            .setTitle(R.string.dialog_clear_history_title)
+            .setMessage(R.string.dialog_clear_history_message)
+            .setPositiveButton(R.string.yes) { _, _ -> viewModel.clearHistory() }
+            .setNeutralButton(R.string.no, null)
+            .create().show()
     }
 
     private fun populateAdapter(history: List<History?>) {
