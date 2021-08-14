@@ -8,11 +8,7 @@ import android.view.ViewGroup
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
-import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_CARBOHYDRATE
-import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_FAT
-import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_PROTEIN
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
@@ -31,6 +27,7 @@ class NutritionFactsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var foods: List<Food>? = null
+    private val viewModel: NutritionFactsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +57,7 @@ class NutritionFactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel: NutritionFactsViewModel by viewModel()
-        viewModel.foods = foods!!
+        viewModel.foods = foods
         viewModel.nutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
@@ -83,28 +79,10 @@ class NutritionFactsFragment : Fragment() {
     }
 
     private fun populateChart() {
-        var totalCalories = 0.0f
-        var totalCarbohydrates = 0.0f
-        var totalFats = 0.0f
-        var totalProteins = 0.0f
-
-        foods?.let { foods ->
-            foods.forEach {
-                totalCalories += it.nfCalories.toFloat()
-                totalCarbohydrates += it.nfTotalCarbohydrate.toFloat()
-                totalFats += it.nfTotalFat.toFloat()
-                totalProteins += it.nfProtein.toFloat()
-            }
-        }
-
-        val caloriesFromCarbohydrates = totalCarbohydrates * TOTAL_CALORIES_CARBOHYDRATE
-        val caloriesFromFats = totalFats * TOTAL_CALORIES_FAT
-        val caloriesFromProteins = totalProteins * TOTAL_CALORIES_PROTEIN
-
         val chartModel = AAChartModel()
             .chartType(AAChartType.Pie)
             .title("Source of Calories")
-            .subtitle("Total calories: ${AppUtils.formatToDecimal(totalCalories)} kcal")
+            .subtitle("Total calories: ${AppUtils.formatToDecimal(viewModel.totalCalories)} kcal")
             .dataLabelsEnabled(true)
             .colorsTheme(arrayOf("#61AAEE", "#EBEE61", "#64EE61"))
             .series(
@@ -114,9 +92,9 @@ class NutritionFactsFragment : Fragment() {
                         .name("Total calories (kcal)")
                         .data(
                             arrayOf(
-                                arrayOf("Carbohydrates", caloriesFromCarbohydrates),
-                                arrayOf("Fats", caloriesFromFats),
-                                arrayOf("Proteins", caloriesFromProteins),
+                                arrayOf("Carbohydrates", viewModel.caloriesFromCarbohydrates),
+                                arrayOf("Fats", viewModel.caloriesFromFats),
+                                arrayOf("Proteins", viewModel.caloriesFromProteins),
                             )
                         )
                 )
@@ -125,33 +103,8 @@ class NutritionFactsFragment : Fragment() {
     }
 
     private fun populateNutritionFacts() {
-        foods?.let { foods ->
-            foods.forEach {
-                val nfData = NutritionFactsData.Builder()
-                    .setServingSize(it.servingWeightGrams)
-                    .setCalories(it.nfCalories)
-                    .setTotalFat(it.nfTotalFat)
-                    .setSaturatedFat(it.nfSaturatedFat)
-                    .setTransFat(it.nfTransFat)
-                    .setPolyunsaturatedFat(it.nfPolyFat)
-                    .setMonounsaturatedFat(it.nfMonoFat)
-                    .setCholesterol(it.nfCholesterol)
-                    .setSodium(it.nfSodium)
-                    .setTotalCarbohydrates(it.nfTotalCarbohydrate)
-                    .setDietaryFiber(it.nfDietaryFiber)
-                    .setSugars(it.nfSugars)
-                    .setProtein(it.nfProtein)
-                    .setVitaminA(it.nfVitA)
-                    .setVitaminB6(it.nfVitB6)
-                    .setVitaminC(it.nfVitC)
-                    .setVitaminD(it.nfVitD)
-                    .setCalcium(it.nfCalcium)
-                    .setIron(it.nfIron)
-                    .setPotassium(it.nfPotassium)
-                    .setFolate(it.nfFolate)
-                    .create()
-                binding.nfView.addData(nfData)
-            }
+        viewModel.nutritionFactsData.forEach {
+            binding.nfView.addData(it)
         }
         binding.nfView.drawLabel()
     }
