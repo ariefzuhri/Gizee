@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 
-
 val Any.TAG: String
     get() {
         return if (!javaClass.isAnonymousClass) {

@@ -3,8 +3,10 @@
     <color name="green">#63BF61</color>
     <color name="blue">#1394BD</color>
     <color name="black">#1C1919</color>
+    <color name="gray_dark">#666666</color>
     <color name="gray">#A1A1A1</color>
     <color name="gray_light">#EEEEEE</color>
     <color name="white">#FFFFFF</color>
+    <!--<color name="green_transparent">#3363BF61</color>-->
     <color name="blue_transparent">#1A1394BD</color>
 </resources>

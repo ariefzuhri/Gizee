@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Gizee</string>
+    <string name="attributions">Attributions</string>
     <string name="loading">Loading…</string>
+    <string name="see_full_nutrients">Complete list of nutrients</string>
+    <string name="hint_search">What did you eat today?</string>
+    <string name="help_search">You can search by entering \"1 cup nasi goreng and 2 tbsp sambal\" to find out the nutritional value of some foods.</string>
+    <string name="header_home_1">Discover the</string>
+    <string name="header_home_2">nutrition information.</string>
+    <string name="favorites">Favorites</string>
+    <string name="calculate_foods">Calculate Foods</string>
+    <string name="search_result">Nutritional Information</string>
+    <string name="full_nutrients">Full Nutrients</string>
+    <string name="toast_empty_search_field">The search field cannot be empty</string>
+    <string name="calories">%1$s kcal</string>
+    <string name="measure">%1$s %2$s</string>
+    <string name="weight">%1$s %2$s</string>
+    <string name="favorite">Favorite</string>
+    <string name="empty_favorites_title">It’s empty</string>
+    <string name="empty_favorites_desc">Looks like you don’t have anything\nin your favorites</string>
+    <string name="empty_search_result_title">No result</string>
+    <string name="empty_search_result_desc">Sorry, we couldn\'t find what\nyou were looking for</string>
+    <string name="clear_all">Clear all</string>
+    <string name="history">History</string>
+    <string name="dialog_clear_history_title">Clear all history</string>
+    <string name="dialog_clear_history_message">Are you sure you want to clear all history?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="empty_history_title">It\'s empty</string>
+    <string name="empty_history_desc">You don\'t have any queries on your history</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="autofill_query">1 cup nasi goreng and 2 tbsp sambal</string>
+    <string name="toast_error_connection">Please check your network connection</string>
     <string name="view_more">View more</string>
     <string name="delete_history">Delete history</string>
     <string name="measure_with_weight">%1$s %2$s • %3$s g</string>
-    <string name="calories">%1$s kcal</string>
-    <string name="weight">%1$s %2$s</string>
 </resources>
