@@ -19,6 +19,13 @@
         <item name="fontFamily">@font/sen</item>
     </style>
 
+    <style name="Alert">
+        <item name="cardBackgroundColor">@color/blue_transparent</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">8dp</item>
+    </style>
+
     <style name="Button" parent="TextView.Header.3">
         <item name="android:background">@drawable/btn_primary</item>
         <item name="android:layout_marginTop">4dp</item>
