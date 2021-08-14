@@ -134,9 +134,17 @@
     </style>
 
     <style name="Toolbar">
+        <item name="android:background">@color/white</item>
         <item name="android:elevation">0dp</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="navigationIcon">@drawable/ic_menu_close</item>
         <item name="navigationIconTint">@color/blue</item>
+    </style>
+
+    <style name="Toolbar.Backable">
+        <item name="navigationIcon">@drawable/ic_back</item>
+    </style>
+
+    <style name="Toolbar.Closable">
+        <item name="navigationIcon">@drawable/ic_menu_close</item>
     </style>
 </resources>
