@@ -15,12 +15,12 @@
         <item name="android:fontFamily">@font/sen</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/gray_dark</item>
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
         <item name="fontFamily">@font/sen</item>
     </style>
 
     <style name="Button" parent="TextView.Header.3">
-        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:background">@drawable/btn_primary</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:letterSpacing">0</item>
@@ -33,7 +33,7 @@
     </style>
 
     <style name="EditText">
-        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:background">@drawable/edt_primary</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:maxLines">1</item>
@@ -41,7 +41,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textColor">@color/black</item>
         <!--<item name="android:textColorHighlight">@color/gray_dark</item>-->
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 
     <style name="EditText.MultiLine">
@@ -84,19 +84,19 @@
     </style>
 
     <style name="TextView.Header.1">
-        <item name="android:textSize">@dimen/font_lg</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
     </style>
 
     <style name="TextView.Header.2">
-        <item name="android:textSize">@dimen/font_md</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
     </style>
 
     <style name="TextView.Header.3">
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 
     <style name="TextView.Hint">
-        <item name="android:textSize">@dimen/font_sm</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
         <item name="android:textColor">@color/gray_dark</item>
     </style>
 
@@ -106,13 +106,13 @@
         <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
         <item name="android:minHeight">24dp</item>
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
         <item name="android:textColor">@color/blue</item>
         <item name="drawableTint">@color/blue</item>
     </style>
 
     <style name="TextView.Text">
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 
     <style name="TextView.Toolbar" parent="TextView.Header.3">
@@ -124,7 +124,7 @@
     <style name="Toolbar">
         <item name="android:elevation">0dp</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="navigationIcon">@drawable/ic_close</item>
+        <item name="navigationIcon">@drawable/ic_menu_close</item>
         <item name="navigationIconTint">@color/blue</item>
     </style>
 </resources>

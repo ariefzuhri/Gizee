@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/layout_margin"
+    android:padding="@dimen/margin_layout"
     tools:context=".nutritionfacts.NutritionFactsFragment">
 
     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView

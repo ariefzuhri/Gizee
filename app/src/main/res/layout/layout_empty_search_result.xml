@@ -6,13 +6,13 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="@dimen/layout_margin">
+    android:padding="@dimen/margin_layout">
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="emptyresult.json"
+        app:lottie_fileName="empty_result.json"
         app:lottie_loop="true" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/empty_history_title"
+        android:text="@string/empty_search_result_title"
         android:textAlignment="center"
         android:textColor="@color/gray_dark" />
 
@@ -28,7 +28,7 @@
         style="@style/TextView.Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty_history_desc"
+        android:text="@string/empty_search_result_desc"
         android:textAlignment="center" />
 
 </LinearLayout>

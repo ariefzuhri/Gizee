@@ -33,7 +33,7 @@ class FavoritesActivity : AppCompatActivity() {
             val adapter = FoodAdapter()
             adapter.submitList(foods)
             recyclerView.adapter = adapter
-            viewEmpty.root.gone(adapter.isNotEmpty())
+            layoutEmpty.root.gone(adapter.isNotEmpty())
         }
     }
 

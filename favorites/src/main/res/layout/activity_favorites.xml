@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginHorizontal="@dimen/layout_margin"
+        android:layout_marginHorizontal="@dimen/margin_layout"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
         android:text="@string/favorites"
@@ -24,11 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_title"
-        android:padding="@dimen/layout_margin" />
+        android:padding="@dimen/margin_layout" />
 
     <include
-        android:id="@+id/view_empty"
-        layout="@layout/view_empty"
+        android:id="@+id/layout_empty"
+        layout="@layout/layout_empty_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_title" />

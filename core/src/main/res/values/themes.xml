@@ -8,7 +8,7 @@
     </style>
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_bottom_sheet</item>
+        <item name="android:background">@drawable/layout_bottom_sheet</item>
     </style>
 
     <style name="Divider">
@@ -36,10 +36,10 @@
     </style>
 
     <style name="TextView.Header.3">
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 
     <style name="TextView.Text">
-        <item name="android:textSize">@dimen/font_nm</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 </resources>

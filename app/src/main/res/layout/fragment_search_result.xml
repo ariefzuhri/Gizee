@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:navigationIcon="@drawable/ic_keyboard_backspace">
+        app:navigationIcon="@drawable/ic_back">
 
         <TextView
             android:id="@+id/tv_title"
@@ -42,7 +42,7 @@
                 style="@style/RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/layout_margin" />
+                android:padding="@dimen/margin_layout" />
 
             <FrameLayout
                 android:id="@+id/container"
@@ -51,12 +51,12 @@
                 android:layout_below="@+id/recycler_view" />
 
             <include
-                android:id="@+id/view_food_placeholder"
-                layout="@layout/view_food_placeholder" />
+                android:id="@+id/layout_placeholder"
+                layout="@layout/layout_food_placeholder" />
 
             <include
-                android:id="@+id/view_empty"
-                layout="@layout/view_empty_search_result" />
+                android:id="@+id/layout_empty"
+                layout="@layout/layout_empty_search_result" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

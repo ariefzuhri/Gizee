@@ -25,6 +25,8 @@ private const val DAILY_VALUE_IRON = 18.0 // mg
 private const val DAILY_VALUE_POTASSIUM = 4700.0 // mg
 private const val DAILY_VALUE_FOLATE = 400.0 // mcg DFE
 
+private const val STYLES_CSS_FILE = "nutrition_facts_label.css"
+
 class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(context, attrs) {
 
     private var data = NutritionFactsData.Builder().create()
@@ -240,7 +242,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                 "</div>"
 
         val head =
-            "<html><head><link href=\"styles.css\" type=\"text/css\" rel=\"stylesheet\"/></head>"
+            "<html><head><link href=\"$STYLES_CSS_FILE\" type=\"text/css\" rel=\"stylesheet\"/></head>"
         val body = "<body>$main</body></html>"
 
         loadDataWithBaseURL(

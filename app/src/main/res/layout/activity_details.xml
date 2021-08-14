@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/menu_details"
-        app:navigationIcon="@drawable/ic_keyboard_backspace">
+        app:navigationIcon="@drawable/ic_back">
 
         <TextView
             android:id="@+id/tv_title"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/layout_margin">
+            android:padding="@dimen/margin_layout">
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/img_photo"
@@ -58,7 +58,7 @@
                     android:gravity="center"
                     android:text="@string/loading"
                     app:drawableTint="@color/green"
-                    app:drawableTopCompat="@drawable/ic_fire" />
+                    app:drawableTopCompat="@drawable/ic_calories" />
 
                 <TextView
                     android:id="@+id/tv_measure"
@@ -70,7 +70,7 @@
                     android:gravity="center"
                     android:text="@string/loading"
                     app:drawableTint="@color/green"
-                    app:drawableTopCompat="@drawable/ic_hamburger" />
+                    app:drawableTopCompat="@drawable/ic_measure" />
 
                 <TextView
                     android:id="@+id/tv_weight"
@@ -82,7 +82,7 @@
                     android:gravity="center"
                     android:text="@string/loading"
                     app:drawableTint="@color/green"
-                    app:drawableTopCompat="@drawable/ic_scale" />
+                    app:drawableTopCompat="@drawable/ic_weight" />
             </LinearLayout>
 
             <FrameLayout

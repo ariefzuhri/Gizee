@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="layout_margin">16dp</dimen>
+    <dimen name="margin_layout">16dp</dimen>
 
-    <dimen name="font_sm">12sp</dimen>
-    <dimen name="font_nm">14sp</dimen>
-    <dimen name="font_md">18sp</dimen>
-    <dimen name="font_lg">24sp</dimen>
+    <dimen name="textsize_small">12sp</dimen>
+    <dimen name="textsize_normal">14sp</dimen>
+    <dimen name="textsize_medium">18sp</dimen>
+    <dimen name="textsize_large">24sp</dimen>
 </resources>

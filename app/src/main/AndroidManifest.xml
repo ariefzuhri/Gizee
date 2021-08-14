@@ -7,9 +7,9 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/ic_launcher_96"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_logo"
+        android:roundIcon="@drawable/ic_launcher_96"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gizee">
 

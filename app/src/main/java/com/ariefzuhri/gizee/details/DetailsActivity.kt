@@ -48,8 +48,8 @@ class DetailsActivity : AppCompatActivity() {
         val toolbarMenu = binding.toolbar.menu
         if (toolbarMenu.isNotEmpty()) {
             val menuFavorite = toolbarMenu[0]
-            if (isFavorite) menuFavorite.setIcon(R.drawable.ic_bookmark)
-            else menuFavorite.setIcon(R.drawable.ic_bookmark_outline)
+            if (isFavorite) menuFavorite.setIcon(R.drawable.ic_menu_favorite)
+            else menuFavorite.setIcon(R.drawable.ic_menu_unfavorite)
         }
     }
 

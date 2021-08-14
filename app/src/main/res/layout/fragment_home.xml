@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/layout_margin"
+        android:paddingHorizontal="@dimen/margin_layout"
         android:paddingVertical="32dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/favorites"
-                android:src="@drawable/ic_bookmarks"
+                android:src="@drawable/ic_favorites"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,7 +120,7 @@
                 android:layout_gravity="bottom"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/illustration_home" />
+                android:src="@drawable/img_home" />
         </FrameLayout>
     </RelativeLayout>
 

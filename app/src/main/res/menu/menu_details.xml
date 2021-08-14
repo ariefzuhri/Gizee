@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_favorite"
-        android:icon="@drawable/ic_bookmark_outline"
+        android:icon="@drawable/ic_menu_unfavorite"
         android:iconTint="@color/blue"
         android:orderInCategory="0"
         android:title="@string/favorite"

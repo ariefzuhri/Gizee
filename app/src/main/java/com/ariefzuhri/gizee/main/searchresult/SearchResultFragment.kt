@@ -58,8 +58,8 @@ class SearchResultFragment : Fragment() {
         initToolbar()
 
         val shimmer = ShimmerHelper(
-            binding.viewFoodPlaceholder.root,
-            binding.viewEmpty.root,
+            binding.layoutPlaceholder.root,
+            binding.layoutEmpty.root,
             binding.recyclerView, binding.container
         )
 

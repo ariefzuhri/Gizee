@@ -79,7 +79,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
             val adapter = HistoryAdapter(this@HistoryFragment)
             adapter.submitList(history)
             recyclerView.adapter = adapter
-            viewEmpty.root.gone(adapter.isNotEmpty())
+            layoutEmpty.root.gone(adapter.isNotEmpty())
         }
     }
 

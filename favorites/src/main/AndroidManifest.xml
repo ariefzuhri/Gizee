@@ -14,9 +14,9 @@
     </dist:module>
 
     <application
-        android:icon="@drawable/ic_logo"
-        tools:ignore="AllowBackup"
-        android:supportsRtl="true">
+        android:icon="@drawable/ic_launcher_96"
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup">
         <activity
             android:name=".FavoritesActivity"
             android:exported="true">
