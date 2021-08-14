@@ -65,6 +65,11 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="Lottie">
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+    </style>
+
     <style name="RecyclerView">
         <item name="android:clipToPadding">false</item>
         <item name="android:overScrollMode">never</item>
