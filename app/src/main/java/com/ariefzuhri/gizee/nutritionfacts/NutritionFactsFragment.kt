@@ -16,6 +16,7 @@ import com.ariefzuhri.gizee.core.utils.Constants.TOTAL_CALORIES_PROTEIN
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
+import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement

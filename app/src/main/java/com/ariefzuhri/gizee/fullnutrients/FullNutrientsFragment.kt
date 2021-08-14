@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.nutritionfacts
+package com.ariefzuhri.gizee.fullnutrients
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.adapter.NutrientAdapter
 import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.databinding.FragmentFullNutrientsBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_FOODS = "foods"
 private const val ARG_RAW_NUTRIENTS = "raw_nutrients"
@@ -54,43 +55,15 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
         initToolbar()
 
-        val nutrients = mergedValueNutrients(foods, rawNutrients)
-        populateAdapter(nutrients)
+        val viewModel: FullNutrientsViewModel by viewModel()
+        viewModel.setNutrients(rawNutrients, foods)
+        viewModel.nutrients?.let { populateAdapter(it) }
     }
 
     private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener {
             dismiss()
         }
-    }
-
-    private fun mergedValueNutrients(
-        foods: List<Food>,
-        rawNutrients: List<Nutrient>
-    ): List<Nutrient> {
-        var result = rawNutrients.map { Nutrient(it.id, it.name, it.unit, 0.0) }
-
-        // Gabungkan value semua nutrient pada setiap food
-        foods.forEach { food ->
-            // Tambah value nutrient di foods ke rawNutrients sesuai id-nya
-            food.fullNutrients.forEach { onlyValueNutrient ->
-                result = addValueById(onlyValueNutrient, result)
-            }
-        }
-        return result
-    }
-
-    private fun addValueById(
-        unmergedNutrient: Nutrient,
-        fullNutrients: List<Nutrient>
-    ): List<Nutrient> {
-        for ((i, mergedNutrient) in fullNutrients.withIndex()) {
-            if (mergedNutrient.id == unmergedNutrient.id) {
-                fullNutrients[i].value += unmergedNutrient.value
-                break
-            }
-        }
-        return fullNutrients
     }
 
     private fun populateAdapter(fullNutrients: List<Nutrient>) {
