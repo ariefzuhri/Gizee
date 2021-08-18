@@ -25,9 +25,12 @@ jobs:
           name: Create Google Services Json
           command: echo $GOOGLE_SERVICES | base64 --decode > app/google-services.json
       - run:
+          name: Create Debug Keystore
+          command: echo $DEBUG_KEYSTORE | base64 --decode > debug.keystore
+      - run:
           name: Run Build
           command: ./gradlew build
-      - store_artifacts: 
+      - store_artifacts:
           path: app/build/reports
           destination: reports
       - run:
@@ -35,6 +38,6 @@ jobs:
           command: ./gradlew lint test
       - store_test_results:
           path: app/build/test-results
-      - store_artifacts:  
+      - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: artifact-file

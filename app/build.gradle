@@ -9,9 +9,13 @@ plugins {
 apply from: '../shared-dependencies.gradle'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
+project.ext.keystoreProperties = new Properties()
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+def getKeystoreField(String key) {
+    return System.getenv(key) ?: project.keystoreProperties[key]
 }
 
 android {
@@ -30,10 +34,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+            storeFile file("\"${getKeystoreField("storeFile")}\"")
+            storePassword "\"${getKeystoreField("storePassword")}\""
+            keyAlias "\"${getKeystoreField("keyAlias")}\""
+            keyPassword "\"${getKeystoreField("keyPassword")}\""
         }
     }
 
