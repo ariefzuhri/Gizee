@@ -12,8 +12,8 @@ if (keysPropertiesFile.exists()) {
     keysProperties.load(new FileInputStream(keysPropertiesFile))
 }
 
-def getKey(String name) {
-    return System.getenv(name) ?: project.keysProperties[name]
+def getKey(String key) {
+    return System.getenv(key) ?: project.keysProperties[key]
 }
 
 android {
@@ -46,6 +46,9 @@ android {
         }
 
         debug {
+        }
+
+        beta {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -85,6 +88,7 @@ dependencies {
     // Network logging
     debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    betaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
 
     // Coroutines Flow
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"

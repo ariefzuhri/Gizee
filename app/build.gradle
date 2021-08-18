@@ -51,15 +51,20 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
             manifestPlaceholders = [crashlyticsEnabled: true]
         }
 
-        debug {
+        beta {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [crashlyticsEnabled: true]
+            versionNameSuffix "-beta.${versionBuild}"
+        }
 
+        debug {
             manifestPlaceholders = [crashlyticsEnabled: false]
+            versionNameSuffix "-alpha.${versionBuild}"
         }
     }
 
