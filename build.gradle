@@ -52,20 +52,19 @@ ext {
     moshiVersion = '1.12.0'
     chuckerVersion = '3.5.2'
 
-    kotlinCoroutinesVersion = '1.4.2'
+    kotlinCoroutinesVersion = '1.5.1'
     lifecycleVersion = '2.3.1'
 
     koinVersion = '3.1.2'
 
     firebaseVersion = '28.3.0'
 
-    leakcanaryVersion = '2.7'
-
     sqlCipherVersion = '4.4.3'
     sqliteVersion = '2.1.0'
 
     aaChartCoreVersion = '-SNAPSHOT'
     glideVersion = '4.12.0'
+    leakcanaryVersion = '2.7'
     loggerVersion = '2.2.0'
     lottieVersion = '4.0.0'
     roundedImageViewVersion = '2.3.0'
