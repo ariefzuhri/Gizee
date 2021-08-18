@@ -34,10 +34,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("\"${getKeystoreField("storeFile")}\"")
-            storePassword "\"${getKeystoreField("storePassword")}\""
-            keyAlias "\"${getKeystoreField("keyAlias")}\""
-            keyPassword "\"${getKeystoreField("keyPassword")}\""
+            storeFile file(getKeystoreField("storeFile"))
+            storePassword getKeystoreField("storePassword")
+            keyAlias getKeystoreField("keyAlias")
+            keyPassword getKeystoreField("keyPassword")
         }
     }
 
