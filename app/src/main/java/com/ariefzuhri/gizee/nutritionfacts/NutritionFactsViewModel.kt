@@ -7,10 +7,10 @@ import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
-import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.NutritionFactsData
 import com.ariefzuhri.gizee.core.utils.TOTAL_CALORIES_CARBOHYDRATE
 import com.ariefzuhri.gizee.core.utils.TOTAL_CALORIES_FAT
 import com.ariefzuhri.gizee.core.utils.TOTAL_CALORIES_PROTEIN
+import com.ariefzuhri.nutritionfactslabel.NutritionFactsData
 
 class NutritionFactsViewModel(foodUseCase: FoodUseCase) : ViewModel() {
 

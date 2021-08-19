@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel
+package com.ariefzuhri.nutritionfactslabel
 
 class NutritionFactsData(builder: Builder) {
 

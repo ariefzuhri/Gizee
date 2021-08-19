@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
-import com.ariefzuhri.gizee.core.utils.TAG
-import com.ariefzuhri.gizee.core.utils.formatToDecimal
-import com.ariefzuhri.gizee.core.utils.gone
-import com.ariefzuhri.gizee.core.utils.showToast
+import com.ariefzuhri.gizee.core.utils.*
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
 import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -104,6 +102,7 @@ class NutritionFactsFragment : Fragment() {
     }
 
     private fun populateNutritionFacts() {
+        binding.nfView.setTypeface(FONT_SEN.toUri())
         viewModel.nutritionFactsData.forEach {
             binding.nfView.addData(it)
         }

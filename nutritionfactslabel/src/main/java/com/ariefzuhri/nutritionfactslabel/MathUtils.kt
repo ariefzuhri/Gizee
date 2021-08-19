@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel
+package com.ariefzuhri.nutritionfactslabel
 
 import java.text.DecimalFormat
 

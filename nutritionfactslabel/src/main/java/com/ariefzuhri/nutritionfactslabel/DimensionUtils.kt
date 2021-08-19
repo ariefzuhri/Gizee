@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel
+package com.ariefzuhri.nutritionfactslabel
 
 import android.content.res.Resources
 

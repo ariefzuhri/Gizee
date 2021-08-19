@@ -90,6 +90,7 @@ android {
 
 dependencies {
     implementation project(":core")
+    implementation project(":nutritionfactslabel")
 
     // Chart
     implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"

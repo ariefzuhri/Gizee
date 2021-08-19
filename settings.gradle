@@ -2,3 +2,4 @@ rootProject.name = "Gizee"
 include ':app'
 include ':core'
 include ':favorites'
+include ':nutritionfactslabel'
