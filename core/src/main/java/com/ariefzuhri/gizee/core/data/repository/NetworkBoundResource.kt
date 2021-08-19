@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.data
+package com.ariefzuhri.gizee.core.data.repository
 
 import com.ariefzuhri.gizee.core.data.source.remote.network.ApiResponse
 import kotlinx.coroutines.flow.*

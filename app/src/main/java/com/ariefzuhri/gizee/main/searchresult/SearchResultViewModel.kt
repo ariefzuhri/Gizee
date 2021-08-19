@@ -1,7 +1,7 @@
 package com.ariefzuhri.gizee.main.searchresult
 
 import androidx.lifecycle.*
-import com.ariefzuhri.gizee.core.data.Resource
+import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.usecase.FoodUseCase
 

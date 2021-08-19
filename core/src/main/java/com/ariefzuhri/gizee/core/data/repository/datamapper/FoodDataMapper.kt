@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.utils.datamapper
+package com.ariefzuhri.gizee.core.data.repository.datamapper
 
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
@@ -17,21 +17,18 @@ private const val NUTRIENT_ID_CALCIUM = 301
 private const val NUTRIENT_ID_IRON = 303
 private const val NUTRIENT_ID_FOLATE = 435
 
-fun mapResponseToEntities(input: FoodResponse): List<FoodEntity> {
-    val result = arrayListOf<FoodEntity>()
-    input.foods?.forEach {
-        val fullNutrients = arrayListOf<NutrientEntity>()
-        it?.fullNutrients?.forEach { item ->
-            val nutrientEntity = NutrientEntity(
+internal fun mapResponseToEntities(input: FoodResponse): List<FoodEntity> {
+    return input.foods?.map {
+        val fullNutrients = it?.fullNutrients?.map { item ->
+            NutrientEntity(
                 id = item?.attrId!!,
                 name = "",
                 unit = "",
                 value = item.value ?: 0.0
             )
-            fullNutrients.add(nutrientEntity)
-        }
+        } ?: listOf()
 
-        val foodEntity = FoodEntity(
+        FoodEntity(
             id = "${it?.foodName}_${it?.servingWeightGrams}",
             name = it?.foodName ?: "",
             photo = it?.photo?.thumb ?: "",
@@ -60,16 +57,13 @@ fun mapResponseToEntities(input: FoodResponse): List<FoodEntity> {
             nfFolate = getNutrientValue(it?.fullNutrients, NUTRIENT_ID_FOLATE),
             fullNutrients = fullNutrients
         )
-
-        result.add(foodEntity)
-    }
-    return result
+    } ?: listOf()
 }
 
-fun mapEntitiesToDomain(input: List<FoodEntity>): List<Food> {
-    val result = arrayListOf<Food>()
-    input.forEach { result.add(mapEntityToDomain(it)) }
-    return result
+internal fun mapEntitiesToDomain(input: List<FoodEntity>): List<Food> {
+    return input.map {
+        mapEntityToDomain(it)
+    }
 }
 
 private fun mapEntityToDomain(input: FoodEntity): Food {
@@ -105,7 +99,7 @@ private fun mapEntityToDomain(input: FoodEntity): Food {
     )
 }
 
-fun mapDomainToEntity(input: Food): FoodEntity {
+internal fun mapDomainToEntity(input: Food): FoodEntity {
     return FoodEntity(
         id = input.id,
         name = input.name,

@@ -1,5 +1,6 @@
-package com.ariefzuhri.gizee.core.data
+package com.ariefzuhri.gizee.core.data.repository
 
+import com.ariefzuhri.gizee.core.data.repository.datamapper.*
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.data.source.local.entity.HistoryEntity
@@ -12,7 +13,6 @@ import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.*
-import com.ariefzuhri.gizee.core.utils.datamapper.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map

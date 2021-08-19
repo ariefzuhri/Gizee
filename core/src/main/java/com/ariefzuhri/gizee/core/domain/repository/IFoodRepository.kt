@@ -1,6 +1,6 @@
 package com.ariefzuhri.gizee.core.domain.repository
 
-import com.ariefzuhri.gizee.core.data.Resource
+import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient

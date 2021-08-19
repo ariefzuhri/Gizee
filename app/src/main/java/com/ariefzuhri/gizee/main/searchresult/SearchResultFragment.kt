@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.R
-import com.ariefzuhri.gizee.core.data.Resource
+import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
 import com.ariefzuhri.gizee.core.utils.TAG

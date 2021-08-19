@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ariefzuhri.gizee.core.data.Resource
+import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.utils.TAG

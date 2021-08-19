@@ -2,7 +2,7 @@ package com.ariefzuhri.gizee.core.di
 
 import androidx.room.Room
 import com.ariefzuhri.gizee.core.BuildConfig.*
-import com.ariefzuhri.gizee.core.data.FoodRepository
+import com.ariefzuhri.gizee.core.data.repository.FoodRepository
 import com.ariefzuhri.gizee.core.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.data.source.local.persistence.FoodDatabase
 import com.ariefzuhri.gizee.core.data.source.remote.RemoteDataSource
