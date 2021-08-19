@@ -5,8 +5,6 @@ package com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel
 import android.content.Context
 import android.util.AttributeSet
 import android.webkit.WebView
-import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.MathUtils.calculatePercentage
-import com.ariefzuhri.gizee.core.ui.customview.nutritionfactslabel.MathUtils.formatToDecimal
 
 // Source: https://www.fda.gov/food/new-nutrition-facts-label/daily-value-new-nutrition-and-supplement-facts-labels
 private const val TOTAL_CALORIES_FAT = 9 // kcal/g
@@ -63,7 +61,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
 
     // Source: http://jsfiddle.net/thL6j/
     fun drawLabel() {
-        val webViewWidth = DimensionUtils.pxToDp(measuredWidth)
+        val webViewWidth = pxToDp(measuredWidth)
         @Suppress("Reformat") val main = "" +
                 "<div id=\"nutritionfacts\" style=\"width:${webViewWidth - 24}\">\n" +
                 "    <table width=\"${webViewWidth - 24}\" cellspacing=\"0\" cellpadding=\"0\">\n" +

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ariefzuhri.gizee.core.R
 import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
 import com.ariefzuhri.gizee.core.domain.model.Food
-import com.ariefzuhri.gizee.core.utils.AppUtils
-import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
-import com.ariefzuhri.gizee.core.utils.ViewBinding
+import com.ariefzuhri.gizee.core.utils.EXTRA_FOOD
+import com.ariefzuhri.gizee.core.utils.bindLoadImage
+import com.ariefzuhri.gizee.core.utils.formatToDecimal
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
@@ -44,18 +44,18 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
         fun bind(food: Food?) {
             with(binding) {
-                ViewBinding.bindLoadImage(imgPhoto, food?.photo)
+                bindLoadImage(imgPhoto, food?.photo)
                 tvName.text = food?.name?.capitalize(Locale.current)
                 tvMeasure.text = itemView.context.resources.getString(
                     R.string.measure_with_weight,
-                    AppUtils.formatToDecimal(food?.servingQty),
+                    formatToDecimal(food?.servingQty),
                     food?.servingUnit,
-                    AppUtils.formatToDecimal(food?.servingWeightGrams)
+                    formatToDecimal(food?.servingWeightGrams)
                 )
                 tvCalories.text =
                     itemView.context.resources.getString(
                         R.string.calories,
-                        AppUtils.formatToDecimal(food?.nfCalories)
+                        formatToDecimal(food?.nfCalories)
                     )
                 itemView.setOnClickListener {
                     val intent = Intent(

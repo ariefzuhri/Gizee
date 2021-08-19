@@ -10,9 +10,10 @@ import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.ui.adapter.FoodAdapter
-import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.ShimmerHelper
+import com.ariefzuhri.gizee.core.utils.isNetworkAvailable
+import com.ariefzuhri.gizee.core.utils.showToast
 import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -75,9 +76,9 @@ class SearchResultFragment : Fragment() {
                         shimmer.hide(history?.foods.isNullOrEmpty())
                     }
                     is Resource.Error -> {
-                        if (!AppUtils.isNetworkAvailable()) {
-                            AppUtils.showToast(context, result.message)
-                            AppUtils.showToast(context, R.string.toast_error_connection)
+                        if (!isNetworkAvailable()) {
+                            activity?.showToast(result.message)
+                            activity?.showToast(R.string.toast_error_connection)
                         }
                         shimmer.hide(true)
                     }

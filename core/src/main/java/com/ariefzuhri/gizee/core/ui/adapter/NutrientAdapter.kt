@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ariefzuhri.gizee.core.R
 import com.ariefzuhri.gizee.core.databinding.ItemNutrientBinding
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
-import com.ariefzuhri.gizee.core.utils.AppUtils
+import com.ariefzuhri.gizee.core.utils.formatToDecimal
 
 class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
 
@@ -45,7 +45,7 @@ class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
             binding.tvName.text = nutrient?.name
             binding.tvWeight.text = itemView.context.resources.getString(
                 R.string.weight,
-                AppUtils.formatToDecimal(nutrient?.value),
+                formatToDecimal(nutrient?.value),
                 nutrient?.unit
             )
         }

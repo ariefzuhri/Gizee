@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import com.ariefzuhri.gizee.core.data.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
-import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.TAG
+import com.ariefzuhri.gizee.core.utils.formatToDecimal
 import com.ariefzuhri.gizee.core.utils.gone
+import com.ariefzuhri.gizee.core.utils.showToast
 import com.ariefzuhri.gizee.databinding.FragmentNutritionFactsBinding
 import com.ariefzuhri.gizee.fullnutrients.FullNutrientsFragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -69,7 +70,7 @@ class NutritionFactsFragment : Fragment() {
                         }
                         binding.tvFullNutrients.gone(false)
                     }
-                    is Resource.Error -> AppUtils.showToast(context, result.message)
+                    is Resource.Error -> activity?.showToast(result.message)
                 }
             }
         }
@@ -82,7 +83,7 @@ class NutritionFactsFragment : Fragment() {
         val chartModel = AAChartModel()
             .chartType(AAChartType.Pie)
             .title("Source of Calories")
-            .subtitle("Total calories: ${AppUtils.formatToDecimal(viewModel.totalCalories)} kcal")
+            .subtitle("Total calories: ${formatToDecimal(viewModel.totalCalories)} kcal")
             .dataLabelsEnabled(true)
             .colorsTheme(arrayOf("#61AAEE", "#EBEE61", "#64EE61"))
             .series(

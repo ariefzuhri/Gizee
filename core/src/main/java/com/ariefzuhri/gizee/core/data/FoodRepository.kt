@@ -12,6 +12,7 @@ import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.domain.repository.IFoodRepository
 import com.ariefzuhri.gizee.core.utils.*
+import com.ariefzuhri.gizee.core.utils.datamapper.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -29,7 +30,7 @@ class FoodRepository(
 
             override fun loadFromDB(): Flow<History> {
                 val data = flowOf(result)
-                return data.map { HistoryMapper.mapEntityToDomain(historyEntity, it) }
+                return data.map { mapEntityToDomain(historyEntity, it) }
             }
 
             override fun shouldFetch(data: History?): Boolean {
@@ -42,7 +43,7 @@ class FoodRepository(
             }
 
             override suspend fun saveCallResult(data: FoodResponse) {
-                val foodEntities = FoodMapper.mapResponseToEntities(data)
+                val foodEntities = mapResponseToEntities(data)
                 result = foodEntities
             }
         }.asFlow()
@@ -51,7 +52,7 @@ class FoodRepository(
         object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>() {
             override fun loadFromDB(): Flow<List<Nutrient>> {
                 return localDataSource.getNutrients().map {
-                    NutrientMapper.mapEntitiesToDomain(it)
+                    mapEntitiesToDomain(it)
                 }
             }
 
@@ -64,19 +65,19 @@ class FoodRepository(
             }
 
             override suspend fun saveCallResult(data: List<NutrientResponse>) {
-                val nutrientEntities = NutrientMapper.mapResponsesToEntities(data)
+                val nutrientEntities = mapResponsesToEntities(data)
                 localDataSource.insertNutrients(nutrientEntities)
             }
         }.asFlow()
 
     override fun getHistory(): Flow<List<History>> =
         localDataSource.getHistoryWithFoods().map {
-            HistoryMapper.mapEntitiesToDomain(it)
+            mapEntitiesToDomain(it)
         }
 
     override fun getFavorites(): Flow<List<Food>> =
         localDataSource.getFavoriteFoods().map {
-            FoodMapper.mapEntitiesToDomain(it)
+            mapEntitiesToDomain(it)
         }
 
     override fun isFavorite(foodId: String): Flow<Boolean> =
@@ -86,7 +87,7 @@ class FoodRepository(
         }
 
     override fun setFavorite(food: Food, newState: Boolean) {
-        val foodEntity = FoodMapper.mapDomainToEntity(food)
+        val foodEntity = mapDomainToEntity(food)
         appExecutors.diskIO().execute {
             localDataSource.setFavoriteFood(foodEntity, newState)
         }
@@ -99,7 +100,7 @@ class FoodRepository(
     }
 
     override fun deleteHistory(history: History) {
-        val historyEntity = HistoryMapper.mapDomainToEntity(history)
+        val historyEntity = mapDomainToEntity(history)
         appExecutors.diskIO().execute {
             localDataSource.deleteHistory(historyEntity)
         }

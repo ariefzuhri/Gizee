@@ -8,11 +8,11 @@ import androidx.core.view.get
 import androidx.core.view.isNotEmpty
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.Food
+import com.ariefzuhri.gizee.core.utils.EXTRA_FOOD
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
-import com.ariefzuhri.gizee.core.utils.AppUtils
 import com.ariefzuhri.gizee.core.utils.TAG
-import com.ariefzuhri.gizee.core.utils.Constants.EXTRA_FOOD
-import com.ariefzuhri.gizee.core.utils.ViewBinding
+import com.ariefzuhri.gizee.core.utils.bindLoadImage
+import com.ariefzuhri.gizee.core.utils.formatToDecimal
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -65,20 +65,20 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun initContent(food: Food) {
         with(binding) {
-            ViewBinding.bindLoadImage(imgPhoto, food.photo)
+            bindLoadImage(imgPhoto, food.photo)
             tvTitle.text = food.name.capitalize(Locale.current)
             tvCalories.text = getString(
                 R.string.calories,
-                AppUtils.formatToDecimal(food.nfCalories)
+                formatToDecimal(food.nfCalories)
             )
             tvMeasure.text = getString(
                 R.string.measure,
-                AppUtils.formatToDecimal(food.servingQty),
+                formatToDecimal(food.servingQty),
                 food.servingUnit
             )
             tvWeight.text = getString(
                 R.string.weight,
-                AppUtils.formatToDecimal(food.servingWeightGrams),
+                formatToDecimal(food.servingWeightGrams),
                 "g"
             )
         }
