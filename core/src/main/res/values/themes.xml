@@ -19,18 +19,6 @@
         <item name="fontFamily">@font/sen</item>
     </style>
 
-    <style name="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog" />
-
-    <style name="AppBottomSheetDialogTheme" parent="Theme.Gizee.MaterialComponents.Light.BottomSheetDialog">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/layout_bottom_sheet</item>
-    </style>
-
     <style name="Alert">
         <item name="cardBackgroundColor">@color/blue_transparent</item>
         <item name="cardCornerRadius">8dp</item>

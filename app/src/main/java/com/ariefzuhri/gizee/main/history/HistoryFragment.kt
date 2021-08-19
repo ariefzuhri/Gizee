@@ -11,7 +11,7 @@ import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapter
 import com.ariefzuhri.gizee.core.ui.adapter.HistoryAdapterListener
-import com.ariefzuhri.gizee.core.ui.customview.bottomsheet.MyBottomSheetDialogFragment
+import com.ariefzuhri.bottomsheetdialogfragment.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.core.utils.isNotEmpty
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding

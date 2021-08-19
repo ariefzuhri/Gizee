@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ariefzuhri.gizee.core.ui.customview.nestedscrollablehost
+package com.ariefzuhri.gizee.core.ui.customview
 
 import android.content.Context
 import android.util.AttributeSet
