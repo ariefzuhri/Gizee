@@ -1,11 +1,12 @@
-@file:Suppress("unused")
-
-package com.ariefzuhri.nutritionfactslabel
+package com.ariefzuhri.nutritionfactslabel.view
 
 import android.content.Context
-import android.net.Uri
 import android.util.AttributeSet
 import android.webkit.WebView
+import com.ariefzuhri.nutritionfactslabel.utils.calculatePercentage
+import com.ariefzuhri.nutritionfactslabel.utils.formatToDecimal
+import com.ariefzuhri.nutritionfactslabel.model.NutritionFactsData
+import com.ariefzuhri.nutritionfactslabel.utils.pxToDp
 
 // Source: https://www.fda.gov/food/new-nutrition-facts-label/daily-value-new-nutrition-and-supplement-facts-labels
 private const val TOTAL_CALORIES_FAT = 9 // kcal/g
@@ -28,59 +29,83 @@ private const val STYLES_CSS_FILE = "nutrition_facts_label.css"
 
 class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(context, attrs) {
 
-    private var data = NutritionFactsData.Builder().create()
-    private var typeFace = ""
+    var data = NutritionFactsData()
 
-    fun addData(newData: NutritionFactsData) {
-        data = NutritionFactsData.Builder()
-            .setServingSize(data.servingSize.plus(newData.servingSize))
-            .setCalories(data.calories.plus(newData.calories))
-            .setTotalFat(data.totalFat.plus(newData.totalFat))
-            .setSaturatedFat(data.saturatedFat.plus(newData.saturatedFat))
-            .setTransFat(data.transFat.plus(newData.transFat))
-            .setPolyunsaturatedFat(data.polyunsaturatedFat.plus(newData.polyunsaturatedFat))
-            .setMonounsaturatedFat(data.monounsaturatedFat.plus(newData.monounsaturatedFat))
-            .setCholesterol(data.cholesterol.plus(newData.cholesterol))
-            .setSodium(data.sodium.plus(newData.sodium))
-            .setTotalCarbohydrates(data.totalCarbohydrates.plus(newData.totalCarbohydrates))
-            .setDietaryFiber(data.dietaryFiber.plus(newData.dietaryFiber))
-            .setSugars(data.sugars.plus(newData.sugars))
-            .setProtein(data.protein.plus(newData.protein))
-            .setVitaminA(data.vitaminA.plus(newData.vitaminA))
-            .setVitaminB6(data.vitaminB6.plus(newData.vitaminB6))
-            .setVitaminC(data.vitaminC.plus(newData.vitaminC))
-            .setVitaminD(data.vitaminD.plus(newData.vitaminD))
-            .setCalcium(data.calcium.plus(newData.calcium))
-            .setIron(data.iron.plus(newData.iron))
-            .setPotassium(data.potassium.plus(newData.potassium))
-            .setFolate(data.folate.plus(newData.folate))
-            .create()
-    }
-
-    fun clearData() {
-        data = NutritionFactsData.Builder().create()
-    }
-
-    fun setTypeface(path: Uri) {
-        typeFace = """
-            <style type="text/css">
-                @font-face {
-                  font-family: custom_font;
-                  src: url($path)
-                }
-    
-                body {
-                  font-family: custom_font;
-                  font-size: 14px;
-                }
-            </style>
-        """.trimIndent()
-    }
-
-    // Source: http://jsfiddle.net/thL6j/
     fun drawLabel() {
+        val mainContent = createMainContent()
+        val typefaceStyle = createTypefaceStyle()
+        val htmlString = """
+            <html>
+                <head>
+                    <link href="$STYLES_CSS_FILE" type="text/css" rel="stylesheet"/>
+                    $typefaceStyle
+                </head>
+                <body>
+                    $mainContent
+                </body>
+            </html>
+        """.trimIndent()
+
+        loadDataWithBaseURL(
+            "file:///android_asset/",
+            htmlString,
+            "text/html",
+            "UTF-8",
+            null
+        )
+    }
+
+    private fun createMainContent(): String {
+        var servingSize = 0.0
+        var calories = 0.0
+        var totalFat = 0.0
+        var saturatedFat = 0.0
+        var transFat = 0.0
+        var polyunsaturatedFat = 0.0
+        var monounsaturatedFat = 0.0
+        var cholesterol = 0.0
+        var sodium = 0.0
+        var totalCarbohydrates = 0.0
+        var dietaryFiber = 0.0
+        var sugars = 0.0
+        var protein = 0.0
+        var vitaminA = 0.0
+        var vitaminB6 = 0.0
+        var vitaminC = 0.0
+        var vitaminD = 0.0
+        var calcium = 0.0
+        var iron = 0.0
+        var potassium = 0.0
+        var folate = 0.0
+
+        data.dataSet.entries.forEach {
+            servingSize += it.servingSize
+            calories += it.calories
+            totalFat += it.totalFat
+            saturatedFat += it.saturatedFat
+            transFat += it.transFat
+            polyunsaturatedFat += it.polyunsaturatedFat
+            monounsaturatedFat += it.monounsaturatedFat
+            cholesterol += it.cholesterol
+            sodium += it.sodium
+            totalCarbohydrates += it.totalCarbohydrates
+            dietaryFiber += it.dietaryFiber
+            sugars += it.sugars
+            protein += it.protein
+            vitaminA += it.vitaminA
+            vitaminB6 += it.vitaminB6
+            vitaminC += it.vitaminC
+            vitaminD += it.vitaminD
+            calcium += it.calcium
+            iron += it.iron
+            potassium += it.potassium
+            folate += it.folate
+        }
+
         val webViewWidth = pxToDp(measuredWidth)
-        @Suppress("Reformat") val main = """
+        // Source: http://jsfiddle.net/thL6j/
+        @Suppress("Reformat")
+        return """
             <div id="nutritionfacts" style="width:${webViewWidth - 24}">
                 <table width="${webViewWidth - 24}" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -89,7 +114,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         </tr>
                         <tr>
                             <td>
-                                <div class="serving">Per <span class="highlighted">${formatToDecimal(data.servingSize)} g</span> Serving Size</div>
+                                <div class="serving">Per <span class="highlighted">${formatToDecimal(servingSize)} g</span> Serving Size</div>
                             </td>
                         </tr>
                         <tr style="height: 8px">
@@ -103,10 +128,10 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Calories <div class="weight">${formatToDecimal(data.calories)}</div>
+                                    <div class="label">Calories <div class="weight">${formatToDecimal(calories)}</div>
                                     </div>
                                     <div style="padding-top: 1px; float: right;" class="labellight">Calories from Fat <div
-                                            class="weight">${formatToDecimal(data.totalFat * TOTAL_CALORIES_FAT)}</div>
+                                            class="weight">${formatToDecimal(totalFat * TOTAL_CALORIES_FAT)}</div>
                                     </div>
                                 </div>
                             </td>
@@ -121,33 +146,25 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Total Fat <div class="weight">${formatToDecimal(data.totalFat)} g</div>
+                                    <div class="label">Total Fat <div class="weight">${formatToDecimal(totalFat)} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.totalFat, DAILY_VALUE_FAT)}</div>
+                                    <div class="dv">${calculatePercentage(totalFat, DAILY_VALUE_FAT)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Saturated Fat <div class="weight">${formatToDecimal(data.saturatedFat)} g</div>
+                                    <div class="labellight">Saturated Fat <div class="weight">${formatToDecimal(saturatedFat)} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.saturatedFat, DAILY_VALUE_SATURATED_FAT)}</div>
+                                    <div class="dv">${calculatePercentage(saturatedFat, DAILY_VALUE_SATURATED_FAT)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight"><i>Trans</i> Fat <div class="weight">${formatToDecimal(data.transFat)} g</div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="indent">
-                                <div class="line">
-                                    <div class="labellight">Polyunsaturated Fat <div class="weight">${formatToDecimal(data.polyunsaturatedFat)} g</div>
+                                    <div class="labellight"><i>Trans</i> Fat <div class="weight">${formatToDecimal(transFat)} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -155,7 +172,15 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Monounsaturated Fat <div class="weight">${formatToDecimal(data.monounsaturatedFat)} g</div>
+                                    <div class="labellight">Polyunsaturated Fat <div class="weight">${formatToDecimal(polyunsaturatedFat)} g</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="indent">
+                                <div class="line">
+                                    <div class="labellight">Monounsaturated Fat <div class="weight">${formatToDecimal(monounsaturatedFat)} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -163,43 +188,43 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Cholesterol <div class="weight">${formatToDecimal(data.cholesterol)} mg</div>
+                                    <div class="label">Cholesterol <div class="weight">${formatToDecimal(cholesterol)} mg</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.cholesterol, DAILY_VALUE_CHOLESTEROL)}</div>
+                                    <div class="dv">${calculatePercentage(cholesterol, DAILY_VALUE_CHOLESTEROL)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Sodium <div class="weight">${formatToDecimal(data.sodium)} mg</div>
+                                    <div class="label">Sodium <div class="weight">${formatToDecimal(sodium)} mg</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.sodium, DAILY_VALUE_SODIUM)}</div>
+                                    <div class="dv">${calculatePercentage(sodium, DAILY_VALUE_SODIUM)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Total Carbohydrates <div class="weight">${formatToDecimal(data.totalCarbohydrates)} g</div>
+                                    <div class="label">Total Carbohydrates <div class="weight">${formatToDecimal(totalCarbohydrates)} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.totalCarbohydrates, DAILY_VALUE_CARBOHYDRATE)}</div>
+                                    <div class="dv">${calculatePercentage(totalCarbohydrates, DAILY_VALUE_CARBOHYDRATE)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Dietary Fiber <div class="weight">${formatToDecimal(data.dietaryFiber)} g</div>
+                                    <div class="labellight">Dietary Fiber <div class="weight">${formatToDecimal(dietaryFiber)} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(data.dietaryFiber, DAILY_VALUE_DIETARY_FIBER)}</div>
+                                    <div class="dv">${calculatePercentage(dietaryFiber, DAILY_VALUE_DIETARY_FIBER)}</div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Sugars <div class="weight">${formatToDecimal(data.sugars)} g</div>
+                                    <div class="labellight">Sugars <div class="weight">${formatToDecimal(sugars)} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -207,7 +232,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Protein <div class="weight">${formatToDecimal(data.protein)} g</div>
+                                    <div class="label">Protein <div class="weight">${formatToDecimal(protein)} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -220,24 +245,24 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <table cellspacing="0" cellpadding="0" border="0" class="vitamins">
                                     <tbody>
                                         <tr>
-                                            <td>Vitamin A &nbsp;&nbsp; ${calculatePercentage(data.vitaminA, DAILY_VALUE_VITAMIN_A)}</td>
+                                            <td>Vitamin A &nbsp;&nbsp; ${calculatePercentage(vitaminA, DAILY_VALUE_VITAMIN_A)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Calcium &nbsp;&nbsp; ${calculatePercentage(data.calcium, DAILY_VALUE_CALCIUM)}</td>
+                                            <td align="right">Calcium &nbsp;&nbsp; ${calculatePercentage(calcium, DAILY_VALUE_CALCIUM)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin B6 &nbsp;&nbsp; ${calculatePercentage(data.vitaminB6, DAILY_VALUE_VITAMIN_B6)}</td>
+                                            <td>Vitamin B6 &nbsp;&nbsp; ${calculatePercentage(vitaminB6, DAILY_VALUE_VITAMIN_B6)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Iron &nbsp;&nbsp; ${calculatePercentage(data.iron, DAILY_VALUE_IRON)}</td>
+                                            <td align="right">Iron &nbsp;&nbsp; ${calculatePercentage(iron, DAILY_VALUE_IRON)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin C &nbsp;&nbsp; ${calculatePercentage(data.vitaminC, DAILY_VALUE_VITAMIN_C)}</td>
+                                            <td>Vitamin C &nbsp;&nbsp; ${calculatePercentage(vitaminC, DAILY_VALUE_VITAMIN_C)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Potassium &nbsp;&nbsp; ${calculatePercentage(data.potassium, DAILY_VALUE_POTASSIUM)}</td>
+                                            <td align="right">Potassium &nbsp;&nbsp; ${calculatePercentage(potassium, DAILY_VALUE_POTASSIUM)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin D &nbsp;&nbsp; ${calculatePercentage(data.vitaminD, DAILY_VALUE_VITAMIN_D)}</td>
+                                            <td>Vitamin D &nbsp;&nbsp; ${calculatePercentage(vitaminD, DAILY_VALUE_VITAMIN_D)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Folate &nbsp;&nbsp; ${calculatePercentage(data.folate, DAILY_VALUE_FOLATE)}</td>
+                                            <td align="right">Folate &nbsp;&nbsp; ${calculatePercentage(folate, DAILY_VALUE_FOLATE)}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -257,25 +282,21 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                 </table>
             </div>
         """.trimIndent()
+    }
 
-        val data = """
-            <html>
-                <head>
-                    <link href="$STYLES_CSS_FILE" type="text/css" rel="stylesheet"/>
-                    $typeFace
-                </head>
-                <body>
-                    $main
-                </body>
-            </html>
+    private fun createTypefaceStyle(): String {
+        return """
+            <style type="text/css">
+                @font-face {
+                  font-family: custom_font;
+                  src: url(${data.typeface})
+                }
+    
+                body {
+                  font-family: custom_font;
+                  font-size: 14px;
+                }
+            </style>
         """.trimIndent()
-
-        loadDataWithBaseURL(
-            "file:///android_asset/",
-            data,
-            "text/html",
-            "UTF-8",
-            null
-        )
     }
 }

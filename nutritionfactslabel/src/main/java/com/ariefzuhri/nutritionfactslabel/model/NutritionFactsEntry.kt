@@ -1,8 +1,6 @@
-@file:Suppress("unused")
+package com.ariefzuhri.nutritionfactslabel.model
 
-package com.ariefzuhri.nutritionfactslabel
-
-class NutritionFactsData(builder: Builder) {
+class NutritionFactsEntry(builder: Builder) {
 
     val servingSize: Double = builder.servingSize
     val calories: Double = builder.calories
@@ -27,27 +25,27 @@ class NutritionFactsData(builder: Builder) {
     val folate: Double = builder.folate
 
     class Builder {
-        var servingSize: Double = 0.0
-        var calories: Double = 0.0
-        var totalFat: Double = 0.0
-        var saturatedFat: Double = 0.0
-        var transFat: Double = 0.0
-        var polyunsaturatedFat: Double = 0.0
-        var monounsaturatedFat: Double = 0.0
-        var cholesterol: Double = 0.0
-        var sodium: Double = 0.0
-        var totalCarbohydrates: Double = 0.0
-        var dietaryFiber: Double = 0.0
-        var sugars: Double = 0.0
-        var protein: Double = 0.0
-        var vitaminA: Double = 0.0
-        var vitaminB6: Double = 0.0
-        var vitaminC: Double = 0.0
-        var vitaminD: Double = 0.0
-        var calcium: Double = 0.0
-        var iron: Double = 0.0
-        var potassium: Double = 0.0
-        var folate: Double = 0.0
+        internal var servingSize: Double = 0.0
+        internal var calories: Double = 0.0
+        internal var totalFat: Double = 0.0
+        internal var saturatedFat: Double = 0.0
+        internal var transFat: Double = 0.0
+        internal var polyunsaturatedFat: Double = 0.0
+        internal var monounsaturatedFat: Double = 0.0
+        internal var cholesterol: Double = 0.0
+        internal var sodium: Double = 0.0
+        internal var totalCarbohydrates: Double = 0.0
+        internal var dietaryFiber: Double = 0.0
+        internal var sugars: Double = 0.0
+        internal var protein: Double = 0.0
+        internal var vitaminA: Double = 0.0
+        internal var vitaminB6: Double = 0.0
+        internal var vitaminC: Double = 0.0
+        internal var vitaminD: Double = 0.0
+        internal var calcium: Double = 0.0
+        internal var iron: Double = 0.0
+        internal var potassium: Double = 0.0
+        internal var folate: Double = 0.0
 
         fun setServingSize(servingSize: Double?): Builder {
             this.servingSize = servingSize ?: 0.0
@@ -154,8 +152,8 @@ class NutritionFactsData(builder: Builder) {
             return this
         }
 
-        fun create(): NutritionFactsData {
-            return NutritionFactsData(this)
+        fun create(): NutritionFactsEntry {
+            return NutritionFactsEntry(this)
         }
     }
 }

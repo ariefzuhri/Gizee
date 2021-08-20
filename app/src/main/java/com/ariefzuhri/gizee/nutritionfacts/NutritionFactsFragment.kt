@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import com.ariefzuhri.gizee.core.data.repository.Resource
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
@@ -102,10 +101,7 @@ class NutritionFactsFragment : Fragment() {
     }
 
     private fun populateNutritionFacts() {
-        binding.nfView.setTypeface(FONT_SEN.toUri())
-        viewModel.nutritionFactsData.forEach {
-            binding.nfView.addData(it)
-        }
+        binding.nfView.data = viewModel.nfData
         binding.nfView.drawLabel()
     }
 

@@ -1,4 +1,4 @@
-package com.ariefzuhri.nutritionfactslabel
+package com.ariefzuhri.nutritionfactslabel.utils
 
 import java.text.DecimalFormat
 
