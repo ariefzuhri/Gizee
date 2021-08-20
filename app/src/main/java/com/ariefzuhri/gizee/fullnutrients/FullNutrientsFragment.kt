@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.ui.adapter.NutrientAdapter
-import com.ariefzuhri.bottomsheetdialogfragment.MyBottomSheetDialogFragment
+import com.ariefzuhri.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.databinding.FragmentFullNutrientsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

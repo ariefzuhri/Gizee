@@ -1,4 +1,4 @@
-package com.ariefzuhri.bottomsheetdialogfragment
+package com.ariefzuhri.bottomsheet
 
 import android.app.Dialog
 import android.os.Bundle

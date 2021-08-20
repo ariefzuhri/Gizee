@@ -90,7 +90,7 @@ android {
 
 dependencies {
     implementation project(":core")
-    implementation project(":bottomsheetdialogfragment")
+    implementation project(':bottomsheet')
     implementation project(":nutritionfactslabel")
 
     // Chart
