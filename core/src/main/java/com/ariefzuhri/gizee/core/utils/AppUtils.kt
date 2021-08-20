@@ -35,9 +35,8 @@ fun Activity.showToast(messageId: Int) {
     ).show()
 }
 
-fun formatToDecimal(number: Number?): String {
-    return DecimalFormat("0.#").format(number ?: 0)
-}
+fun Number?.toDecimal(): String =
+    DecimalFormat("0.#").format(this ?: 0)
 
 fun isNetworkAvailable(): Boolean {
     val runtime = Runtime.getRuntime()

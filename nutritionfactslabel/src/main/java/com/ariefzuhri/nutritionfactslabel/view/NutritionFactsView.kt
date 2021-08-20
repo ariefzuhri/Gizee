@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.webkit.WebView
 import com.ariefzuhri.nutritionfactslabel.utils.calculatePercentage
-import com.ariefzuhri.nutritionfactslabel.utils.formatToDecimal
 import com.ariefzuhri.nutritionfactslabel.model.NutritionFactsData
 import com.ariefzuhri.nutritionfactslabel.utils.pxToDp
+import com.ariefzuhri.nutritionfactslabel.utils.toDecimal
 
 // Source: https://www.fda.gov/food/new-nutrition-facts-label/daily-value-new-nutrition-and-supplement-facts-labels
 private const val TOTAL_CALORIES_FAT = 9 // kcal/g
@@ -114,7 +114,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         </tr>
                         <tr>
                             <td>
-                                <div class="serving">Per <span class="highlighted">${formatToDecimal(servingSize)} g</span> Serving Size</div>
+                                <div class="serving">Per <span class="highlighted">${servingSize.toDecimal()} g</span> Serving Size</div>
                             </td>
                         </tr>
                         <tr style="height: 8px">
@@ -128,10 +128,10 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Calories <div class="weight">${formatToDecimal(calories)}</div>
+                                    <div class="label">Calories <div class="weight">${calories.toDecimal()}</div>
                                     </div>
                                     <div style="padding-top: 1px; float: right;" class="labellight">Calories from Fat <div
-                                            class="weight">${formatToDecimal(totalFat * TOTAL_CALORIES_FAT)}</div>
+                                            class="weight">${(totalFat * TOTAL_CALORIES_FAT).toDecimal()}</div>
                                     </div>
                                 </div>
                             </td>
@@ -146,7 +146,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Total Fat <div class="weight">${formatToDecimal(totalFat)} g</div>
+                                    <div class="label">Total Fat <div class="weight">${totalFat.toDecimal()} g</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(totalFat, DAILY_VALUE_FAT)}</div>
                                 </div>
@@ -155,7 +155,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Saturated Fat <div class="weight">${formatToDecimal(saturatedFat)} g</div>
+                                    <div class="labellight">Saturated Fat <div class="weight">${saturatedFat.toDecimal()} g</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(saturatedFat, DAILY_VALUE_SATURATED_FAT)}</div>
                                 </div>
@@ -164,7 +164,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight"><i>Trans</i> Fat <div class="weight">${formatToDecimal(transFat)} g</div>
+                                    <div class="labellight"><i>Trans</i> Fat <div class="weight">${transFat.toDecimal()} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -172,7 +172,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Polyunsaturated Fat <div class="weight">${formatToDecimal(polyunsaturatedFat)} g</div>
+                                    <div class="labellight">Polyunsaturated Fat <div class="weight">${polyunsaturatedFat.toDecimal()} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -180,7 +180,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Monounsaturated Fat <div class="weight">${formatToDecimal(monounsaturatedFat)} g</div>
+                                    <div class="labellight">Monounsaturated Fat <div class="weight">${monounsaturatedFat.toDecimal()} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -188,7 +188,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Cholesterol <div class="weight">${formatToDecimal(cholesterol)} mg</div>
+                                    <div class="label">Cholesterol <div class="weight">${cholesterol.toDecimal()} mg</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(cholesterol, DAILY_VALUE_CHOLESTEROL)}</div>
                                 </div>
@@ -197,7 +197,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Sodium <div class="weight">${formatToDecimal(sodium)} mg</div>
+                                    <div class="label">Sodium <div class="weight">${sodium.toDecimal()} mg</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(sodium, DAILY_VALUE_SODIUM)}</div>
                                 </div>
@@ -206,7 +206,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Total Carbohydrates <div class="weight">${formatToDecimal(totalCarbohydrates)} g</div>
+                                    <div class="label">Total Carbohydrates <div class="weight">${totalCarbohydrates.toDecimal()} g</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(totalCarbohydrates, DAILY_VALUE_CARBOHYDRATE)}</div>
                                 </div>
@@ -215,7 +215,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Dietary Fiber <div class="weight">${formatToDecimal(dietaryFiber)} g</div>
+                                    <div class="labellight">Dietary Fiber <div class="weight">${dietaryFiber.toDecimal()} g</div>
                                     </div>
                                     <div class="dv">${calculatePercentage(dietaryFiber, DAILY_VALUE_DIETARY_FIBER)}</div>
                                 </div>
@@ -224,7 +224,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td class="indent">
                                 <div class="line">
-                                    <div class="labellight">Sugars <div class="weight">${formatToDecimal(sugars)} g</div>
+                                    <div class="labellight">Sugars <div class="weight">${sugars.toDecimal()} g</div>
                                     </div>
                                 </div>
                             </td>
@@ -232,7 +232,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                         <tr>
                             <td>
                                 <div class="line">
-                                    <div class="label">Protein <div class="weight">${formatToDecimal(protein)} g</div>
+                                    <div class="label">Protein <div class="weight">${protein.toDecimal()} g</div>
                                     </div>
                                 </div>
                             </td>

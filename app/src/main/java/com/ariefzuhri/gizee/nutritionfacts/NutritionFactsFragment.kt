@@ -80,7 +80,7 @@ class NutritionFactsFragment : Fragment() {
         val chartModel = AAChartModel()
             .chartType(AAChartType.Pie)
             .title("Source of Calories")
-            .subtitle("Total calories: ${formatToDecimal(viewModel.totalCalories)} kcal")
+            .subtitle("Total calories: ${viewModel.totalCalories.toDecimal()} kcal")
             .dataLabelsEnabled(true)
             .colorsTheme(arrayOf("#61AAEE", "#EBEE61", "#64EE61"))
             .series(

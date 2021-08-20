@@ -12,7 +12,7 @@ import com.ariefzuhri.gizee.core.utils.EXTRA_FOOD
 import com.ariefzuhri.gizee.databinding.ActivityDetailsBinding
 import com.ariefzuhri.gizee.core.utils.TAG
 import com.ariefzuhri.gizee.core.utils.bindLoadImage
-import com.ariefzuhri.gizee.core.utils.formatToDecimal
+import com.ariefzuhri.gizee.core.utils.toDecimal
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -69,16 +69,16 @@ class DetailsActivity : AppCompatActivity() {
             tvTitle.text = food.name.capitalize(Locale.current)
             tvCalories.text = getString(
                 R.string.calories,
-                formatToDecimal(food.nfCalories)
+                food.nfCalories.toDecimal()
             )
             tvMeasure.text = getString(
                 R.string.measure,
-                formatToDecimal(food.servingQty),
+                food.servingQty.toDecimal(),
                 food.servingUnit
             )
             tvWeight.text = getString(
                 R.string.weight,
-                formatToDecimal(food.servingWeightGrams),
+                food.servingWeightGrams.toDecimal(),
                 "g"
             )
         }

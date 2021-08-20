@@ -3,7 +3,7 @@ package com.ariefzuhri.nutritionfactslabel.utils
 import java.text.DecimalFormat
 
 internal fun calculatePercentage(obtained: Double, total: Double) =
-    "${formatToDecimal(obtained * 100 / total)}%"
+    "${(obtained * 100 / total).toDecimal()}%"
 
-internal fun formatToDecimal(number: Number?): String =
-    DecimalFormat("0.#").format(number ?: 0)
+internal fun Number?.toDecimal(): String =
+    DecimalFormat("0.#").format(this ?: 0)

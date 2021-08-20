@@ -11,7 +11,7 @@ import com.ariefzuhri.gizee.core.databinding.ItemFoodBinding
 import com.ariefzuhri.gizee.core.domain.model.Food
 import com.ariefzuhri.gizee.core.utils.EXTRA_FOOD
 import com.ariefzuhri.gizee.core.utils.bindLoadImage
-import com.ariefzuhri.gizee.core.utils.formatToDecimal
+import com.ariefzuhri.gizee.core.utils.toDecimal
 
 class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
@@ -48,14 +48,14 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
                 tvName.text = food?.name?.capitalize(Locale.current)
                 tvMeasure.text = itemView.context.resources.getString(
                     R.string.measure_with_weight,
-                    formatToDecimal(food?.servingQty),
+                    food?.servingQty.toDecimal(),
                     food?.servingUnit,
-                    formatToDecimal(food?.servingWeightGrams)
+                    food?.servingWeightGrams.toDecimal()
                 )
                 tvCalories.text =
                     itemView.context.resources.getString(
                         R.string.calories,
-                        formatToDecimal(food?.nfCalories)
+                        food?.nfCalories.toDecimal()
                     )
                 itemView.setOnClickListener {
                     val intent = Intent(
