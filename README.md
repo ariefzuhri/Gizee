@@ -1,10 +1,12 @@
 # Gizee
+
 [![CircleCI][build-shield]][build-url]
+[![GitHub release][release-shield]][release-url]
 [![MIT License][license-shield]][license-url]
 
 <a href="#"><img src="https://i.imgur.com/TySh7fD.png" /></a>
 
-**Calculate calories and nutrients in your meals using Gizee.** This Android-based app is powered by [Nutritionix API](https://developer.nutritionix.com/) and fully well-written in Kotlin. Gizee is built using Clean Architecture which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s [Menjadi Android Developer Expert](https://www.dicoding.com/academies/165) (Become an Android Developer Expert) class.
+**Calculate calories and nutrients in your meals using Gizee.** This Android-based app is powered by [Nutritionix API](https://developer.nutritionix.com/) and entirely well-written in Kotlin. Gizee is built using Clean Architecture which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s [Menjadi Android Developer Expert](https://www.dicoding.com/academies/165) (Become an Android Developer Expert) class.
 
 ## Download
 Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and download the latest apk.
@@ -13,12 +15,11 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 <a href="#"><img src="https://i.imgur.com/ma8dpGx.png" /></a>
 
 ## Architecture and Tech-stack
-- Clean Architecture (three layers separation; presentation, domain, and data) with [MVVM](https://developer.android.com/jetpack/guide)
 - 100% Kotlin
-- Android Minimum SDK API 21
-- Android Jetpack ([Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), and [Material Components](https://material.io/develop/android))
+- Clean Architecture (three layers separation: presentation, domain, and data) with [MVVM](https://developer.android.com/jetpack/guide)
+- Android Jetpack Architecture Components ([Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), and [Material Components](https://material.io/develop/android))
 - Fetch data from the network and a Room database using [Coroutines Flow](https://developer.android.com/kotlin/coroutines)
-- Android library modular architecture with [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)
+- Android library modular architecture include [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)
 - [Retrofit](https://github.com/square/retrofit), REST client framework
 - [Moshi](https://github.com/square/moshi), parsing the JSON format
 - [OkHttp](https://github.com/square/okhttp), certificate pinning
@@ -26,7 +27,7 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 - [Firebase Crashlytics](https://github.com/firebase/firebase-android-sdk/tree/master/firebase-crashlytics), real-time crash reporter
 - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector
 - [Timber](https://github.com/JakeWharton/timber), logging utility
-- [Logger](https://github.com/orhanobut/logger), logging utility for debug only
+- [Logger](https://github.com/orhanobut/logger), logging utility
 - [LeakCanary](https://github.com/square/leakcanary), memory leak detection
 - [SQLCipher](https://github.com/sqlcipher/sqlcipher), database encryption
 - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework
@@ -39,20 +40,20 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 Firstly, clone this repository and import it into Android Studio (`git clone https://github.com/ariefzuhri/Gizee.git`).
 
 ### Setup API Key
-1. Get your [Nutritionix API](https://developer.nutritionix.com/) app id and app key
-2. Open`./core` in root directory and create a new file named `keys.properties`
-3. Put your app id and key in `keys.properties` file by adding the following lines
+1. Get your [Nutritionix API](https://developer.nutritionix.com/) app id and app key.
+2. Open`./core` in root directory and create a new file named `keys.properties`.
+3. Put your app id and key in `keys.properties` file by adding the following lines.
 ```
 NUTRITIONIX_APP_ID=YOUR_APP_ID
 NUTRITIONIX_APP_KEY=YOUR_APP_KEY
 ```
 
 ### Setup Firebase Crashlytics
-1. Register the app in the [Firebase Console](https://console.firebase.google.com/)
-2. Get your own `google-services.json` file and move it into Android app module root directory (`./app`)
+1. Register the app in the [Firebase Console](https://console.firebase.google.com/).
+2. Get your own `google-services.json` file and move it into Android app module root directory (`./app`).
 
 ### Setup Certificate Pinning
-1. Open your `keys.properties` file in `./core`
+1. Open your `keys.properties` file in `./core`.
 2. Add the following new lines (you can get the public key hashes [here](https://www.ssllabs.com/analyze.html?d=trackapi.nutritionix.com&s=3.214.2.226&latest)):
 ```
 NUTRITIONIX_BASE_URL=https://trackapi.nutritionix.com/v2/
@@ -64,7 +65,24 @@ NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 
 ### Setup Database Encryption
 1. Open your `keys.properties` file in `./core`
-2. Add `DATABASE_PASSPHRASE=YOUR_DATABASE_PASSPHRASE`
+2. Add `DATABASE_PASSPHRASE=YOUR_PASSPHRASE`
+
+### Setup Signing Configuration (optional)
+_This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and remove the signing configuration in the app-level build.gradle._
+1. First, you need your own keystore. If you don't already have one, you can learn [here](https://developer.android.com/studio/publish/app-signing#generate-key).
+2. Afterwards, create a new file named `keystore.properties` in your root directory.
+3. Add the following lines in your `keystore.properties`:
+```
+storeFile=YOUR_JKS_KEYSTORE
+storePassword=YOUR_STORE_PASSWORD
+keyAlias=_YOUR KEY_ALIAS
+keyPassword=YOUR_KEY_PASSWORD
+```
+
+## 🤝 Support
+Any contributions, issues, and feature requests are welcome.
+
+Give a ⭐️ if you like this project.
 
 ## License
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
@@ -72,17 +90,14 @@ This project is licensed under the MIT License. See the [`LICENSE`](https://gith
 ## Acknowledgments
 - [CSS Nutrition Facts Label](http://jsfiddle.net/thL6j/)
 - [Freepik](https://www.freepik.com)
-- [How to store/use sensitive information in Android development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
+- [How to Store/Use Sensitive Information in Android Development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
 - [NestedScrollableHost](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
 - [Nutritionix](https://www.nutritionix.com/)
 - [pch.vector](https://www.freepik.com/pch-vector)
 - [Shields.io](https://shields.io/)
 
-## 🤝 Support
-Any contributions, issues, and feature requests are welcome.
-
-Give a ⭐️ if you like this project.
-
+[release-shield]: https://img.shields.io/github/v/release/ariefzuhri/gizee?include_prereleases&style=for-the-badge
+[release-url]: https://github.com/ariefzuhri/Gizee/releases
 [build-shield]: https://img.shields.io/circleci/build/github/ariefzuhri/Gizee?style=for-the-badge
 [build-url]: https://circleci.com/gh/ariefzuhri/Gizee
 [license-shield]: https://img.shields.io/github/license/ariefzuhri/gizee?style=for-the-badge
