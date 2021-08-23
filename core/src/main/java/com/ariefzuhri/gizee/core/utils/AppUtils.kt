@@ -37,8 +37,17 @@ fun Activity.showToast(messageId: Int) {
     ).show()
 }
 
-fun Number?.toDecimal(): String =
-    DecimalFormat("0.#").format(this ?: 0)
+fun Number?.toDecimal(): String {
+    return DecimalFormat("0.#").format(this ?: 0)
+}
+
+/** Remove redundant whitespaces */
+fun String?.cleanup(): String {
+    return this?.replace(
+        "(?m)(^\\s+|[\\s&&[^\\r\\n]](?=\\s|$)|\\s+\\z)".toRegex(),
+        ""
+    ).toString()
+}
 
 fun isNetworkAvailable(): Boolean {
     val runtime = Runtime.getRuntime()
