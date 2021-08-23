@@ -2,6 +2,7 @@ package com.ariefzuhri.gizee.base
 
 import android.app.Application
 import android.util.Log
+import com.ariefzuhri.gizee.BuildConfig
 import com.ariefzuhri.gizee.core.di.databaseModule
 import com.ariefzuhri.gizee.core.di.networkModule
 import com.ariefzuhri.gizee.core.di.repositoryModule
