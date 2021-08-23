@@ -8,5 +8,5 @@ internal fun Double?.divideToPercent(divideTo: Double): String {
 }
 
 internal fun Number?.toDecimal(): String {
-    DecimalFormat("0.#").format(this ?: 0)
+    return DecimalFormat("0.#").format(this ?: 0)
 }

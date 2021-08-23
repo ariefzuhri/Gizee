@@ -23,8 +23,8 @@ class FoodRepository(
     private val appExecutors: AppExecutors
 ) : IFoodRepository {
 
-    override fun getSearchResult(query: String): Flow<Resource<History>> =
-        object : NetworkBoundResource<History, FoodResponse>() {
+    override fun getSearchResult(query: String): Flow<Resource<History>> {
+        return object : NetworkBoundResource<History, FoodResponse>() {
             var historyEntity = HistoryEntity(query)
             var result = listOf<FoodEntity>()
 
@@ -47,9 +47,10 @@ class FoodRepository(
                 result = foodEntities
             }
         }.asFlow()
+    }
 
-    override fun getNutrients(): Flow<Resource<List<Nutrient>>> =
-        object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>() {
+    override fun getNutrients(): Flow<Resource<List<Nutrient>>> {
+        return object : NetworkBoundResource<List<Nutrient>, List<NutrientResponse>>() {
             override fun loadFromDB(): Flow<List<Nutrient>> {
                 return localDataSource.getNutrients().map {
                     mapEntitiesToDomain(it)
@@ -69,22 +70,26 @@ class FoodRepository(
                 localDataSource.insertNutrients(nutrientEntities)
             }
         }.asFlow()
+    }
 
-    override fun getHistory(): Flow<List<History>> =
-        localDataSource.getHistoryWithFoods().map {
+    override fun getHistory(): Flow<List<History>> {
+        return localDataSource.getHistoryWithFoods().map {
             mapEntitiesToDomain(it)
         }
+    }
 
-    override fun getFavorites(): Flow<List<Food>> =
-        localDataSource.getFavoriteFoods().map {
+    override fun getFavorites(): Flow<List<Food>> {
+        return localDataSource.getFavoriteFoods().map {
             mapEntitiesToDomain(it)
         }
+    }
 
-    override fun isFavorite(foodId: String): Flow<Boolean> =
-        localDataSource.getFavoriteFood(foodId).map {
+    override fun isFavorite(foodId: String): Flow<Boolean> {
+        return localDataSource.getFavoriteFood(foodId).map {
             @Suppress("SENSELESS_COMPARISON")
             it != null
         }
+    }
 
     override fun setFavorite(food: Food, newState: Boolean) {
         val foodEntity = mapDomainToEntity(food)

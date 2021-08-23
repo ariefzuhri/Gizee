@@ -86,7 +86,9 @@ class NutritionFactsFragment : Fragment() {
             .series(
                 arrayOf(
                     AASeriesElement()
-                        .dataLabels(AADataLabels().format("<b>{point.name}</b>: {point.percentage:.1f}%"))
+                        .dataLabels(AADataLabels()
+                            .format("<b>{point.name}</b>: {point.percentage:.1f}%")
+                        )
                         .name("Total calories (kcal)")
                         .data(
                             arrayOf(

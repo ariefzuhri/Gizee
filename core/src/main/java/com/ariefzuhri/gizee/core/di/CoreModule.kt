@@ -20,6 +20,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
+private const val NETWORK_CALL_TIMEOUT = 120
+
 val databaseModule = module {
     factory { get<FoodDatabase>().foodDao() }
     single {
@@ -49,8 +51,8 @@ val networkModule = module {
             if (DEBUG) addInterceptor(
                 ChuckerInterceptor.Builder(androidContext()).build()
             )
-            connectTimeout(120, TimeUnit.SECONDS)
-            readTimeout(120, TimeUnit.SECONDS)
+            connectTimeout(NETWORK_CALL_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            readTimeout(NETWORK_CALL_TIMEOUT.toLong(), TimeUnit.SECONDS)
             certificatePinner(certificatePinner)
             build()
         }

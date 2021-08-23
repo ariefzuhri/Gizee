@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee
+package com.ariefzuhri.gizee.base
 
 import android.app.Application
 import android.util.Log
@@ -18,7 +18,7 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.PrettyFormatStrategy
 
 @Suppress("unused")
-class MyApplication : Application() {
+class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -41,7 +41,7 @@ class MyApplication : Application() {
     private fun initKoin() {
         startKoin {
             androidLogger(Level.NONE)
-            androidContext(this@MyApplication)
+            androidContext(this@BaseApplication)
             modules(
                 listOf(
                     databaseModule,

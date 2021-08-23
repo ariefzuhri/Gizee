@@ -25,8 +25,9 @@ class HistoryAdapter(private val listener: HistoryAdapterListener) :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val binding =
-            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemHistoryBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ViewHolder(binding)
     }
 
