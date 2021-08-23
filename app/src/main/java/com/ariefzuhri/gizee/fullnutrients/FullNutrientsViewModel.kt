@@ -12,8 +12,10 @@ class FullNutrientsViewModel : ViewModel() {
         nutrients = combinedNutrientValues(rawNutrients, foods)
     }
 
-    /* To display a complete list of nutrients in several foods,
-     * we need to combine each nutrient value present in each food. */
+    /**
+     * To display a complete list of nutrients in several foods,
+     * we need to combine each nutrient value present in each food.
+     */
     private fun combinedNutrientValues(
         rawNutrients: List<Nutrient>,
         foods: List<Food>
