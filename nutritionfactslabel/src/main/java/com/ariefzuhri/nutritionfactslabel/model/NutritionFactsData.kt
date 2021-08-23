@@ -5,5 +5,5 @@ import androidx.core.net.toUri
 
 data class NutritionFactsData(
     var dataSet: NutritionFactsDataSet = NutritionFactsDataSet(),
-    var typeface: Uri = "".toUri()
+    var typeface: Uri = "".toUri(),
 )

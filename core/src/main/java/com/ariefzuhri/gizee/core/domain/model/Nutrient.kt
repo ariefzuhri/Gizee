@@ -8,5 +8,5 @@ data class Nutrient(
     val id: Int,
     val name: String,
     val unit: String,
-    var value: Double
+    var value: Double,
 ) : Parcelable

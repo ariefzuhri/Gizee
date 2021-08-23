@@ -13,5 +13,5 @@ data class NutrientResponse(
     val unit: String? = null,
 
     @field:Json(name = "usda_nutr_desc")
-    val usdaNutrDesc: String? = null
+    val usdaNutrDesc: String? = null,
 )

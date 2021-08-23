@@ -7,14 +7,14 @@ import com.squareup.moshi.JsonClass
 data class FoodResponse(
 
     @field:Json(name = "foods")
-    val foods: List<FoodsItem?>? = null
+    val foods: List<FoodsItem?>? = null,
 )
 
 @JsonClass(generateAdapter = true)
 data class Photo(
 
     @field:Json(name = "thumb")
-    val thumb: String? = null
+    val thumb: String? = null,
 )
 
 @JsonClass(generateAdapter = true)
@@ -66,7 +66,7 @@ data class FoodsItem(
     val fullNutrients: List<FullNutrientsItem?>? = null,
 
     @field:Json(name = "photo")
-    val photo: Photo? = null
+    val photo: Photo? = null,
 )
 
 @JsonClass(generateAdapter = true)
@@ -76,5 +76,5 @@ data class FullNutrientsItem(
     val attrId: Int? = null,
 
     @field:Json(name = "value")
-    val value: Double? = null
+    val value: Double? = null,
 )

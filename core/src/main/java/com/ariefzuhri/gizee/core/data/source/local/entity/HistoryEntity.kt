@@ -11,7 +11,7 @@ import java.util.*
 data class HistoryEntity(
     @PrimaryKey @NonNull @ColumnInfo(name = "queries") val query: String,
     var timestamp: Long,
-    @Ignore val foods: List<FoodEntity>? = null
+    @Ignore val foods: List<FoodEntity>? = null,
 ) {
 
     constructor(query: String) : this(

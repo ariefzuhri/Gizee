@@ -32,5 +32,5 @@ data class FoodEntity(
     val nfIron: Double,
     val nfPotassium: Double,
     val nfFolate: Double,
-    val fullNutrients: List<NutrientEntity>
+    val fullNutrients: List<NutrientEntity>,
 )
