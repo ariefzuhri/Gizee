@@ -3,8 +3,8 @@ package com.ariefzuhri.nutritionfactslabel.view
 import android.content.Context
 import android.util.AttributeSet
 import android.webkit.WebView
-import com.ariefzuhri.nutritionfactslabel.utils.calculatePercentage
 import com.ariefzuhri.nutritionfactslabel.model.NutritionFactsData
+import com.ariefzuhri.nutritionfactslabel.utils.divideToPercent
 import com.ariefzuhri.nutritionfactslabel.utils.pxToDp
 import com.ariefzuhri.nutritionfactslabel.utils.toDecimal
 
@@ -148,7 +148,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="label">Total Fat <div class="weight">${totalFat.toDecimal()} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(totalFat, DAILY_VALUE_FAT)}</div>
+                                    <div class="dv">${totalFat.divideToPercent(DAILY_VALUE_FAT)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -157,7 +157,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="labellight">Saturated Fat <div class="weight">${saturatedFat.toDecimal()} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(saturatedFat, DAILY_VALUE_SATURATED_FAT)}</div>
+                                    <div class="dv">${saturatedFat.divideToPercent(DAILY_VALUE_SATURATED_FAT)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -190,7 +190,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="label">Cholesterol <div class="weight">${cholesterol.toDecimal()} mg</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(cholesterol, DAILY_VALUE_CHOLESTEROL)}</div>
+                                    <div class="dv">${cholesterol.divideToPercent(DAILY_VALUE_CHOLESTEROL)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -199,7 +199,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="label">Sodium <div class="weight">${sodium.toDecimal()} mg</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(sodium, DAILY_VALUE_SODIUM)}</div>
+                                    <div class="dv">${sodium.divideToPercent(DAILY_VALUE_SODIUM)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -208,7 +208,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="label">Total Carbohydrates <div class="weight">${totalCarbohydrates.toDecimal()} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(totalCarbohydrates, DAILY_VALUE_CARBOHYDRATE)}</div>
+                                    <div class="dv">${totalCarbohydrates.divideToPercent(DAILY_VALUE_CARBOHYDRATE)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -217,7 +217,7 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <div class="line">
                                     <div class="labellight">Dietary Fiber <div class="weight">${dietaryFiber.toDecimal()} g</div>
                                     </div>
-                                    <div class="dv">${calculatePercentage(dietaryFiber, DAILY_VALUE_DIETARY_FIBER)}</div>
+                                    <div class="dv">${dietaryFiber.divideToPercent(DAILY_VALUE_DIETARY_FIBER)}</div>
                                 </div>
                             </td>
                         </tr>
@@ -245,24 +245,24 @@ class NutritionFactsView(context: Context, attrs: AttributeSet?) : WebView(conte
                                 <table cellspacing="0" cellpadding="0" border="0" class="vitamins">
                                     <tbody>
                                         <tr>
-                                            <td>Vitamin A &nbsp;&nbsp; ${calculatePercentage(vitaminA, DAILY_VALUE_VITAMIN_A)}</td>
+                                            <td>Vitamin A &nbsp;&nbsp; ${vitaminA.divideToPercent(DAILY_VALUE_VITAMIN_A)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Calcium &nbsp;&nbsp; ${calculatePercentage(calcium, DAILY_VALUE_CALCIUM)}</td>
+                                            <td align="right">Calcium &nbsp;&nbsp; ${calcium.divideToPercent(DAILY_VALUE_CALCIUM)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin B6 &nbsp;&nbsp; ${calculatePercentage(vitaminB6, DAILY_VALUE_VITAMIN_B6)}</td>
+                                            <td>Vitamin B6 &nbsp;&nbsp; ${vitaminB6.divideToPercent(DAILY_VALUE_VITAMIN_B6)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Iron &nbsp;&nbsp; ${calculatePercentage(iron, DAILY_VALUE_IRON)}</td>
+                                            <td align="right">Iron &nbsp;&nbsp; ${iron.divideToPercent(DAILY_VALUE_IRON)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin C &nbsp;&nbsp; ${calculatePercentage(vitaminC, DAILY_VALUE_VITAMIN_C)}</td>
+                                            <td>Vitamin C &nbsp;&nbsp; ${vitaminC.divideToPercent(DAILY_VALUE_VITAMIN_C)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Potassium &nbsp;&nbsp; ${calculatePercentage(potassium, DAILY_VALUE_POTASSIUM)}</td>
+                                            <td align="right">Potassium &nbsp;&nbsp; ${potassium.divideToPercent(DAILY_VALUE_POTASSIUM)}</td>
                                         </tr>
                                         <tr>
-                                            <td>Vitamin D &nbsp;&nbsp; ${calculatePercentage(vitaminD, DAILY_VALUE_VITAMIN_D)}</td>
+                                            <td>Vitamin D &nbsp;&nbsp; ${vitaminD.divideToPercent(DAILY_VALUE_VITAMIN_D)}</td>
                                             <td align="center">•</td>
-                                            <td align="right">Folate &nbsp;&nbsp; ${calculatePercentage(folate, DAILY_VALUE_FOLATE)}</td>
+                                            <td align="right">Folate &nbsp;&nbsp; ${folate.divideToPercent(DAILY_VALUE_FOLATE)}</td>
                                         </tr>
                                     </tbody>
                                 </table>
