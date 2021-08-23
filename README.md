@@ -22,13 +22,12 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 - Android library modular architecture include [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)
 - [Retrofit](https://github.com/square/retrofit), REST client framework
 - [Moshi](https://github.com/square/moshi), parsing the JSON format
-- [OkHttp](https://github.com/square/okhttp), certificate pinning
 - [Koin](https://github.com/InsertKoinIO/koin), dependency injection framework
 - [Firebase Crashlytics](https://github.com/firebase/firebase-android-sdk/tree/master/firebase-crashlytics), real-time crash reporter
 - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector
-- [Timber](https://github.com/JakeWharton/timber), logging utility
-- [Logger](https://github.com/orhanobut/logger), logging utility
+- [Timber](https://github.com/JakeWharton/timber) and [Logger](https://github.com/orhanobut/logger), logging utility
 - [LeakCanary](https://github.com/square/leakcanary), memory leak detection
+- [OkHttp](https://github.com/square/okhttp), certificate pinning
 - [SQLCipher](https://github.com/sqlcipher/sqlcipher), database encryption
 - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework
 - [Glide](https://github.com/bumptech/glide), image loading and caching
@@ -89,12 +88,16 @@ This project is licensed under the MIT License. See the [`LICENSE`](https://gith
 
 ## Acknowledgments
 - [CSS Nutrition Facts Label](http://jsfiddle.net/thL6j/)
+- [Empty State – Heart](https://lottiefiles.com/46771-empty-state-heart)
+- [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons)
 - [Freepik](https://www.freepik.com)
 - [How to Store/Use Sensitive Information in Android Development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
+- [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community))
 - [NestedScrollableHost](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
 - [Nutritionix](https://www.nutritionix.com/)
 - [pch.vector](https://www.freepik.com/pch-vector)
 - [Shields.io](https://shields.io/)
+- [Spaceship Empty Searching](https://lottiefiles.com/4011-spaceship-empty-searching)
 
 [release-shield]: https://img.shields.io/github/v/release/ariefzuhri/gizee?include_prereleases&style=for-the-badge
 [release-url]: https://github.com/ariefzuhri/Gizee/releases
