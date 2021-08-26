@@ -54,11 +54,10 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
                     food?.servingUnit,
                     food?.servingWeightGrams.toDecimal()
                 )
-                tvCalories.text =
-                    itemView.context.resources.getString(
-                        R.string.calories,
-                        food?.nfCalories.toDecimal()
-                    )
+                tvCalories.text = itemView.context.resources.getString(
+                    R.string.calories,
+                    food?.nfCalories.toDecimal()
+                )
                 itemView.setOnClickListener {
                     val intent = Intent(
                         itemView.context,

@@ -28,17 +28,6 @@ class BaseApplication : Application() {
         initTimber()
     }
 
-    private fun initLogger() {
-        val formatStrategy = PrettyFormatStrategy.newBuilder()
-            .tag("DEV_LOG")
-            .build()
-        Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {
-            override fun isLoggable(priority: Int, tag: String?): Boolean {
-                return BuildConfig.DEBUG
-            }
-        })
-    }
-
     private fun initKoin() {
         startKoin {
             androidLogger(Level.NONE)
@@ -53,6 +42,17 @@ class BaseApplication : Application() {
                 )
             )
         }
+    }
+
+    private fun initLogger() {
+        val formatStrategy = PrettyFormatStrategy.newBuilder()
+            .tag("DEV_LOG")
+            .build()
+        Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {
+            override fun isLoggable(priority: Int, tag: String?): Boolean {
+                return BuildConfig.DEBUG
+            }
+        })
     }
 
     private fun initTimber() {
