@@ -2,7 +2,7 @@
 buildscript {
     ext {
         gradleVersion = '7.0.1'
-        kotlinVersion = '1.5.21'
+        kotlinVersion = '1.5.30'
         googleServicesVersion = '4.3.8'
         crashlyticsVersion = '2.7.1'
     }

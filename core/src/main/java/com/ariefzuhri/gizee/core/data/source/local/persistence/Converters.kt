@@ -12,8 +12,9 @@ class Converters {
         .addLast(KotlinJsonAdapterFactory())
         .build()
 
-    private val nutrientsType =
-        Types.newParameterizedType(List::class.java, NutrientEntity::class.java)
+    private val nutrientsType = Types.newParameterizedType(
+        List::class.java, NutrientEntity::class.java
+    )
     private val nutrientsAdapter = moshi.adapter<List<NutrientEntity>>(nutrientsType)
 
     @TypeConverter

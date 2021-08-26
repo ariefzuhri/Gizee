@@ -10,7 +10,7 @@ data class NutrientEntity(
     @PrimaryKey @NonNull val id: Int,
     val name: String,
     val unit: String,
-    @Ignore val value: Double
+    @Ignore val value: Double,
 ) {
 
     constructor(id: Int, name: String, unit: String) : this(id, name, unit, 0.0)

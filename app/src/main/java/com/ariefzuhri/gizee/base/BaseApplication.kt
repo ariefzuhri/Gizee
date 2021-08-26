@@ -1,7 +1,8 @@
-package com.ariefzuhri.gizee
+package com.ariefzuhri.gizee.base
 
 import android.app.Application
 import android.util.Log
+import com.ariefzuhri.gizee.BuildConfig
 import com.ariefzuhri.gizee.core.di.databaseModule
 import com.ariefzuhri.gizee.core.di.networkModule
 import com.ariefzuhri.gizee.core.di.repositoryModule
@@ -18,13 +19,29 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.PrettyFormatStrategy
 
 @Suppress("unused")
-class MyApplication : Application() {
+class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         initKoin()
         initLogger()
         initTimber()
+    }
+
+    private fun initKoin() {
+        startKoin {
+            androidLogger(Level.NONE)
+            androidContext(this@BaseApplication)
+            modules(
+                listOf(
+                    databaseModule,
+                    networkModule,
+                    repositoryModule,
+                    useCaseModule,
+                    viewModelModule
+                )
+            )
+        }
     }
 
     private fun initLogger() {
@@ -36,22 +53,6 @@ class MyApplication : Application() {
                 return BuildConfig.DEBUG
             }
         })
-    }
-
-    private fun initKoin() {
-        startKoin {
-            androidLogger(Level.NONE)
-            androidContext(this@MyApplication)
-            modules(
-                listOf(
-                    databaseModule,
-                    networkModule,
-                    repositoryModule,
-                    useCaseModule,
-                    viewModelModule
-                )
-            )
-        }
     }
 
     private fun initTimber() {

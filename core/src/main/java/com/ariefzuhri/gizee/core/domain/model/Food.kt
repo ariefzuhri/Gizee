@@ -32,5 +32,5 @@ data class Food(
     val nfPotassium: Double,
     val nfFolate: Double,
     val fullNutrients: List<Nutrient>,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
 ) : Parcelable

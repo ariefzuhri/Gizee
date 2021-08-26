@@ -6,32 +6,40 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val foodDao: FoodDao) {
 
-    fun getNutrients(): Flow<List<NutrientEntity>> =
-        foodDao.getNutrients()
+    fun getNutrients(): Flow<List<NutrientEntity>> {
+        return foodDao.getNutrients()
+    }
 
-    fun getHistoryWithFoods(): Flow<List<HistoryEntity>> =
-        foodDao.getHistory()
+    fun getHistoryWithFoods(): Flow<List<HistoryEntity>> {
+        return foodDao.getHistory()
+    }
 
-    fun getFavoriteFoods(): Flow<List<FoodEntity>> =
-        foodDao.getFavoriteFoods()
+    fun getFavoriteFoods(): Flow<List<FoodEntity>> {
+        return foodDao.getFavoriteFoods()
+    }
 
-    fun getFavoriteFood(id: String) =
-        foodDao.getFavoriteFood(id)
+    fun getFavoriteFood(id: String): Flow<FoodEntity> {
+        return foodDao.getFavoriteFood(id)
+    }
 
-    suspend fun insertHistory(historyEntity: HistoryEntity) =
+    suspend fun insertHistory(historyEntity: HistoryEntity) {
         foodDao.insertHistory(historyEntity)
+    }
 
-    suspend fun insertNutrients(nutrientEntities: List<NutrientEntity>) =
+    suspend fun insertNutrients(nutrientEntities: List<NutrientEntity>) {
         foodDao.insertNutrients(nutrientEntities)
+    }
 
     fun setFavoriteFood(foodEntity: FoodEntity, newState: Boolean) {
         if (newState) foodDao.insertFood(foodEntity)
         else foodDao.deleteFood(foodEntity)
     }
 
-    fun deleteHistory() =
+    fun deleteHistory() {
         foodDao.deleteHistory()
+    }
 
-    fun deleteHistory(historyEntity: HistoryEntity) =
+    fun deleteHistory(historyEntity: HistoryEntity) {
         foodDao.deleteHistory(historyEntity)
+    }
 }

@@ -28,7 +28,9 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFoodBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ViewHolder(binding)
     }
 
@@ -52,11 +54,10 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
                     food?.servingUnit,
                     food?.servingWeightGrams.toDecimal()
                 )
-                tvCalories.text =
-                    itemView.context.resources.getString(
-                        R.string.calories,
-                        food?.nfCalories.toDecimal()
-                    )
+                tvCalories.text = itemView.context.resources.getString(
+                    R.string.calories,
+                    food?.nfCalories.toDecimal()
+                )
                 itemView.setOnClickListener {
                     val intent = Intent(
                         itemView.context,

@@ -26,8 +26,9 @@ class NutrientAdapter : RecyclerView.Adapter<NutrientAdapter.ViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val binding =
-            ItemNutrientBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNutrientBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ViewHolder(binding)
     }
 
