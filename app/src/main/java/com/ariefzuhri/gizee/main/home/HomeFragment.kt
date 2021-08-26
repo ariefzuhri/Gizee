@@ -10,8 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.utils.TAG
-import com.ariefzuhri.gizee.core.utils.hideSoftKeyboard
-import com.ariefzuhri.gizee.core.utils.showSoftKeyboard
+import com.ariefzuhri.gizee.core.utils.hideKeyboard
+import com.ariefzuhri.gizee.core.utils.showKeyboard
 import com.ariefzuhri.gizee.core.utils.showToast
 import com.ariefzuhri.gizee.databinding.FragmentHomeBinding
 import com.ariefzuhri.gizee.main.history.HistoryFragment
@@ -82,10 +82,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun performSearch() {
         val query = binding.edtSearch.text.toString()
         if (query.isNotEmpty()) {
-            hideSoftKeyboard(binding.edtSearch)
+            binding.edtSearch.hideKeyboard()
             mainCallback?.openSearchResult(query)
         } else {
-            showSoftKeyboard(binding.edtSearch)
+            binding.edtSearch.showKeyboard()
             binding.edtSearch.requestFocus()
             activity?.showToast(R.string.toast_empty_search_field)
         }
