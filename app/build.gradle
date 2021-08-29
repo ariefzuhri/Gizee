@@ -24,13 +24,12 @@ def getKeystoreField(String key) {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.ariefzuhri.gizee"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 31
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 

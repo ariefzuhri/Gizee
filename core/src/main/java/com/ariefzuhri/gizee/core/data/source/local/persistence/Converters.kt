@@ -4,13 +4,10 @@ import androidx.room.TypeConverter
 import com.ariefzuhri.gizee.core.data.source.local.entity.NutrientEntity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class Converters {
 
-    private val moshi = Moshi.Builder()
-        .addLast(KotlinJsonAdapterFactory())
-        .build()
+    private val moshi = Moshi.Builder().build()
 
     private val nutrientsType = Types.newParameterizedType(
         List::class.java, NutrientEntity::class.java

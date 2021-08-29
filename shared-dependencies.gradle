@@ -4,8 +4,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     // Testing
     testImplementation "junit:junit:$junitVersion"
