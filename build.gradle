@@ -69,5 +69,5 @@ ext {
     lottieVersion = '4.0.0'
     roundedImageViewVersion = '2.3.0'
     shimmerVersion = '0.5.0'
-    timberVersion = '4.7.1'
+    timberVersion = '5.0.1'
 }
