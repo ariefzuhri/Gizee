@@ -4,7 +4,7 @@
 [![GitHub release][release-shield]][release-url]
 [![MIT License][license-shield]][license-url]
 
-<a href="#"><img src="https://i.imgur.com/TySh7fD.png" /></a>
+<a><img src="https://i.imgur.com/TySh7fD.png" /></a>
 
 **Calculate calories and nutrients in your meals using Gizee.** This Android-based app is powered by [Nutritionix API](https://developer.nutritionix.com/) and entirely well-written in Kotlin. Gizee is built using Clean Architecture which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s [Menjadi Android Developer Expert](https://www.dicoding.com/academies/165) (Become an Android Developer Expert) class.
 
@@ -12,7 +12,7 @@
 Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and download the latest apk.
 
 ## MAD Scorecard
-<a href="#"><img src="https://i.imgur.com/ma8dpGx.png" /></a>
+<a><img src="https://i.imgur.com/ma8dpGx.png" /></a>
 
 ## Architecture and Tech-stack
 - 100% Kotlin
@@ -41,7 +41,7 @@ Firstly, clone this repository and import it into Android Studio (`git clone htt
 ### Setup API Key
 1. Get your [Nutritionix API](https://developer.nutritionix.com/) app id and app key.
 2. Open`./core` in root directory and create a new file named `keys.properties`.
-3. Put your app id and key in `keys.properties` file by adding the following lines.
+3. Put your app id and key in `keys.properties` file by adding the following lines:
 ```
 NUTRITIONIX_APP_ID=YOUR_APP_ID
 NUTRITIONIX_APP_KEY=YOUR_APP_KEY
@@ -65,6 +65,15 @@ NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 ### Setup Database Encryption
 1. Open your `keys.properties` file in `./core`
 2. Add `DATABASE_PASSPHRASE=YOUR_PASSPHRASE`
+
+### Setup CircleCI
+1. You need to fork this project first before setting up your own CircleCI environment. 
+2. Follow the instructions [here](https://circleci.com/docs/2.0/getting-started/#setting-up-circleci) to set it up.
+3. Set all environment variables in project settings. You can see how to make it works [here](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project). The environment variables include all variables defined in the all `.properties` files plus the following 2 variables:
+```
+DEBUG_KEYSTORE={your own default debug.keystore file encoded in base64}
+GOOGLE_SERVICES={your own google-services.json file encoded in base64}
+```
 
 ### Setup Signing Configuration (optional)
 _This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and remove the signing configuration in the app-level build.gradle._
@@ -98,6 +107,12 @@ This project is licensed under the MIT License. See the [`LICENSE`](https://gith
 - [pch.vector](https://www.freepik.com/pch-vector)
 - [Shields.io](https://shields.io/)
 - [Spaceship Empty Searching](https://lottiefiles.com/4011-spaceship-empty-searching)
+
+## To-do List
+- [ ] Add unit testing
+- [ ] Add shimmer effect in favorites and history
+- [ ] Add instrumental testing
+- [ ] Support storing search results (foods)
 
 [release-shield]: https://img.shields.io/github/v/release/ariefzuhri/gizee?include_prereleases&style=for-the-badge
 [release-url]: https://github.com/ariefzuhri/Gizee/releases
