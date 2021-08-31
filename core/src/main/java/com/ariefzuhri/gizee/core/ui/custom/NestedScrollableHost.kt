@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ariefzuhri.gizee.core.ui.customview
+package com.ariefzuhri.gizee.core.ui.custom
 
 import android.content.Context
 import android.util.AttributeSet
