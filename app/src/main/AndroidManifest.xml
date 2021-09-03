@@ -14,8 +14,12 @@
         android:theme="@style/Theme.Gizee">
 
         <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="${analyticsEnabled}" />
+
+        <meta-data
             android:name="firebase_crashlytics_collection_enabled"
-            android:value="${crashlyticsEnabled}" />
+            android:value="${analyticsEnabled}" />
 
         <activity android:name="com.ariefzuhri.gizee.details.DetailsActivity" />
 
