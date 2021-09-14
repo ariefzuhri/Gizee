@@ -56,7 +56,7 @@ ext {
 
     koinVersion = '3.1.2'
 
-    firebaseVersion = '28.3.0'
+    firebaseVersion = '28.4.0'
 
     sqlCipherVersion = '4.4.3'
     sqliteVersion = '2.1.0'
