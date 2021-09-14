@@ -16,19 +16,21 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 
 ## Architecture and Tech-stack
 - 100% Kotlin
-- Clean Architecture (three layers separation: presentation, domain, and data) with [MVVM](https://developer.android.com/jetpack/guide)
-- Android Jetpack Architecture Components ([Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), and [Material Components](https://material.io/develop/android))
+- Clean Architecture (three layers separation: presentation, domain, and data) with [MVVM pattern](https://developer.android.com/jetpack/guide#recommended-app-arch)
+- Android Architecture Components, specifically [Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), and [Material Components](https://material.io/develop/android)
 - Fetch data from the network and a Room database using [Coroutines Flow](https://developer.android.com/kotlin/coroutines)
 - Android library modular architecture include [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)
+- Continuous integration and delivery with [CircleCI](https://circleci.com/)
 - [Retrofit](https://github.com/square/retrofit), REST client framework
 - [Moshi](https://github.com/square/moshi), parsing the JSON format
 - [Koin](https://github.com/InsertKoinIO/koin), dependency injection framework
 - [Firebase Crashlytics](https://github.com/firebase/firebase-android-sdk/tree/master/firebase-crashlytics), real-time crash reporter
+- [Firebase Analytics](https://firebase.google.com/docs/analytics), provides insight on app usage and user engagement
 - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector
 - [Timber](https://github.com/JakeWharton/timber) and [Logger](https://github.com/orhanobut/logger), logging utility
 - [LeakCanary](https://github.com/square/leakcanary), memory leak detection
 - [OkHttp](https://github.com/square/okhttp), certificate pinning
-- [SQLCipher](https://github.com/sqlcipher/sqlcipher), database encryption
+- [SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher), database encryption
 - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework
 - [Glide](https://github.com/bumptech/glide), image loading and caching
 - [Facebook Shimmer](https://github.com/facebook/shimmer-android), shimmering effect on loading screen
@@ -69,23 +71,24 @@ NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 ### Setup CircleCI
 1. You need to fork this project first before setting up your own CircleCI environment. 
 2. Follow the instructions [here](https://circleci.com/docs/2.0/getting-started/#setting-up-circleci) to set it up.
-3. Set all environment variables in project settings. You can see how to make it works [here](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project). The environment variables include all variables defined in the all `.properties` files plus the following 2 variables:
+3. Set all environment variables in project settings. You can see how to make it works [here](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project). The environment variables include all variables defined in `keys.properties` and `keystore.properties` files plus the following 2 variables:
 ```
 DEBUG_KEYSTORE={your own default debug.keystore file encoded in base64}
 GOOGLE_SERVICES={your own google-services.json file encoded in base64}
 ```
 
 ### Setup Signing Configuration (optional)
-_This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and remove the signing configuration in the app-level build.gradle._
-1. First, you need your own keystore. If you don't already have one, you can learn [here](https://developer.android.com/studio/publish/app-signing#generate-key).
+*This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and remove the signing configuration in the app-level build.gradle.*
+1. First, you need your own keystore. If you don't already have one, you can read how to create it [here](https://developer.android.com/studio/publish/app-signing#generate-key).
 2. Afterwards, create a new file named `keystore.properties` in your root directory.
 3. Add the following lines in your `keystore.properties`:
 ```
-storeFile=YOUR_JKS_KEYSTORE
-storePassword=YOUR_STORE_PASSWORD
-keyAlias=_YOUR KEY_ALIAS
-keyPassword=YOUR_KEY_PASSWORD
+STORE_FILE=YOUR_KEYSTORE_PATH
+STORE_PASSWORD=YOUR_STORE_PASSWORD
+KEY_ALIAS=_YOUR KEY_ALIAS
+KEY_PASSWORD=YOUR_KEY_PASSWORD
 ```
+*Use relative path to specify your keystore file path. You can learn [here](https://networkencyclopedia.com/relative-path/).*
 
 ## 🤝 Support
 Any contributions, issues, and feature requests are welcome.
@@ -96,9 +99,10 @@ Give a ⭐️ if you like this project.
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
 
 ## Acknowledgments
-- [CSS Nutrition Facts Label](http://jsfiddle.net/thL6j/)
+- [CSS Nutrition Facts Label](https://jsfiddle.net/thL6j/)
 - [Empty State – Heart](https://lottiefiles.com/46771-empty-state-heart)
 - [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons)
+- [Figma](https://www.figma.com)
 - [Freepik](https://www.freepik.com)
 - [How to Store/Use Sensitive Information in Android Development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
 - [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community))
@@ -109,9 +113,9 @@ This project is licensed under the MIT License. See the [`LICENSE`](https://gith
 - [Spaceship Empty Searching](https://lottiefiles.com/4011-spaceship-empty-searching)
 
 ## To-do List
-- [ ] Add unit testing
+- [ ] Add unit tests
+- [ ] Add instrumented tests
 - [ ] Add shimmer effect in favorites and history
-- [ ] Add instrumental testing
 - [ ] Support storing search results (foods)
 
 [release-shield]: https://img.shields.io/github/v/release/ariefzuhri/gizee?include_prereleases&style=for-the-badge
