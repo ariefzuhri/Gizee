@@ -15,11 +15,10 @@ def versionBuild = 0
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 project.ext.keystoreProperties = new Properties()
-if (keystorePropertiesFile.exists()) {
+if (keystorePropertiesFile.canRead()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
-
-def getKeystoreField(String key) {
+def getKeystoreProperty(String key) {
     return System.getenv(key) ?: project.keystoreProperties[key]
 }
 
@@ -38,10 +37,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(getKeystoreField("storeFile"))
-            storePassword getKeystoreField("storePassword")
-            keyAlias getKeystoreField("keyAlias")
-            keyPassword getKeystoreField("keyPassword")
+            storeFile file(getKeystoreProperty("STORE_FILE"))
+            storePassword getKeystoreProperty("STORE_PASSWORD")
+            keyAlias getKeystoreProperty("KEY_ALIAS")
+            keyPassword getKeystoreProperty("KEY_PASSWORD")
         }
     }
 
