@@ -12,7 +12,7 @@ if (keysPropertiesFile.canRead()) {
     keysProperties.load(new FileInputStream(keysPropertiesFile))
 }
 def getKeyProperty(String key) {
-    return System.getenv(key) ?: "\"${project.keysProperties[key]}\""
+    return "\"${System.getenv(key)}\"" ?: "\"${project.keysProperties[key]}\""
 }
 
 android {
