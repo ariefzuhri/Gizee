@@ -19,7 +19,7 @@ if (keystorePropertiesFile.canRead()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 def getKeystoreProperty(String key) {
-    return "\"${System.getenv(key)}\"" ?: project.keystoreProperties[key]
+    return System.getenv(key) ?: project.keystoreProperties[key]
 }
 
 android {
