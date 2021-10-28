@@ -51,7 +51,7 @@ ext {
     chuckerVersion = '3.5.2'
 
     kotlinCoroutinesVersion = '1.5.2'
-    lifecycleVersion = '2.3.1'
+    lifecycleVersion = '2.4.0'
 
     koinVersion = '3.1.2'
 
