@@ -57,7 +57,7 @@ ext {
 
     firebaseVersion = '28.4.0'
 
-    sqlCipherVersion = '4.4.3'
+    sqlCipherVersion = '4.5.0'
     sqliteVersion = '2.1.0'
 
     aaChartCoreVersion = '-SNAPSHOT'
