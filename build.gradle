@@ -4,7 +4,7 @@ buildscript {
         gradleVersion = '7.0.3'
         kotlinVersion = '1.5.31'
         googleServicesVersion = '4.3.10'
-        crashlyticsVersion = '2.7.1'
+        crashlyticsVersion = '2.8.0'
     }
 
     repositories {
