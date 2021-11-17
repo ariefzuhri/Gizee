@@ -34,7 +34,9 @@
             <include layout="@layout/item_food_placeholder" />
 
             <include layout="@layout/item_food_placeholder" />
+
         </LinearLayout>
+
     </ScrollView>
 
 </com.facebook.shimmer.ShimmerFrameLayout>

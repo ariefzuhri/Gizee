@@ -19,12 +19,16 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-crashlytics-ktx"
 
+    // Memory leak detection
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVersion"
+
+    // Logger
+    implementation "com.orhanobut:logger:$loggerVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
     // Image loading and caching
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
-
-    // Memory leak detection
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVersion"
 
     // Animation parsing
     implementation "com.airbnb.android:lottie:$lottieVersion"
@@ -34,8 +38,4 @@ dependencies {
 
     // Shimmer effect on loading screen
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
-
-    // Logger
-    implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation "com.orhanobut:logger:$loggerVersion"
 }

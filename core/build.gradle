@@ -75,6 +75,10 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
+    // Database encryption
+    implementation "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
+    implementation "androidx.sqlite:sqlite-ktx:$sqliteVersion"
+
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 
@@ -89,12 +93,8 @@ dependencies {
     betaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
 
     // Coroutines Flow
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
-    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-
-    // Database encryption
-    implementation "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
-    implementation "androidx.sqlite:sqlite-ktx:$sqliteVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
 }
