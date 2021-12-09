@@ -47,7 +47,7 @@ ext {
     roomVersion = '2.3.0'
 
     retrofitVersion = '2.9.0'
-    moshiVersion = '1.12.0'
+    moshiVersion = '1.13.0'
     chuckerVersion = '3.5.2'
 
     kotlinCoroutinesVersion = '1.5.2'
