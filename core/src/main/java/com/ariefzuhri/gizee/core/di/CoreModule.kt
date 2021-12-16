@@ -68,8 +68,14 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { LocalDataSource(get()) }
-    single { RemoteDataSource(get()) }
+    single { LocalDataSource(foodDao = get()) }
+    single { RemoteDataSource(apiService = get()) }
     factory { AppExecutors() }
-    single<IFoodRepository> { FoodRepository(get(), get(), get()) }
+    single<IFoodRepository> {
+        FoodRepository(
+            remoteDataSource = get(),
+            localDataSource = get(),
+            appExecutors = get()
+        )
+    }
 }

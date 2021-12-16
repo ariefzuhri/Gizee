@@ -64,7 +64,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun initContent(food: Food) {
-        with(binding) {
+        binding.apply {
             bindLoadImage(imgPhoto, food.photo)
             tvTitle.text = food.name.capitalize(Locale.current)
             tvCalories.text = getString(

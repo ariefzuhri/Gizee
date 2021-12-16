@@ -16,6 +16,8 @@ class FavoritesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoritesBinding
 
+    private val viewModel: FavoritesViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoritesBinding.inflate(layoutInflater)
@@ -23,12 +25,11 @@ class FavoritesActivity : AppCompatActivity() {
 
         loadKoinModules(favoritesModule)
 
-        val viewModel: FavoritesViewModel by viewModel()
         viewModel.getFavorites.observe(this) { foods -> populateAdapter(foods) }
     }
 
     private fun populateAdapter(foods: List<Food>?) {
-        with(binding) {
+        binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(this@FavoritesActivity)
             val adapter = FoodAdapter()
             adapter.submitList(foods)

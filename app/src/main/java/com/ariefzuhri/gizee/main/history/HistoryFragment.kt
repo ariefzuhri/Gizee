@@ -56,7 +56,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     }
 
     private fun initToolbar() {
-        with(binding) {
+        binding.apply {
             toolbar.setNavigationOnClickListener { dismiss() }
             toolbar.setOnMenuItemClickListener {
                 if (it.itemId == R.id.menu_clear) {
@@ -77,7 +77,7 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     }
 
     private fun populateAdapter(history: List<History?>) {
-        with(binding) {
+        binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(context)
             val adapter = HistoryAdapter(this@HistoryFragment)
             adapter.submitList(history)

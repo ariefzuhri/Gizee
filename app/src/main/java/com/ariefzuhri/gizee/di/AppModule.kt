@@ -11,13 +11,13 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<FoodUseCase> { FoodInteractor(get()) }
+    factory<FoodUseCase> { FoodInteractor(foodRepository = get()) }
 }
 
 val viewModelModule = module {
-    viewModel { DetailsViewModel(get()) }
+    viewModel { DetailsViewModel(foodUseCase = get()) }
     viewModel { FullNutrientsViewModel() }
-    viewModel { HistoryViewModel(get()) }
-    viewModel { NutritionFactsViewModel(get()) }
-    viewModel { SearchResultViewModel(get()) }
+    viewModel { HistoryViewModel(foodUseCase = get()) }
+    viewModel { NutritionFactsViewModel(foodUseCase = get()) }
+    viewModel { SearchResultViewModel(foodUseCase = get()) }
 }

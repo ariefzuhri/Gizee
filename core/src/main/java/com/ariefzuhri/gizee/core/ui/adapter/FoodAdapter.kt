@@ -19,7 +19,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
     fun submitList(foods: List<Food?>?) {
         foods?.let {
-            with(this.foods) {
+            this.foods.apply {
                 clear()
                 addAll(it)
                 notifyItemRangeInserted(0, it.size)
@@ -45,7 +45,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Food?) {
-            with(binding) {
+            binding.apply {
                 bindLoadImage(imgPhoto, food?.photo)
                 tvName.text = food?.name?.capitalize(Locale.current)
                 tvMeasure.text = itemView.context.resources.getString(

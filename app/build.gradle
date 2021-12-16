@@ -18,6 +18,7 @@ project.ext.keystoreProperties = new Properties()
 if (keystorePropertiesFile.canRead()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
+
 def getKeystoreProperty(String key) {
     return System.getenv(key) ?: project.keystoreProperties[key]
 }
@@ -49,19 +50,28 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [analyticsEnabled: true]
+            manifestPlaceholders = [
+                    isAnalyticsEnabled  : true,
+                    isCrashlyticsEnabled: true,
+            ]
         }
 
         beta {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [analyticsEnabled: true]
+            manifestPlaceholders = [
+                    isAnalyticsEnabled  : true,
+                    isCrashlyticsEnabled: true,
+            ]
             versionNameSuffix "-beta.${versionBuild}"
         }
 
         debug {
-            manifestPlaceholders = [analyticsEnabled: false]
+            manifestPlaceholders = [
+                    isAnalyticsEnabled  : false,
+                    isCrashlyticsEnabled: false,
+            ]
             versionNameSuffix "-alpha.${versionBuild}"
         }
     }

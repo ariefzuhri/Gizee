@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
+        binding.apply {
             ibFavorites.setOnClickListener(this@HomeFragment)
             cvHelp.setOnClickListener(this@HomeFragment)
             tvHistory.setOnClickListener(this@HomeFragment)
@@ -55,7 +55,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        with(binding) {
+        binding.apply {
             when (view.id) {
                 ibFavorites.id -> openFavorites()
                 cvHelp.id -> autofillQuery()
