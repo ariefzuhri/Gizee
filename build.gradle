@@ -47,7 +47,7 @@ ext {
 
     roomVersion = '2.4.0'
     sqlCipherVersion = '4.5.0'
-    sqliteVersion = '2.1.0'
+    sqliteVersion = '2.2.0'
 
     retrofitVersion = '2.9.0'
     moshiVersion = '1.13.0'
