@@ -74,7 +74,7 @@ class NutritionFactsFragment : Fragment() {
                         }
                         binding.tvFullNutrients.gone(false)
                     }
-                    is Resource.Error -> activity?.showToast(result.message)
+                    is Resource.Error -> activity.showToast(result.message)
                 }
             }
         }

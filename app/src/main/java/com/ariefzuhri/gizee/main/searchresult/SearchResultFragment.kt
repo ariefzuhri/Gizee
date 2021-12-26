@@ -77,8 +77,8 @@ class SearchResultFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         if (!isNetworkAvailable()) {
-                            activity?.showToast(result.message)
-                            activity?.showToast(R.string.toast_error_connection)
+                            activity.showToast(result.message)
+                            activity.showToast(R.string.toast_error_connection)
                         }
                         shimmer.hide(true)
                     }

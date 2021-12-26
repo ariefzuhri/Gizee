@@ -21,18 +21,18 @@ val Any.TAG: String
         }
     }
 
-fun Activity.showToast(message: CharSequence?) {
+fun Activity?.showToast(message: CharSequence?) {
     Toast.makeText(
-        applicationContext,
+        this?.applicationContext,
         message,
         Toast.LENGTH_LONG
     ).show()
 }
 
-fun Activity.showToast(messageId: Int) {
+fun Activity?.showToast(messageId: Int) {
     Toast.makeText(
-        applicationContext,
-        getString(messageId),
+        this?.applicationContext,
+        this?.getString(messageId),
         Toast.LENGTH_LONG
     ).show()
 }

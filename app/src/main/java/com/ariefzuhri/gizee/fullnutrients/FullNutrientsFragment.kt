@@ -22,6 +22,7 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
     private lateinit var foods: List<Food>
     private lateinit var rawNutrients: List<Nutrient>
+    private val viewModel: FullNutrientsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,9 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFullNutrientsBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,16 +56,18 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initToolbar()
-
-        val viewModel: FullNutrientsViewModel by viewModel()
-        viewModel.setNutrients(rawNutrients, foods)
-        viewModel.nutrients?.let { populateAdapter(it) }
+        observeNutrients()
     }
 
     private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener {
             dismiss()
         }
+    }
+
+    private fun observeNutrients() {
+        viewModel.setNutrients(rawNutrients, foods)
+        viewModel.nutrients?.let { populateAdapter(it) }
     }
 
     private fun populateAdapter(fullNutrients: List<Nutrient>) {
