@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.data.repository.Resource
@@ -18,52 +20,50 @@ import com.ariefzuhri.gizee.databinding.FragmentSearchResultBinding
 import com.ariefzuhri.gizee.nutritionfacts.NutritionFactsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val ARG_QUERY = "query"
-
 class SearchResultFragment : Fragment() {
+
+    private val args: SearchResultFragmentArgs by navArgs()
 
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var query: String
+    private val viewModel: SearchResultViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            query = it.getString(ARG_QUERY) ?: ""
-        }
+        query = args.query
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(query: String) =
-            SearchResultFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_QUERY, query)
-                }
-            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initToolbar()
+        observeSearchResult()
+    }
 
+    private fun initToolbar() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun observeSearchResult() {
         val shimmer = ShimmerHelper(
             binding.layoutPlaceholder.root,
             binding.layoutEmpty.root,
-            binding.recyclerView, binding.container
+            binding.recyclerView, binding.fcvNutritionFacts
         )
 
-        val viewModel: SearchResultViewModel by viewModel()
         viewModel.performQuery(query)
         viewModel.searchResult.observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -87,12 +87,6 @@ class SearchResultFragment : Fragment() {
         }
     }
 
-    private fun initToolbar() {
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-    }
-
     private fun populateAdapter(foods: List<Food?>?) {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = FoodAdapter()
@@ -105,7 +99,10 @@ class SearchResultFragment : Fragment() {
         var fragment = childFragmentManager.findFragmentByTag(NutritionFactsFragment.TAG)
         if (fragment == null) {
             fragment = NutritionFactsFragment.newInstance(foods)
-            fragmentTransaction.add(binding.container.id, fragment, NutritionFactsFragment.TAG)
+            fragmentTransaction.add(
+                binding.fcvNutritionFacts.id,
+                fragment, NutritionFactsFragment.TAG
+            )
         }
         fragmentTransaction.commit()
     }

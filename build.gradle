@@ -5,6 +5,7 @@ buildscript {
         kotlinVersion = '1.6.10'
         googleServicesVersion = '4.3.10'
         crashlyticsVersion = '2.8.1'
+        navigationVersion = '2.3.5'
     }
 
     repositories {
@@ -17,6 +18,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlyticsVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -38,8 +40,8 @@ task clean(type: Delete) {
 ext {
     coreVersion = '1.7.0'
     appCompatVersion = '1.4.0'
-    materialVersion = '1.4.0'
     livedataVersion = '2.4.0'
+    materialVersion = '1.4.0'
 
     junitVersion = '4.13.2'
     junitExtVersion = '1.1.3'

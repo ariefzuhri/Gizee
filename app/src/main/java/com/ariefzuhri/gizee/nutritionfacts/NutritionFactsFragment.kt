@@ -35,8 +35,9 @@ class NutritionFactsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentNutritionFactsBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,6 +56,12 @@ class NutritionFactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeNutrients()
+        populateChart()
+        populateNutritionFacts()
+    }
+
+    private fun observeNutrients() {
         viewModel.foods = foods
         viewModel.nutrients.observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -71,9 +78,6 @@ class NutritionFactsFragment : Fragment() {
                 }
             }
         }
-
-        populateChart()
-        populateNutritionFacts()
     }
 
     private fun populateChart() {

@@ -1,11 +1,11 @@
 package com.ariefzuhri.gizee.main.history
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.R
 import com.ariefzuhri.gizee.core.domain.model.History
@@ -15,8 +15,6 @@ import com.ariefzuhri.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.core.utils.gone
 import com.ariefzuhri.gizee.core.utils.isNotEmpty
 import com.ariefzuhri.gizee.databinding.FragmentHistoryBinding
-import com.ariefzuhri.gizee.main.MainActivity
-import com.ariefzuhri.gizee.main.MainCallback
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
@@ -24,35 +22,22 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private var mainCallback: MainCallback? = null
     private val viewModel: HistoryViewModel by viewModel()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mainCallback = context as MainActivity
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = HistoryFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initToolbar()
-
-        viewModel.history.observe(viewLifecycleOwner) { history ->
-            populateAdapter(history)
-        }
+        observeHistory()
     }
 
     private fun initToolbar() {
@@ -76,6 +61,12 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
             .create().show()
     }
 
+    private fun observeHistory() {
+        viewModel.history.observe(viewLifecycleOwner) { history ->
+            populateAdapter(history)
+        }
+    }
+
     private fun populateAdapter(history: List<History?>) {
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(context)
@@ -87,8 +78,9 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     }
 
     override fun onHistoryClicked(history: History) {
-        mainCallback?.setSelectedQuery(history.query)
-        dismiss()
+        findNavController().navigate(
+            HistoryFragmentDirections.actionReturnToHome(history.query)
+        )
     }
 
     override fun onDeleteHistory(history: History) {
@@ -98,10 +90,5 @@ class HistoryFragment : MyBottomSheetDialogFragment(), HistoryAdapterListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mainCallback = null
     }
 }
