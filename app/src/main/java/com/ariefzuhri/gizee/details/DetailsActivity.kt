@@ -89,7 +89,10 @@ class DetailsActivity : AppCompatActivity() {
         var fragment = supportFragmentManager.findFragmentByTag(NutritionFactsFragment.TAG)
         if (fragment == null) {
             fragment = NutritionFactsFragment.newInstance(foods)
-            fragmentTransaction.add(binding.container.id, fragment, NutritionFactsFragment.TAG)
+            fragmentTransaction.add(
+                binding.fcvNutritionFacts.id,
+                fragment, NutritionFactsFragment.TAG
+            )
         }
         fragmentTransaction.commit()
     }

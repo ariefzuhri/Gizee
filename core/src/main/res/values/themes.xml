@@ -139,6 +139,16 @@
         <item name="android:textColor">@color/green</item>
     </style>
 
+    <style name="Theme.Gizee.Starting" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">
+            @drawable/img_attributions
+        </item>
+        <item name="postSplashScreenTheme">@style/Theme.Gizee</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/img_splash_screen</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="windowSplashScreenBackground">@color/green</item>
+    </style>
+
     <style name="Toolbar">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:elevation">0dp</item>

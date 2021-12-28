@@ -49,8 +49,12 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+
             manifestPlaceholders = [
                     isAnalyticsEnabled  : true,
                     isCrashlyticsEnabled: true,
@@ -59,12 +63,17 @@ android {
 
         beta {
             signingConfig signingConfigs.release
+
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+
             manifestPlaceholders = [
                     isAnalyticsEnabled  : true,
                     isCrashlyticsEnabled: true,
             ]
+
             versionNameSuffix "-beta.${versionBuild}"
         }
 
@@ -73,6 +82,7 @@ android {
                     isAnalyticsEnabled  : false,
                     isCrashlyticsEnabled: false,
             ]
+
             versionNameSuffix "-alpha.${versionBuild}"
         }
     }

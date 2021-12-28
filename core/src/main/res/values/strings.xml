@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gizee</string>
-    <string name="attributions">Attributions</string>
     <string name="loading">Loading…</string>
     <string name="see_full_nutrients">Complete list of nutrients</string>
     <string name="hint_search">What did you eat today?</string>

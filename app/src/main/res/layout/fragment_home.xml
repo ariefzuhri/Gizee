@@ -120,7 +120,7 @@
                 android:layout_gravity="bottom"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/img_home" />
+                android:src="@drawable/img_home_background" />
 
         </FrameLayout>
 

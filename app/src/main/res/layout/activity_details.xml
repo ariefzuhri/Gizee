@@ -86,8 +86,8 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/container"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fcv_nutrition_facts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -42,6 +42,7 @@ ext {
     appCompatVersion = '1.4.0'
     livedataVersion = '2.4.0'
     materialVersion = '1.4.0'
+    splashScreenVersion = '1.0.0-alpha02'
 
     junitVersion = '4.13.2'
     junitExtVersion = '1.1.3'

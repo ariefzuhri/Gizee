@@ -27,15 +27,14 @@
 
         <activity
             android:name="com.ariefzuhri.gizee.main.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Gizee.Starting">
 
-        <activity
-            android:name="com.ariefzuhri.gizee.splash.SplashActivity"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
     </application>
