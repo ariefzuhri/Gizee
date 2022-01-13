@@ -39,7 +39,7 @@ task clean(type: Delete) {
 
 ext {
     coreVersion = '1.7.0'
-    appCompatVersion = '1.4.0'
+    appCompatVersion = '1.4.1'
     livedataVersion = '2.4.0'
     materialVersion = '1.4.0'
 
