@@ -4,7 +4,7 @@
 [![GitHub release][release-shield]][release-url]
 [![MIT License][license-shield]][license-url]
 
-<a><img src="https://i.imgur.com/TySh7fD.png" /></a>
+<a><img src="https://i.imgur.com/TySh7fD.png"/></a>
 
 **Calculate calories and nutrients in your meals using Gizee.** This Android-based app is powered by [Nutritionix API](https://developer.nutritionix.com/) and entirely well-written in Kotlin. Gizee is built using Clean Architecture which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s [Menjadi Android Developer Expert](https://www.dicoding.com/academies/165) (Become an Android Developer Expert) class.
 
@@ -15,21 +15,21 @@ Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and d
 <a><img src="https://i.imgur.com/ma8dpGx.png" /></a>
 
 ## Architecture and Tech-stack
-- 100% Kotlin
-- Clean Architecture (three layers separation: presentation, domain, and data) with [MVVM pattern](https://developer.android.com/jetpack/guide#recommended-app-arch)
-- Android Architecture Components, specifically [Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), and [Material Components](https://material.io/develop/android)
+- Native Android with Kotlin
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) (three layers separation: presentation, domain, and data) with [MVVM pattern](https://developer.android.com/jetpack/guide#recommended-app-arch)
+- Android Architecture Components, specifically [Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), and [Material Components](https://material.io/develop/android)
 - Fetch data from the network and a Room database using [Coroutines Flow](https://developer.android.com/kotlin/coroutines)
 - Android library modular architecture include [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)
 - Continuous integration and delivery with [CircleCI](https://circleci.com/)
 - [Retrofit](https://github.com/square/retrofit), REST client framework
 - [Moshi](https://github.com/square/moshi), parsing the JSON format
 - [Koin](https://github.com/InsertKoinIO/koin), dependency injection framework
-- [Firebase Crashlytics](https://github.com/firebase/firebase-android-sdk/tree/master/firebase-crashlytics), real-time crash reporter
+- [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics), real-time crash reporter
 - [Firebase Analytics](https://firebase.google.com/docs/analytics), provides insight on app usage and user engagement
 - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector
 - [Timber](https://github.com/JakeWharton/timber) and [Logger](https://github.com/orhanobut/logger), logging utility
 - [LeakCanary](https://github.com/square/leakcanary), memory leak detection
-- [OkHttp](https://github.com/square/okhttp), certificate pinning
+- [OkHttp CertificatePinner](https://square.github.io/okhttp/4.x/okhttp/okhttp3/-certificate-pinner/), certificate pinning
 - [SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher), database encryption
 - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework
 - [Glide](https://github.com/bumptech/glide), image loading and caching
@@ -65,8 +65,8 @@ NUTRITIONIX_PUBLIC_KEY_4=KwccWaCgrnaw6tsrrSO61FgLacNgG2MMLq8GE6+oP5I=
 ```
 
 ### Setup Database Encryption
-1. Open your `keys.properties` file in `./core`
-2. Add `DATABASE_PASSPHRASE=YOUR_PASSPHRASE`
+1. Open your `keys.properties` file in `./core`.
+2. Add `DATABASE_PASSPHRASE=YOUR_PASSPHRASE`.
 
 ### Setup CircleCI
 1. You need to fork this project first before setting up your own CircleCI environment. 
@@ -99,18 +99,16 @@ Give a ⭐️ if you like this project.
 This project is licensed under the MIT License. See the [`LICENSE`](https://github.com/ariefzuhri/Gizee/blob/master/LICENSE) file for details.
 
 ## Acknowledgments
+- [Arman Rokni](https://lottiefiles.com/armanrokni) on [Spaceship Empty Searching](https://lottiefiles.com/4011-spaceship-empty-searching)
+- [Ehsan](https://lottiefiles.com/ehsan) on [Empty State – Heart](https://lottiefiles.com/46771-empty-state-heart)
+- [Ravi Tamada](https://www.androidhive.info/author/admin/) on [Android Working with Bottom Sheet](https://www.androidhive.info/2017/12/android-working-with-bottom-sheet/)
+- [Yuichi Fujiki](https://yfujiki.medium.com/) on [How to Store/Use Sensitive Information in Android Development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
 - [CSS Nutrition Facts Label](https://jsfiddle.net/thL6j/)
-- [Empty State – Heart](https://lottiefiles.com/46771-empty-state-heart)
-- [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons)
-- [Figma](https://www.figma.com)
-- [Freepik](https://www.freepik.com)
-- [How to Store/Use Sensitive Information in Android Development](https://yfujiki.medium.com/how-to-store-use-sensitive-information-in-android-development-bc352892ece7)
-- [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community))
+- [Figma](https://www.figma.com), [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons), [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community))
+- [Freepik](https://www.freepik.com), [pch.vector](https://www.freepik.com/pch-vector)
 - [NestedScrollableHost](https://github.com/android/views-widgets-samples/blob/master/ViewPager2/app/src/main/java/androidx/viewpager2/integration/testapp/NestedScrollableHost.kt)
 - [Nutritionix](https://www.nutritionix.com/)
-- [pch.vector](https://www.freepik.com/pch-vector)
 - [Shields.io](https://shields.io/)
-- [Spaceship Empty Searching](https://lottiefiles.com/4011-spaceship-empty-searching)
 
 ## To-do List
 - [ ] Add unit tests
