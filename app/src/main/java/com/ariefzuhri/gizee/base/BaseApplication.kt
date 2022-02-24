@@ -3,11 +3,9 @@ package com.ariefzuhri.gizee.base
 import android.app.Application
 import android.util.Log
 import com.ariefzuhri.gizee.BuildConfig
-import com.ariefzuhri.gizee.core.di.databaseModule
-import com.ariefzuhri.gizee.core.di.networkModule
-import com.ariefzuhri.gizee.core.di.repositoryModule
-import com.ariefzuhri.gizee.di.useCaseModule
-import com.ariefzuhri.gizee.di.viewModelModule
+import com.ariefzuhri.gizee.core.database.di.databaseModule
+import com.ariefzuhri.gizee.core.database.di.networkModule
+import com.ariefzuhri.gizee.core.database.di.repositoryModule
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.orhanobut.logger.Logger
 import org.koin.android.ext.koin.androidContext
@@ -32,13 +30,12 @@ class BaseApplication : Application() {
         startKoin {
             androidLogger(Level.NONE)
             androidContext(this@BaseApplication)
+            // Init data source modules
             modules(
                 listOf(
                     databaseModule,
                     networkModule,
                     repositoryModule,
-                    useCaseModule,
-                    viewModelModule
                 )
             )
         }
