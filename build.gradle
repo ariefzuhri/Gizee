@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        gradleVersion = '7.0.4'
+        gradleVersion = '7.1.2'
         kotlinVersion = '1.6.10'
         googleServicesVersion = '4.3.10'
         crashlyticsVersion = '2.8.1'
