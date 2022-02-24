@@ -1,13 +1,10 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
+    id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'androidx.navigation.safeargs.kotlin'
 }
-apply from: '../shared-dependencies.gradle'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -49,8 +46,12 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+
             manifestPlaceholders = [
                     isAnalyticsEnabled  : true,
                     isCrashlyticsEnabled: true,
@@ -59,12 +60,17 @@ android {
 
         beta {
             signingConfig signingConfigs.release
+
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+
             manifestPlaceholders = [
                     isAnalyticsEnabled  : true,
                     isCrashlyticsEnabled: true,
             ]
+
             versionNameSuffix "-beta.${versionBuild}"
         }
 
@@ -73,6 +79,7 @@ android {
                     isAnalyticsEnabled  : false,
                     isCrashlyticsEnabled: false,
             ]
+
             versionNameSuffix "-alpha.${versionBuild}"
         }
     }
@@ -90,18 +97,37 @@ android {
         viewBinding true
     }
 
-    lintOptions {
+    dynamicFeatures = [
+            ':feature:details',
+            ':feature:favorites',
+            ':feature:fullnutrients',
+            ':feature:history',
+            ':feature:home',
+            ':feature:nutritionfacts',
+            ':feature:searchresults',
+    ]
+
+    lint {
         abortOnError false
     }
-
-    dynamicFeatures = [':favorites']
 }
 
 dependencies {
-    implementation project(":core")
-    implementation project(':bottomsheet')
-    implementation project(":nutritionfactslabel")
+    api project(":core:common")
+    api project(":core:database")
 
-    // Chart
-    implementation "com.github.AAChartModel:AAChartCore-Kotlin:$aaChartCoreVersion"
+    api project(':library:bottomsheet')
+
+    // Splash screen API
+    implementation "androidx.core:core-splashscreen:$splashScreenVersion"
+
+    // Navigation component
+    api "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    api "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    api "androidx.navigation:navigation-dynamic-features-fragment:$navigationVersion"
+
+    // Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
+    implementation "com.google.firebase:firebase-analytics-ktx"
+    implementation "com.google.firebase:firebase-crashlytics-ktx"
 }
