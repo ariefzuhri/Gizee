@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+def keysPropertiesFile = file("keys.properties")
+project.ext.keysProperties = new Properties()
+if (keysPropertiesFile.canRead()) {
+    keysProperties.load(new FileInputStream(keysPropertiesFile))
+}
+def getKeyProperty(String key) {
+    return "\"${System.getenv(key) ?: project.keysProperties[key]}\""
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "NUTRITIONIX_APP_ID", getKeyProperty("NUTRITIONIX_APP_ID"))
+        buildConfigField("String", "NUTRITIONIX_APP_KEY", getKeyProperty("NUTRITIONIX_APP_KEY"))
+
+        buildConfigField("String", "DATABASE_PASSPHRASE", getKeyProperty("DATABASE_PASSPHRASE"))
+
+        buildConfigField("String", "NUTRITIONIX_BASE_URL", getKeyProperty("NUTRITIONIX_BASE_URL"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_1", getKeyProperty("NUTRITIONIX_PUBLIC_KEY_1"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_2", getKeyProperty("NUTRITIONIX_PUBLIC_KEY_2"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_3", getKeyProperty("NUTRITIONIX_PUBLIC_KEY_3"))
+        buildConfigField("String", "NUTRITIONIX_PUBLIC_KEY_4", getKeyProperty("NUTRITIONIX_PUBLIC_KEY_4"))
+    }
+
+    buildTypes {
+        release {
+        }
+
+        debug {
+        }
+
+        beta {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    
+    lint {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation project(":core:common")
+
+    // Data storage
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Database encryption
+    implementation "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
+    implementation "androidx.sqlite:sqlite-ktx:$sqliteVersion"
+
+    // Networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // Parsing the JSON format
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    // Network logging
+    debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    betaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+
+    // Coroutines Flow
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
+}
