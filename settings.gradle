@@ -1,6 +1,30 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 rootProject.name = "Gizee"
 include ':app'
-include ':core'
-include ':favorites'
-include ':nutritionfactslabel'
-include ':bottomsheet'
+include ':core:common'
+include ':core:database'
+include ':feature:details'
+include ':feature:favorites'
+include ':feature:fullnutrients'
+include ':feature:history'
+include ':feature:home'
+include ':feature:nutritionfacts'
+include ':feature:searchresults'
+include ':library:bottomsheet'
+include ':library:nutritionfactslabel'

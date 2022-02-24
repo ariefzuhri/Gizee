@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../../shared-dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+        }
+
+        debug {
+        }
+
+        beta {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    lint {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    // Service locator
+    api "io.insert-koin:koin-core:$koinVersion"
+    api "io.insert-koin:koin-android:$koinVersion"
+    api "io.insert-koin:koin-androidx-compose:$koinVersion"
+
+    // Memory leak detection
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVersion"
+
+    // Logger
+    api "com.orhanobut:logger:$loggerVersion"
+    api "com.jakewharton.timber:timber:$timberVersion"
+
+    // Image loading and caching
+    implementation "io.coil-kt:coil:$coilVersion"
+
+    // Animation parsing
+    api "com.airbnb.android:lottie:$lottieVersion"
+
+    // Shimmer effect on loading screen
+    api "com.facebook.shimmer:shimmer:$shimmerVersion"
+}
