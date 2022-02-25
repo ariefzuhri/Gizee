@@ -47,7 +47,7 @@ ext {
     koinVersion = '3.1.2'
 
     firebaseVersion = '29.0.4'
-    leakcanaryVersion = '2.7'
+    leakcanaryVersion = '2.8.1'
     loggerVersion = '2.2.0'
     timberVersion = '5.0.1'
 
