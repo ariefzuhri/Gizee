@@ -44,15 +44,15 @@ ext {
 
     coroutinesVersion = '1.6.0'
 
-    koinVersion = '3.1.2'
+    koinVersion = '3.1.5'
 
     firebaseVersion = '29.0.4'
-    leakcanaryVersion = '2.7'
+    leakcanaryVersion = '2.8.1'
     loggerVersion = '2.2.0'
     timberVersion = '5.0.1'
 
     aaChartCoreVersion = '-SNAPSHOT'
     coilVersion = '1.4.0'
-    lottieVersion = '4.0.0'
+    lottieVersion = '5.0.1'
     shimmerVersion = '0.5.0'
 }
