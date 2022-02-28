@@ -18,10 +18,13 @@ android {
         release {
         }
 
-        debug {
+        beta {
         }
 
-        beta {
+        alpha {
+        }
+
+        debug {
         }
     }
 
@@ -33,10 +36,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     lint {
         abortOnError false
     }
-
 }
 
 dependencies {
