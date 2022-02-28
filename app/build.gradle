@@ -44,9 +44,12 @@ android {
     }
 
     buildTypes {
+        // End-user, stable version
         release {
             signingConfig signingConfigs.release
 
+            debuggable false
+
             minifyEnabled true
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'
@@ -58,9 +61,12 @@ android {
             ]
         }
 
+        // End-user, beta version
         beta {
             signingConfig signingConfigs.release
 
+            debuggable false
+
             minifyEnabled true
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'
@@ -71,16 +77,40 @@ android {
                     isCrashlyticsEnabled: true,
             ]
 
-            versionNameSuffix "-beta.${versionBuild}"
+            versionNameSuffix "-beta${versionBuild}"
         }
 
-        debug {
+        // Internal test, non-technical team
+        alpha {
+            signingConfig signingConfigs.debug
+
+            debuggable true
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
+
             manifestPlaceholders = [
                     isAnalyticsEnabled  : false,
-                    isCrashlyticsEnabled: false,
+                    isCrashlyticsEnabled: true,
             ]
 
-            versionNameSuffix "-alpha.${versionBuild}"
+            versionNameSuffix "-alpha${versionBuild}"
+        }
+
+        // Internal test, technical team
+        debug {
+            signingConfig signingConfigs.debug
+
+            debuggable true
+
+            manifestPlaceholders = [
+                    isAnalyticsEnabled  : false,
+                    isCrashlyticsEnabled: true,
+            ]
+
+            versionNameSuffix "-dev${versionBuild}"
         }
     }
 
