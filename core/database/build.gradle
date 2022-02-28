@@ -10,6 +10,7 @@ project.ext.keysProperties = new Properties()
 if (keysPropertiesFile.canRead()) {
     keysProperties.load(new FileInputStream(keysPropertiesFile))
 }
+
 def getKeyProperty(String key) {
     return "\"${System.getenv(key) ?: project.keysProperties[key]}\""
 }
@@ -39,10 +40,13 @@ android {
         release {
         }
 
-        debug {
+        beta {
         }
 
-        beta {
+        alpha {
+        }
+
+        debug {
         }
     }
 
@@ -58,11 +62,10 @@ android {
     buildFeatures {
         viewBinding true
     }
-    
+
     lint {
         abortOnError false
     }
-
 }
 
 dependencies {
@@ -86,8 +89,9 @@ dependencies {
 
     // Network logging
     debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    alphaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
     betaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
 
     // Coroutines Flow
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
