@@ -6,10 +6,10 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
-def versionMajor = 1
-def versionMinor = 0
-def versionPatch = 0
-def versionBuild = 0
+def versionMajor = "1"
+def versionMinor = "0"
+def versionPatch = "1"
+def versionBuild = "01"
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 project.ext.keystoreProperties = new Properties()
@@ -28,7 +28,7 @@ android {
         applicationId "com.ariefzuhri.gizee"
         minSdk 21
         targetSdk 31
-        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionCode 3
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
