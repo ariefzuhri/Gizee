@@ -148,9 +148,6 @@ dependencies {
 
     api project(':library:bottomsheet')
 
-    // Splash screen API
-    implementation "androidx.core:core-splashscreen:$splashScreenVersion"
-
     // Navigation component
     api "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     api "androidx.navigation:navigation-ui-ktx:$navigationVersion"
