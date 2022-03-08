@@ -53,6 +53,6 @@ ext {
 
     aaChartCoreVersion = '-SNAPSHOT'
     coilVersion = '1.4.0'
-    lottieVersion = '5.0.2'
+    lottieVersion = '5.0.3'
     shimmerVersion = '0.5.0'
 }
