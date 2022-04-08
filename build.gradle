@@ -44,7 +44,7 @@ ext {
 
     coroutinesVersion = '1.6.0'
 
-    koinVersion = '3.1.5'
+    koinVersion = '3.1.6'
 
     firebaseVersion = '29.0.4'
     leakcanaryVersion = '2.8.1'
