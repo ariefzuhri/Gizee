@@ -29,7 +29,6 @@
             <option value="$PROJECT_DIR$/library/nutritionfactslabel" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

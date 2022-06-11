@@ -1,5 +1,7 @@
 package com.ariefzuhri.gizee.core.common.util
 
+const val DATABASE_NAME_ROOM = "food.db"
+
 const val FONT_SEN = "file:///android_res/font/sen.ttf"
 
 const val TOTAL_CALORIES_CARBOHYDRATE = 4 // kcal/g

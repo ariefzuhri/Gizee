@@ -3,7 +3,7 @@ package com.ariefzuhri.gizee.core.database.data.source.local
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.NutrientEntity
-import com.ariefzuhri.gizee.core.database.data.source.local.persistence.FoodDao
+import com.ariefzuhri.gizee.core.database.data.source.local.room.FoodDao
 import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val foodDao: FoodDao) {

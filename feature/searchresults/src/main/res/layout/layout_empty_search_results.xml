@@ -9,7 +9,7 @@
     android:padding="@dimen/layoutmargin_normal">
 
     <com.airbnb.lottie.LottieAnimationView
-        style="@style/Lottie"
+        style="@style/LottieAnimationView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:lottie_fileName="empty_result.json" />

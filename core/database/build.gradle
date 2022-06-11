@@ -97,5 +97,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
-    api "androidx.lifecycle:lifecycle-livedata-ktx:$livedataVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 }

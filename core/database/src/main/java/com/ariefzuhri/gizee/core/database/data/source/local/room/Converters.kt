@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.database.data.source.local.persistence
+package com.ariefzuhri.gizee.core.database.data.source.local.room
 
 import androidx.room.TypeConverter
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.NutrientEntity

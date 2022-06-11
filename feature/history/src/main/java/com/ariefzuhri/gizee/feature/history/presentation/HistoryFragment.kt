@@ -11,7 +11,6 @@ import com.ariefzuhri.gizee.feature.history.databinding.FragmentHistoryBinding
 import com.ariefzuhri.gizee.library.bottomsheet.MyBottomSheetDialogFragment
 import com.ariefzuhri.gizee.R as RApp
 import com.ariefzuhri.gizee.adapter.HistoryAdapter
-import com.ariefzuhri.gizee.adapter.HistoryAdapterListener
 import com.ariefzuhri.gizee.core.common.R as RCore
 import com.ariefzuhri.gizee.core.common.util.gone
 import com.ariefzuhri.gizee.core.common.util.isNotEmpty
@@ -22,7 +21,7 @@ import com.ariefzuhri.gizee.feature.home.presentation.HomeFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : MyBottomSheetDialogFragment(),
-    HistoryAdapterListener {
+    HistoryAdapter.HistoryAdapterListener {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!

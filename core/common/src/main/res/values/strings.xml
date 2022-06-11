@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Gizee</string>
+
+    <string name="title_details">Details</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_fullnutrients">Full Nutrients</string>
+    <string name="title_history">History</string>
+    <string name="title_home">Home</string>
+    <string name="title_nutritionfacts">Nutrition Facts</string>
+    <string name="title_searchresults">Search Results</string>
+
     <string name="loading">Loading…</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <string name="see_full_nutrients">Complete list of nutrients</string>
     <string name="hint_search">What did you eat today?</string>
     <string name="help_search">You can search by entering \"1 cup nasi goreng and 2 tbsp sambal\" to find out the nutritional value of some foods.</string>
@@ -24,8 +37,6 @@
     <string name="history">History</string>
     <string name="dialog_clear_history_title">Clear all history</string>
     <string name="dialog_clear_history_message">Are you sure you want to clear all history?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="empty_history_title">It\'s empty</string>
     <string name="empty_history_desc">You don\'t have any queries on your history</string>
     <string name="autofill_query">1 cup nasi goreng and 2 tbsp sambal</string>
@@ -33,12 +44,8 @@
     <string name="view_more">View more</string>
     <string name="delete_history">Delete history</string>
     <string name="measure_with_weight">%1$s %2$s • %3$s g</string>
-    <string name="title_details">Details</string>
-    <string name="title_favorites">Favorites</string>
-    <string name="title_history">History</string>
-    <string name="title_home">Home</string>
-    <string name="title_searchresults">Search Results</string>
-    <string name="title_fullnutrients">Full Nutrients</string>
-    <string name="title_nutritionfacts">Nutrition Facts</string>
+
     <string name="cd_img_photo_food">Food image</string>
+    <string name="cd_img_photo_details">Food image</string>
+
 </resources>

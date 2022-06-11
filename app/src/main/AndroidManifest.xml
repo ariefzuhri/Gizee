@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_96"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gizee"
+        android:theme="@style/Theme.Gizee.Starting"
         tools:ignore="DataExtractionRules">
 
         <meta-data
@@ -25,14 +25,11 @@
 
         <activity
             android:name="com.ariefzuhri.gizee.main.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Gizee.Starting">
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
     </application>

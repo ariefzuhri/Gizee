@@ -1,5 +1,5 @@
 dependencies {
-    // Android architecture components
+    // Android Jetpack
     api "androidx.core:core-ktx:$coreVersion"
     api "androidx.appcompat:appcompat:$appCompatVersion"
     api "com.google.android.material:material:$materialVersion"

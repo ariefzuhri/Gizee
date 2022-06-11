@@ -49,11 +49,11 @@ class HistoryAdapter(private val listener: HistoryAdapterListener) :
             }
         }
     }
-}
 
-interface HistoryAdapterListener {
+    interface HistoryAdapterListener {
 
-    fun onHistoryClicked(history: History)
+        fun onHistoryClicked(history: History)
 
-    fun onDeleteHistory(history: History)
+        fun onDeleteHistory(history: History)
+    }
 }

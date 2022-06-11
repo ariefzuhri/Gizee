@@ -2,9 +2,10 @@ package com.ariefzuhri.gizee.core.database.di
 
 import androidx.room.Room
 import com.ariefzuhri.gizee.core.common.util.AppExecutors
+import com.ariefzuhri.gizee.core.common.util.DATABASE_NAME_ROOM
 import com.ariefzuhri.gizee.core.database.BuildConfig.*
 import com.ariefzuhri.gizee.core.database.data.source.local.LocalDataSource
-import com.ariefzuhri.gizee.core.database.data.source.local.persistence.FoodDatabase
+import com.ariefzuhri.gizee.core.database.data.source.local.room.FoodDatabase
 import com.ariefzuhri.gizee.core.database.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.database.data.source.remote.network.ApiService
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -27,7 +28,8 @@ val databaseModule = module {
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            FoodDatabase::class.java, "Food.db"
+            FoodDatabase::class.java,
+            DATABASE_NAME_ROOM
         ).fallbackToDestructiveMigration()
             .openHelperFactory(factory)
             .build()

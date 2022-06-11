@@ -1,9 +1,6 @@
 package com.ariefzuhri.gizee.core.common.util
 
-import android.app.Activity
 import android.os.Build
-import android.widget.Toast
-import java.io.IOException
 import java.text.DecimalFormat
 
 val Any.TAG: String
@@ -21,22 +18,6 @@ val Any.TAG: String
         }
     }
 
-fun Activity?.showToast(message: CharSequence?) {
-    Toast.makeText(
-        this?.applicationContext,
-        message,
-        Toast.LENGTH_LONG
-    ).show()
-}
-
-fun Activity?.showToast(messageId: Int) {
-    Toast.makeText(
-        this?.applicationContext,
-        this?.getString(messageId),
-        Toast.LENGTH_LONG
-    ).show()
-}
-
 fun Number?.toDecimal(): String {
     return DecimalFormat("0.#").format(this ?: 0)
 }
@@ -47,18 +28,4 @@ fun String?.cleanup(): String {
         "(?m)(^\\s+|[\\s&&[^\\r\\n]](?=\\s|$)|\\s+\\z)".toRegex(),
         ""
     ).toString()
-}
-
-fun isNetworkAvailable(): Boolean {
-    val runtime = Runtime.getRuntime()
-    try {
-        val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
-        val exitValue = ipProcess.waitFor()
-        return exitValue == 0
-    } catch (e: IOException) {
-        e.printStackTrace()
-    } catch (e: InterruptedException) {
-        e.printStackTrace()
-    }
-    return false
 }

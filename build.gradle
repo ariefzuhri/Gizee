@@ -25,9 +25,8 @@ task clean(type: Delete) {
 ext {
     coreVersion = '1.7.0'
     appCompatVersion = '1.4.1'
-    livedataVersion = '2.4.1'
+    lifecycleVersion = '2.4.1'
     materialVersion = '1.5.0'
-
     splashScreenVersion = '1.0.0-beta01'
 
     junitVersion = '4.13.2'
