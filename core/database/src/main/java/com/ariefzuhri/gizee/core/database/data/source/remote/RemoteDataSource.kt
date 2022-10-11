@@ -1,7 +1,6 @@
 package com.ariefzuhri.gizee.core.database.data.source.remote
 
 import com.ariefzuhri.gizee.core.common.dto.ApiResponse
-import com.ariefzuhri.gizee.core.common.util.TAG
 import com.ariefzuhri.gizee.core.database.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.NutrientResponse
@@ -25,7 +24,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
-                Timber.tag(TAG).e(e.toString())
+                Timber.e(e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -41,7 +40,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
-                Timber.tag(TAG).e(e.toString())
+                Timber.e(e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }

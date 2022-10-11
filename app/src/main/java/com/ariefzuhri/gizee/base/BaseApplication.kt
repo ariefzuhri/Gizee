@@ -16,7 +16,6 @@ import timber.log.Timber
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.PrettyFormatStrategy
 
-@Suppress("unused")
 class BaseApplication : Application() {
 
     override fun onCreate() {

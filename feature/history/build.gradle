@@ -13,20 +13,10 @@ android {
     }
 
     buildTypes {
-        release {
-            debuggable false
-        }
-
         beta {
-            debuggable false
         }
 
         alpha {
-            debuggable true
-        }
-
-        debug {
-            debuggable true
         }
     }
 

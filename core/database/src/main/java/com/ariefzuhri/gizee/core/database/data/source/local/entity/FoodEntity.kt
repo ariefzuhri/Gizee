@@ -1,12 +1,11 @@
 package com.ariefzuhri.gizee.core.database.data.source.local.entity
 
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "foods")
 data class FoodEntity(
-    @PrimaryKey @NonNull val id: String,
+    @PrimaryKey val id: String,
     val name: String,
     val photo: String,
     val servingQuantity: Double,

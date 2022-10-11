@@ -13,20 +13,10 @@ android {
     }
 
     buildTypes {
-        release {
-            debuggable false
-        }
-
         beta {
-            debuggable false
         }
 
         alpha {
-            debuggable true
-        }
-
-        debug {
-            debuggable true
         }
     }
 
@@ -50,5 +40,4 @@ android {
 
 dependencies {
     implementation project(":app")
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
