@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.ariefzuhri.gizee.NavMainDirections
 import com.ariefzuhri.gizee.feature.nutritionfacts.databinding.FragmentNutritionFactsBinding
-import com.ariefzuhri.gizee.core.common.dto.Resource
+import com.ariefzuhri.gizee.core.common.wrapper.Resource
 import com.ariefzuhri.gizee.core.database.domain.model.Food
 import com.ariefzuhri.gizee.core.database.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.common.util.gone
@@ -34,6 +34,8 @@ class NutritionFactsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        module.load()
+
         foods = arguments?.getParcelableArrayList(ARG_FOODS) ?: listOf()
     }
 
@@ -57,7 +59,6 @@ class NutritionFactsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         observeNutrients()
         populateChart()
@@ -72,7 +73,7 @@ class NutritionFactsFragment : Fragment() {
                     is Resource.Loading -> binding.tvFullNutrients.gone(true)
                     is Resource.Success -> {
                         val rawNutrients = result.data
-                        if (!(foods.isNullOrEmpty() && rawNutrients.isNullOrEmpty())) {
+                        if (!(foods.isEmpty() && rawNutrients.isNullOrEmpty())) {
                             populateFullNutrients(foods, rawNutrients!!)
                         }
                         binding.tvFullNutrients.gone(false)

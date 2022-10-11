@@ -14,7 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.ariefzuhri.gizee.core.common.util.TAG
 import com.ariefzuhri.gizee.feature.details.databinding.FragmentDetailsBinding
 import com.ariefzuhri.gizee.core.common.R as RCore
-import com.ariefzuhri.gizee.core.common.util.loadRounded
+import com.ariefzuhri.gizee.core.common.util.load
 import com.ariefzuhri.gizee.core.common.util.toDecimal
 import com.ariefzuhri.gizee.core.database.domain.model.Food
 import com.ariefzuhri.gizee.feature.details.R
@@ -32,6 +32,11 @@ class DetailsFragment : Fragment() {
     private val module by lazy { DetailsModule }
     private val viewModel: DetailsViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        module.load()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -42,7 +47,6 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         initView()
         observeIsFavorite()
@@ -60,7 +64,7 @@ class DetailsFragment : Fragment() {
 
     private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.toolbar.setOnMenuItemClickListener {
@@ -73,7 +77,7 @@ class DetailsFragment : Fragment() {
 
     private fun initContent(food: Food) {
         binding.apply {
-            imgPhoto.loadRounded(food.photo)
+            imgPhoto.load(food.photo)
             tvTitle.text = food.name.capitalize(Locale.current)
             tvCalories.text = getString(
                 RCore.string.calories,

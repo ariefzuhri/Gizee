@@ -29,6 +29,11 @@ class HistoryFragment : MyBottomSheetDialogFragment(),
     private val module by lazy { HistoryModule }
     private val viewModel: HistoryViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        module.load()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -39,7 +44,6 @@ class HistoryFragment : MyBottomSheetDialogFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         initToolbar()
         observeHistory()

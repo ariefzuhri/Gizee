@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.ariefzuhri.gizee.feature.nutritionfacts.domain.usecase.NutritionFactsUseCase
-import com.ariefzuhri.gizee.core.common.dto.Resource
+import com.ariefzuhri.gizee.core.common.wrapper.Resource
 import com.ariefzuhri.gizee.core.database.domain.model.Food
 import com.ariefzuhri.gizee.core.database.domain.model.Nutrient
-import com.ariefzuhri.gizee.core.common.util.FONT_SEN
+import com.ariefzuhri.gizee.core.common.util.FONT_PATH_SEN
 import com.ariefzuhri.gizee.core.common.util.TOTAL_CALORIES_CARBOHYDRATE
 import com.ariefzuhri.gizee.core.common.util.TOTAL_CALORIES_FAT
 import com.ariefzuhri.gizee.core.common.util.TOTAL_CALORIES_PROTEIN
@@ -66,7 +66,7 @@ class NutritionFactsViewModel(useCase: NutritionFactsUseCase) : ViewModel() {
             } ?: listOf()
 
             val nfDataSet = NutritionFactsDataSet(nfEntries)
-            nfData = NutritionFactsData(nfDataSet, FONT_SEN.toUri())
+            nfData = NutritionFactsData(nfDataSet, FONT_PATH_SEN.toUri())
 
             this.totalCalories = totalCalories
             this.caloriesFromCarbohydrates = totalCarbohydrates * TOTAL_CALORIES_CARBOHYDRATE

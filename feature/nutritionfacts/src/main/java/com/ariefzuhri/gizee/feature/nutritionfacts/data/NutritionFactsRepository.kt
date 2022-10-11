@@ -1,15 +1,15 @@
 package com.ariefzuhri.gizee.feature.nutritionfacts.data
 
 import com.ariefzuhri.gizee.feature.nutritionfacts.domain.repository.INutritionFactsRepository
-import com.ariefzuhri.gizee.core.common.dto.ApiResponse
-import com.ariefzuhri.gizee.core.common.dto.NetworkBoundResource
-import com.ariefzuhri.gizee.core.common.dto.Resource
+import com.ariefzuhri.gizee.core.common.wrapper.ApiResponse
+import com.ariefzuhri.gizee.core.common.wrapper.NetworkBoundResource
+import com.ariefzuhri.gizee.core.common.wrapper.Resource
 import com.ariefzuhri.gizee.core.database.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.database.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.database.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.NutrientResponse
-import com.ariefzuhri.gizee.core.database.util.mapEntitiesToDomain
-import com.ariefzuhri.gizee.core.database.util.mapResponsesToEntities
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapEntitiesToDomain
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapResponsesToEntities
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

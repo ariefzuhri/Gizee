@@ -11,12 +11,12 @@ import retrofit2.http.POST
 
 interface ApiService {
 
+    @POST("natural/nutrients")
     @Headers(
         "x-app-id: $NUTRITIONIX_APP_ID",
         "x-app-key: $NUTRITIONIX_APP_KEY",
         "x-remote-user-id: 0"
     )
-    @POST("natural/nutrients")
     suspend fun postNutrientsNatural(@Body body: Map<String, String>): FoodResponse
 
     @GET("utils/nutrients")

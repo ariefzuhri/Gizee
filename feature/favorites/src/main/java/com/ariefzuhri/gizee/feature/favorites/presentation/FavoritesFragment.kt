@@ -22,6 +22,11 @@ class FavoritesFragment : Fragment() {
     private val module by lazy { FavoritesModule }
     private val viewModel: FavoritesViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        module.load()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -32,7 +37,6 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         observeFavorites()
     }

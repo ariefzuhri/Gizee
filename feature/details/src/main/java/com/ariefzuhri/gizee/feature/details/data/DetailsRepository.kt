@@ -4,7 +4,7 @@ import com.ariefzuhri.gizee.core.common.util.AppExecutors
 import com.ariefzuhri.gizee.core.database.domain.model.Food
 import com.ariefzuhri.gizee.feature.details.domain.repository.IDetailsRepository
 import com.ariefzuhri.gizee.core.database.data.source.local.LocalDataSource
-import com.ariefzuhri.gizee.core.database.util.mapDomainToEntity
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapDomainToEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

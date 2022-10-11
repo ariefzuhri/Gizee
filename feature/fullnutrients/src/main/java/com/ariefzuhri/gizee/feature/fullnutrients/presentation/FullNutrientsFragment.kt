@@ -28,6 +28,8 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        module.load()
+
         foods = args.foods.orEmpty().toList()
         rawNutrients = args.rawNutrients.orEmpty().toList()
     }
@@ -42,7 +44,6 @@ class FullNutrientsFragment : MyBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         initToolbar()
         observeNutrients()

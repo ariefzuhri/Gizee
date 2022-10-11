@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ariefzuhri.gizee.NavMainDirections
 import com.ariefzuhri.gizee.core.common.R
 import com.ariefzuhri.gizee.core.common.databinding.ItemFoodBinding
-import com.ariefzuhri.gizee.core.common.util.loadRounded
+import com.ariefzuhri.gizee.core.common.util.load
 import com.ariefzuhri.gizee.core.common.util.toDecimal
 import com.ariefzuhri.gizee.core.database.domain.model.Food
 
@@ -46,7 +46,7 @@ class FoodAdapter : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
         fun bind(food: Food) {
             binding.apply {
-                imgPhoto.loadRounded(food.photo)
+                imgPhoto.load(food.photo)
                 tvName.text = food.name.capitalize(Locale.current)
                 tvMeasure.text = itemView.context.resources.getString(
                     R.string.measure_with_weight,

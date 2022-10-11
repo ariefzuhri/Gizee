@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gizee.feature.searchresults.databinding.FragmentSearchResultsBinding
 import com.ariefzuhri.gizee.adapter.FoodAdapter
 import com.ariefzuhri.gizee.core.common.R
-import com.ariefzuhri.gizee.core.common.dto.Resource
+import com.ariefzuhri.gizee.core.common.wrapper.Resource
 import com.ariefzuhri.gizee.core.common.util.ShimmerHelper
 import com.ariefzuhri.gizee.core.common.util.TAG
 import com.ariefzuhri.gizee.core.common.util.isNetworkAvailable
@@ -34,6 +34,8 @@ class SearchResultsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        module.load()
+
         query = args.query
     }
 
@@ -47,7 +49,6 @@ class SearchResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        module.load()
 
         initToolbar()
         observeSearchResults()
@@ -55,7 +56,7 @@ class SearchResultsFragment : Fragment() {
 
     private fun initToolbar() {
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
     }
 

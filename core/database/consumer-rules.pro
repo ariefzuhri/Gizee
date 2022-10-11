@@ -1,4 +1,8 @@
-##---------------Begin: proguard configuration for Retrofit ----------
+##------------ Begin: proguard configuration for SQLCipher ------------
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+
+##------------ Begin: proguard configuration for Retrofit ------------
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
 -keepattributes Signature, InnerClasses, EnclosingMethod
@@ -40,7 +44,7 @@
 # is used.
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
-##---------------Begin: proguard configuration for Moshi ----------
+##------------ Begin: proguard configuration for Moshi ------------
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
 
@@ -63,11 +67,7 @@
     private static java.lang.String getKotlinMetadataClassName();
 }
 
-##---------------Begin: proguard configuration for SQLCipher ----------
--keep,includedescriptorclasses class net.sqlcipher.** { *; }
--keep,includedescriptorclasses interface net.sqlcipher.** { *; }
-
-##---------------Begin: proguard configuration for misc ----------
+##------------ Begin: proguard configuration for OkHttp ------------
 -dontwarn org.bouncycastle.jsse.BCSSLParameters
 -dontwarn org.bouncycastle.jsse.BCSSLSocket
 -dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider

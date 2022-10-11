@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.common.dto
+package com.ariefzuhri.gizee.core.common.wrapper
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
 

@@ -2,6 +2,7 @@ dependencies {
     // Android Jetpack
     api "androidx.core:core-ktx:$coreVersion"
     api "androidx.appcompat:appcompat:$appCompatVersion"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     api "com.google.android.material:material:$materialVersion"
 
     // Testing

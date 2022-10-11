@@ -31,11 +31,9 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             // Init data source modules
             modules(
-                listOf(
-                    databaseModule,
-                    networkModule,
-                    repositoryModule,
-                )
+                databaseModule,
+                networkModule,
+                repositoryModule,
             )
         }
     }

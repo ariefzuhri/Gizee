@@ -1,17 +1,17 @@
 package com.ariefzuhri.gizee.feature.searchresults.data
 
 import com.ariefzuhri.gizee.feature.searchresults.domain.repository.ISearchResultsRepository
-import com.ariefzuhri.gizee.core.common.dto.ApiResponse
-import com.ariefzuhri.gizee.core.common.dto.NetworkBoundResource
-import com.ariefzuhri.gizee.core.common.dto.Resource
+import com.ariefzuhri.gizee.core.common.wrapper.ApiResponse
+import com.ariefzuhri.gizee.core.common.wrapper.NetworkBoundResource
+import com.ariefzuhri.gizee.core.common.wrapper.Resource
 import com.ariefzuhri.gizee.core.database.domain.model.History
 import com.ariefzuhri.gizee.core.database.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.database.data.source.remote.RemoteDataSource
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.FoodResponse
-import com.ariefzuhri.gizee.core.database.util.mapEntityToDomain
-import com.ariefzuhri.gizee.core.database.util.mapResponseToEntities
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapEntityToDomain
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapResponseToEntities
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map

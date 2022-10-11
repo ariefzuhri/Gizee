@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.database.util
+package com.ariefzuhri.gizee.core.database.data.repository.mapper
 
 import com.ariefzuhri.gizee.core.database.domain.model.Nutrient
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.NutrientEntity

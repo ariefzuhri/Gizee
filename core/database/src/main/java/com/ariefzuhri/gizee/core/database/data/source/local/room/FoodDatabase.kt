@@ -7,6 +7,8 @@ import com.ariefzuhri.gizee.core.database.data.source.local.entity.FoodEntity
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.HistoryEntity
 import com.ariefzuhri.gizee.core.database.data.source.local.entity.NutrientEntity
 
+const val DATABASE_NAME_ROOM = "food.db"
+
 @Database(
     entities = [
         FoodEntity::class,

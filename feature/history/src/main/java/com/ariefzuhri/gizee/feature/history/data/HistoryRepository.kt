@@ -4,8 +4,8 @@ import com.ariefzuhri.gizee.feature.history.domain.repository.IHistoryRepository
 import com.ariefzuhri.gizee.core.database.data.source.local.LocalDataSource
 import com.ariefzuhri.gizee.core.database.domain.model.History
 import com.ariefzuhri.gizee.core.common.util.AppExecutors
-import com.ariefzuhri.gizee.core.database.util.mapDomainToEntity
-import com.ariefzuhri.gizee.core.database.util.mapEntitiesToDomain
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapDomainToEntity
+import com.ariefzuhri.gizee.core.database.data.repository.mapper.mapEntitiesToDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

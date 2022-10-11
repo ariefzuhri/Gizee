@@ -79,7 +79,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             navigateToSearchResults(query)
         } else {
             binding.edtSearch.showKeyboard()
-            binding.edtSearch.requestFocus()
             activity.showToast(R.string.toast_empty_search_field)
         }
     }

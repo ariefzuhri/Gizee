@@ -1,6 +1,6 @@
 package com.ariefzuhri.gizee.core.database.data.source.remote
 
-import com.ariefzuhri.gizee.core.common.dto.ApiResponse
+import com.ariefzuhri.gizee.core.common.wrapper.ApiResponse
 import com.ariefzuhri.gizee.core.database.data.source.remote.network.ApiService
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.FoodResponse
 import com.ariefzuhri.gizee.core.database.data.source.remote.response.NutrientResponse

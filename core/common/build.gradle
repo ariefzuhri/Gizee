@@ -50,7 +50,7 @@ dependencies {
     // Splash screen API
     api "androidx.core:core-splashscreen:$splashScreenVersion"
 
-    // Service locator
+    // Dependency injection
     api "io.insert-koin:koin-core:$koinVersion"
     api "io.insert-koin:koin-android:$koinVersion"
     api "io.insert-koin:koin-androidx-compose:$koinVersion"

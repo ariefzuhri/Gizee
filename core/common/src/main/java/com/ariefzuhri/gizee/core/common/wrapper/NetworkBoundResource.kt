@@ -1,4 +1,4 @@
-package com.ariefzuhri.gizee.core.common.dto
+package com.ariefzuhri.gizee.core.common.wrapper
 
 import kotlinx.coroutines.flow.*
 
