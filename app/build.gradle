@@ -11,7 +11,7 @@ def versionMinor = "0"
 def versionPatch = "1"
 def versionBuild = "01"
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystorePropertiesFile = rootProject.file("secrets.properties")
 project.ext.keystoreProperties = new Properties()
 if (keystorePropertiesFile.canRead()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))

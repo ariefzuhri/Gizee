@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-parcelize'
 }
 
-def keysPropertiesFile = file("keys.properties")
+def keysPropertiesFile = file("../../secrets.properties")
 project.ext.keysProperties = new Properties()
 if (keysPropertiesFile.canRead()) {
     keysProperties.load(new FileInputStream(keysPropertiesFile))
