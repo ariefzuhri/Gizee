@@ -22,12 +22,12 @@ def getKeystoreProperty(String key) {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ariefzuhri.gizee"
         minSdk 21
-        targetSdk 31
+        targetSdk 33
         versionCode 3
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
