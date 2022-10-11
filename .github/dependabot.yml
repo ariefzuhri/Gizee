@@ -3,7 +3,10 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     target-branch: "develop"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "ariefzuhri"
     labels:
       - "dependencies"
