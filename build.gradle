@@ -52,7 +52,7 @@ ext {
     timberVersion = '5.0.1'
 
     aaChartCoreVersion = '-SNAPSHOT'
-    coilVersion = '1.4.0'
+    coilVersion = '2.2.2'
     lottieVersion = '5.0.3'
     shimmerVersion = '0.5.0'
 }
