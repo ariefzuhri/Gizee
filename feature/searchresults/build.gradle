@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace 'com.ariefzuhri.gizee.feature.searchresults'
+
     compileSdk 33
 
     defaultConfig {

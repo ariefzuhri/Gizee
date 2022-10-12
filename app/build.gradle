@@ -22,6 +22,8 @@ def getKeystoreProperty(String key) {
 }
 
 android {
+    namespace 'com.ariefzuhri.gizee'
+
     compileSdk 33
 
     defaultConfig {

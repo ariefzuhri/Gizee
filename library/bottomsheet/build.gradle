@@ -5,6 +5,8 @@ plugins {
 apply from: '../../shared-dependencies.gradle'
 
 android {
+    namespace 'com.ariefzuhri.gizee.library.bottomsheet'
+
     compileSdk 33
 
     defaultConfig {

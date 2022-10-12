@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace 'com.ariefzuhri.gizee.feature.favorites'
+
     compileSdk 33
 
     defaultConfig {

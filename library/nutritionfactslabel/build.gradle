@@ -5,6 +5,8 @@ plugins {
 apply from: '../../shared-dependencies.gradle'
 
 android {
+    namespace 'com.ariefzuhri.gizee.library.nutritionfactslabel'
+
     compileSdk 33
 
     defaultConfig {

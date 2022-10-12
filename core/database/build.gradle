@@ -16,6 +16,8 @@ def getKeyProperty(String key) {
 }
 
 android {
+    namespace 'com.ariefzuhri.gizee.core.database'
+
     compileSdk 33
 
     defaultConfig {
