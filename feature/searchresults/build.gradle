@@ -16,9 +16,11 @@ android {
 
     buildTypes {
         beta {
+            debuggable false
         }
 
         alpha {
+            debuggable true
         }
     }
 
