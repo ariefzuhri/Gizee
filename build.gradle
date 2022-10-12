@@ -39,7 +39,7 @@ ext {
     sqliteVersion = '2.2.0'
 
     retrofitVersion = '2.9.0'
-    moshiVersion = '1.13.0'
+    moshiVersion = '1.14.0'
     chuckerVersion = '3.5.2'
 
     coroutinesVersion = '1.6.0'
