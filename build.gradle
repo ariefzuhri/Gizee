@@ -42,7 +42,7 @@ ext {
     moshiVersion = '1.13.0'
     chuckerVersion = '3.5.2'
 
-    coroutinesVersion = '1.6.0'
+    coroutinesVersion = '1.6.4'
 
     koinVersion = '3.1.5'
 
