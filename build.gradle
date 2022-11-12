@@ -1,11 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        gradleVersion = '7.3.0'
-        kotlinVersion = '1.7.20'
+        gradleVersion = '7.3.1'
+        kotlinVersion = '1.7.21'
         googleServicesVersion = '4.3.14'
         crashlyticsVersion = '2.9.2'
-        navigationVersion = '2.5.2'
+        navigationVersion = '2.5.3'
     }
 }
 
@@ -45,7 +45,7 @@ ext {
 
     koinVersion = '3.2.2'
 
-    firebaseVersion = '31.0.0'
+    firebaseVersion = '31.0.2'
     leakcanaryVersion = '2.9.1'
     loggerVersion = '2.2.0'
     timberVersion = '5.0.1'
