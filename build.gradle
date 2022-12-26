@@ -34,7 +34,7 @@ ext {
     espressoVersion = '3.4.0'
 
     roomVersion = '2.4.3'
-    sqlCipherVersion = '4.5.2'
+    sqlCipherVersion = '4.5.3'
     sqliteVersion = '2.2.0'
 
     retrofitVersion = '2.9.0'
