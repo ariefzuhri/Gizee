@@ -6,58 +6,61 @@
 
 <img src="https://i.imgur.com/TySh7fD.png" />
 
-**Calculate calories and nutrients in your meals using Gizee.** This Android-based app is powered by [Nutritionix API](https://developer.nutritionix.com/) and entirely well-written in Kotlin. Gizee is built using Clean Architecture which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s [Become an Android Developer Expert](https://www.dicoding.com/academies/165) *(Menjadi Android Developer Expert)* class.
+**Calculate calories and nutrients in your meals using Gizee**, an Android-based app powered by the [Nutritionix API](https://developer.nutritionix.com/), and written in Kotlin. Gizee is built using Clean Architecture, which makes it robust, flexible, and maintainable. This app was developed as a capstone project in [Dicoding](https://www.dicoding.com)'s '[Become an Android Developer Expert](https://www.dicoding.com/academies/165)' *(Menjadi Android Developer Expert)* course.
 
 ## Download
-Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and download the latest apk.
+Check out the [release page](https://github.com/ariefzuhri/Gizee/releases) and download the latest APK.
 
 ## MAD Scorecard
 <img src="https://i.imgur.com/ma8dpGx.png" />
 
 ## Architecture and Tech-stack
-- [Kotlin](https://developer.android.com/kotlin), modern, concise, and safe programming language, [recommended by Google](https://developer.android.com/kotlin/first).
+- [Kotlin](https://developer.android.com/kotlin), a modern, concise, and safe programming language [recommended by Google](https://developer.android.com/kotlin/first).
 - Architectural and design patterns:
-  - [Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), makes our apps highly testable and independent of any framework by separating the code into three layers, such as presentation, domain, and data.
-  - [MVVM pattern](https://developer.android.com/jetpack/guide#recommended-app-arch), handles how data is displayed to the user from the use case.
-  - [Modular architecture](https://developer.android.com/topic/modularization), makes features more independent and each feature serves a clear purpose (including the use of [dynamic-feature](https://developer.android.com/guide/playcore/feature-delivery)).
-  - [Single-activity architecture](https://www.youtube.com/watch?v=2k8x8V77CrU), better user experience with a single activity.
-- [Android Jetpack](https://developer.android.com/jetpack), a set of libraries to simplify the code and focus on building a robust and useful app, specifically:
-  - [Coroutines Flow](https://developer.android.com/kotlin/flow), handle streams of data asynchronously used when fetching data from the network and local.
-  - [Room](https://developer.android.com/topic/libraries/architecture/room), a robust database that provides an abstraction layer over the SQLite.
-  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), persists UI state in a lifecycle-aware way.
-  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), observes data changes in a lifecycle-aware way.
-  - [Material Design 2](https://m2.material.io/develop/android), provides the UI components and the design guidelines.
+  - [Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), which makes our apps highly testable and independent of any framework by separating the code into three layers: presentation, domain, and data.
+  - [MVVM pattern](https://developer.android.com/jetpack/guide#recommended-app-arch), which handles how data is displayed to the user from the use case.
+  - [Modular architecture](https://developer.android.com/topic/modularization), which makes features more independent, and each feature serves a clear purpose (including the use of [dynamic-feature modules](https://developer.android.com/guide/playcore/feature-delivery)).
+  - [Single-activity architecture](https://www.youtube.com/watch?v=2k8x8V77CrU), for a better user experience with a single activity.
+- [Android Jetpack](https://developer.android.com/jetpack), a set of libraries that simplify the code and focus on building a robust and useful app. Specifically, it includes:
+  - [Coroutines Flow](https://developer.android.com/kotlin/flow), used to handle streams of data asynchronously when fetching data from the network and local sources.
+  - [Room](https://developer.android.com/topic/libraries/architecture/room), a robust database that provides an abstraction layer over SQLite.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), which persists UI state in a lifecycle-aware way.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), which observes data changes in a lifecycle-aware way.
+  - [Material Design 2](https://m2.material.io/develop/android), which provides the UI components and design guidelines.
 - Third-party libraries:
-  - [Retrofit](https://github.com/square/retrofit), REST client framework.
-  - [Moshi](https://github.com/square/moshi), parsing the JSON format.
-  - [Koin](https://github.com/InsertKoinIO/koin), dependency injection framework.
-  - [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics), real-time crash reporter.
-  - [Firebase Analytics](https://firebase.google.com/docs/analytics), provides insight on app usage and user engagement.
-  - [Chucker](https://github.com/ChuckerTeam/chucker), HTTP inspector.
-  - [Timber](https://github.com/JakeWharton/timber), [Logger](https://github.com/orhanobut/logger), logging utility.
-  - [LeakCanary](https://github.com/square/leakcanary), memory leak detection.
-  - [OkHttp CertificatePinner](https://square.github.io/okhttp/4.x/okhttp/okhttp3/-certificate-pinner), certificate pinning.
-  - [SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher), database encryption.
-  - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), data visualization chart framework.
-  - [Coil](https://github.com/coil-kt/coil), image loading and caching.
-  - [Facebook Shimmer](https://github.com/facebook/shimmer-android), shimmering effect on loading screen.
-  - [Lottie](https://github.com/airbnb/lottie-android), parsing animation natively.
+  - [Retrofit](https://github.com/square/retrofit), a REST client framework.
+  - [Moshi](https://github.com/square/moshi), for parsing the JSON format.
+  - [Koin](https://github.com/InsertKoinIO/koin), a dependency injection framework.
+  - [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics), for real-time crash reporting.
+  - [Firebase Analytics](https://firebase.google.com/docs/analytics), which provides insights on app usage and user engagement.
+  - [Chucker](https://github.com/ChuckerTeam/chucker), an HTTP inspector.
+  - [Timber](https://github.com/JakeWharton/timber), [Logger](https://github.com/orhanobut/logger), a logging utility.
+  - [LeakCanary](https://github.com/square/leakcanary), for memory leak detection.
+  - [OkHttp CertificatePinner](https://square.github.io/okhttp/4.x/okhttp/okhttp3/-certificate-pinner), for certificate pinning.
+  - [SQLCipher](https://github.com/sqlcipher/android-database-sqlcipher), for database encryption.
+  - [AAChartCore](https://github.com/AAChartModel/AAChartCore-Kotlin), a data visualization chart framework.
+  - [Coil](https://github.com/coil-kt/coil), for image loading and caching.
+  - [Facebook Shimmer](https://github.com/facebook/shimmer-android), for a shimmering effect on loading screens.
+  - [Lottie](https://github.com/airbnb/lottie-android), for parsing animations natively.
 - Tools:
   - [Android Studio](https://developer.android.com/studio), the official IDE for Android development.
-  - [Figma](https://www.figma.com), a design tool used to develop the app descriptions and design the UI.
-  - [CircleCI](https://circleci.com), the continuous integration & delivery tools.
+  - [Figma](https://www.figma.com), a design tool used to conceptualize the app and design the UI.
+  - [CircleCI](https://circleci.com), for continuous integration and delivery.
 - Resources:
-  - [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons), [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community)), provides all the icon needs throughout the app.
-  - [LottieFiles](https://lottiefiles.com), provides free Lottie animations used for empty history and empty favorites.
-  - [Freepik](https://www.freepik.com), provides the illustration on the homepage.
+  - [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/Feather-Icons), [Material Design Icons (Community)](https://www.figma.com/community/plugin/775671607185029020/Material-Design-Icons-(Community)), for all the icon needs throughout the app.
+  - [LottieFiles](https://lottiefiles.com), which provides free Lottie animations used for empty states.
+  - [Freepik](https://www.freepik.com), which provides the illustrations displayed in the app.
   
 ## Project Configuration
-Firstly, clone this repository and import it into Android Studio (`git clone https://github.com/ariefzuhri/Gizee.git`).
+First, clone this repository by executing the following command and then import it into Android Studio:
+```
+git clone https://github.com/ariefzuhri/Gizee.git
+```
 
 ### Setup API Key
-1. Get your [Nutritionix API](https://developer.nutritionix.com) app id and app key.
+1. Get your [Nutritionix API](https://developer.nutritionix.com) app ID and app key.
 2. Create a new file named `secrets.properties` in the project root directory.
-3. Put your app id and key in `secrets.properties` file by adding the following lines:
+3. Put your app ID and key in `secrets.properties` file by adding the following lines:
 ```
 NUTRITIONIX_APP_ID=YOUR_APP_ID
 NUTRITIONIX_APP_KEY=YOUR_APP_KEY
@@ -98,7 +101,7 @@ DATABASE_PASSPHRASE=YOUR_ANY_PASSPHRASE
 ### Setup CircleCI
 1. You need to fork this project first before setting up your own CircleCI environment.
 2. After that, [register](https://circleci.com/signup) or [connect](https://circleci.com/docs/github-integration/#connect-a-github-account) your CircleCI account with GitHub.
-3. Follow the instructions [here](https://circleci.com/docs/getting-started/#connect-code) to set it up. In step number 2, select **Fastest** instead of **Fast**.
+3. Follow the instructions [here](https://circleci.com/docs/getting-started/#connect-code) to set it up. In step number 2, select **Fastest**.
 4. Set all environment variables in project settings. You can see how to make it works [here](https://circleci.com/docs/set-environment-variable/#set-an-environment-variable-in-a-project). The environment variables include all variables defined in `secrets.properties` file plus the following 2 variables:
 ```
 DEBUG_KEYSTORE={your own default debug.keystore file encoded in base64}
@@ -107,7 +110,7 @@ GOOGLE_SERVICES={your own google-services.json file encoded in base64}
 *To encode files in base64 you can use OpenSSL by downloading from [here](https://slproweb.com/products/Win32OpenSSL.html) (the light version is sufficient) and see how to run the command [here](https://superuser.com/a/120815).*
 
 ### Setup Signing Configuration (optional)
-*This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and comment/remove the signing configuration in the app-level build.gradle.*
+*This step is optional for learning purposes. Since we don't need to publish the app to Google Play, you may skip this step and comment/delete the signing configuration in the app-level build.gradle.*
 1. First, you need your own keystore. If you don't already have one, you can read how to create it [here](https://developer.android.com/studio/publish/app-signing#generate-key).
 2. Open the `secrets.properties` file and add the following lines:
 ```
@@ -116,7 +119,7 @@ STORE_PASSWORD=YOUR_STORE_PASSWORD
 KEY_ALIAS=_YOUR KEY_ALIAS
 KEY_PASSWORD=YOUR_KEY_PASSWORD
 ```
-*To specify a file path, you can write its absolute (the full path) or just its relative path (the short version). See the details [here](https://web.archive.org/web/20220918144205/https://networkencyclopedia.com/relative-path).*
+*You can specify a file path as either its absolute (full path) or relative path (short version). Learn more [here](https://web.archive.org/web/20220918144205/https://networkencyclopedia.com/relative-path).*
 
 ## 🤝 Support
 Any contributions, issues, and feature requests are welcome.
